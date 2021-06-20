@@ -44,7 +44,7 @@ const Medias = () => {
                     <div className="statistic">
                         <div>
                             <h1 className="number-statisc">49</h1>
-                            <h2 className="statistic-description">Filme mais Avaliado: Vingadores End Game</h2>
+                            <h2 className="statistic-description">Vingadores End Game</h2>
                         </div>
                         <div>
                             <ion-icon name="star-outline"></ion-icon>

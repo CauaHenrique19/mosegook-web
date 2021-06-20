@@ -36,23 +36,7 @@ const Home = () => {
             numberVisualizers.push(i)
             setNumberVisualizers(numberVisualizers)
         }
-    }, [maxCount, medias])
-
-    /*
-    useEffect(() => {
-        const media = {
-            id: 16,
-            genders: [
-                { genders_in_medias_id: 25, gender_id: 8 },
-                { genders_in_medias_id: 24, gender_id: 10 }
-            ]
-        }
-
-        axios.put('http://localhost:3001/medias/16', media)
-            .then(res => console.log(res.data))
-            .catch(error => console.error(error.message))
-    }, [])
-    */
+    }, [medias])
 
     const buttonPreviousEL = document.querySelector('.previous-button-slider')
     const buttonNextEL = document.querySelector('.next-button-slider')

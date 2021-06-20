@@ -6,12 +6,19 @@ const ModalForm = () => {
 
     const { viewModalForm, setViewModalForm } = useContext(Context)
 
+    const forms = {
+        category: '<h1>Oi</h1>'
+    }
+
     return (
         <div className="modal-form-container">
             <div className="content-modal-form-container">
                 <div className="header-modal-form">
                     <h1>Filmes</h1>
                     <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="close-outline"></ion-icon></button>
+                </div>
+                <div dangerouslySetInnerHTML={{ __html: forms['category'] }}>
+
                 </div>
             </div>
         </div>
