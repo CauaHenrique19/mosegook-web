@@ -18,7 +18,7 @@ const Routes = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <PrivateRoute path="/timeline" component={Timeline} />
-                <AdminRoute path="/admin/medias" component={Medias} />
+                <AdminRoute path="/admin/movies" component={Medias} />
             </Switch>
         </HashRouter>
     )
