@@ -1,0 +1,121 @@
+.container-login{
+    height: 100vh;
+    display: flex;
+    background-image: linear-gradient(180deg, #0f0f0f, #0f0f0f, #0f0f0fdc, transparent), url('../../assets/60587559ea59be6a584600ee_invite-bg.svg');
+    background-color: #0f0f0f;
+    background-position: 0px 0px, 50% 100%;
+    background-size: auto, auto;
+    background-repeat: repeat, no-repeat;
+}
+.container-login .form-container{
+    width: 40%;
+    height: 100vh;
+}
+.container-login .form-container header{
+    padding: 30px 150px;
+}
+.container-login .form-container h1{
+    color: #fafafa;
+}
+.container-login .form-container .form{
+    width: fit-content;
+    padding: 0px 150px;
+}
+.container-login .form-container .form h1{
+    font-size: 3rem;
+    margin: 100px 0 50px 0;
+}
+.container-login .form-container .input-container{
+    width: 430px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin: 8px 0 30px 0;
+    border-radius: 5px;
+    padding: 0px 20px;
+    border: 1px solid rgba(216, 216, 216, 0.171);
+}
+.container-login .form-container label{
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: #fafafa;
+}
+.container-login .form-container .input-container input{
+    height: 100%;
+    width: 350px;
+    background: initial;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 1.5rem;
+    color: #fafafa;
+}
+.container-login .form-container .input-container ion-icon{
+    font-size: 1.6rem;
+    color: #fafafa;
+}
+.container-login .form-container .input-container ion-icon:last-child{
+    cursor: pointer;
+}
+.container-login .form-container .form .form-button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-login .form-container .form button{
+    width: 430px;
+    height: 60px;
+    background-color: rgb(0, 160, 223);
+    background-color: blueviolet;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    margin: 0px 0 10px 0;
+    transition: background-color 0.3s;
+}
+.container-login .form-container .form button:hover{
+    background-color: rgb(117, 27, 202);
+}
+.container-login .form-container .form a{
+    color: #fafafa;
+    font-size: 0.9rem;
+}
+.container-login .social-media-container{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container-login .social-media-container h1{
+    font-size: 4rem;
+    margin-bottom: 50px;
+}
+.container-login .social-media-container .buttons-social-media{
+    display: flex;
+}
+.container-login .social-media-container a{
+    border-radius: 100%;
+    border: 1px solid #cfcfcf;
+    background-color:#0f0f0f;
+    margin-right: 25px;
+    font-size: 3.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+}
+.container-login .social-media-container a:last-child{
+    margin-right: 0;
+}
+.container-login .social-media-container a:hover{
+    background-image: url('../../assets/bg-avaliations150.png');
+}
+.container-login .social-media-container a:hover ion-icon{
+    transition: color 0.5s;
+    color: #0f0f0f;
+}
