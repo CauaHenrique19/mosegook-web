@@ -39,7 +39,7 @@ const Signup = () => {
                     localStorage.setItem('mosegook_token', res.data.token)
                     setUser(res.data.userDb)
                     setToken(res.data.token)
-                    history.push('/timeline')
+                    history.push('/select-genders')
                 }
                 else{
                     console.log(res.data.message)

@@ -8,7 +8,37 @@
     height: 10vh;
     display: flex;
     align-items: center;
-    padding: 0 150px;
+    justify-content: space-between;
+    padding: 0 50px 0 150px;
+}
+.medias-container header a{
+    display: flex;
+    align-items: center;
+}
+.medias-container header .logo-container{
+    display: flex;
+    align-items: center;
+}
+.medias-container header .logo-container ion-icon{
+    margin-right: 15px;
+    font-size: 1.7rem;
+}
+.medias-container header a:nth-child(2){
+    font-size: 1.5rem;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+.medias-container header a:nth-child(2) ion-icon{
+    margin-left: 15px;
+    font-size: 1.5rem
+}
+.medias-container header a:nth-child(2):hover{
+    background-color: #fafafa;
+    color: black;
+}
+.medias-container header a:nth-child(2):hover ion-icon{
+    background-color: #fafafa;
+    color: black;
 }
 .medias-container .main-medias{
     display: flex;
@@ -146,6 +176,9 @@
     cursor: pointer;
     transition: background-color 0.3s;
     padding: 0px 15px;
+}
+.medias .media-info-container button:disabled{
+    background-color: gray;
 }
 .medias .media-info-container button:hover{
     background-color: rgb(165, 42, 67);

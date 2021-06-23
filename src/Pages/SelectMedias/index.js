@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../../services/api'
+import Loading from '../../Components/Loading'
 import './selectMedias.css'
 
 const SelectMedias = () => {
 
     const [medias, setMedias] = useState([])
     const [selectedMedias, setSelectedMedias] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         api.get('/medias')
-            .then(res => setMedias(res.data))
+            .then(res => {
+                setMedias(res.data)
+                setLoading(false)
+            })
             .catch(error => console.error(error.message))
     }, [])
 
@@ -19,8 +25,13 @@ const SelectMedias = () => {
 
     return (
         <div className="medias-container">
+            { loading && <Loading />}
             <header>
-                <h1>Mosegook</h1>
+                <div className="logo-container">
+                    <Link to="/select-genders" ><ion-icon name="arrow-back-outline"></ion-icon></Link>
+                    <h1>Mosegook</h1>
+                </div>
+                { selectedMedias.length >= 1 && <Link to="/timeline">Finalizar<ion-icon name="checkmark-outline"></ion-icon></Link> }
             </header>
             <div className="main-medias">
                 <div className="right-container">
@@ -58,7 +69,7 @@ const SelectMedias = () => {
                                 </div>
                                 <div className="media-info-container">
                                     <h2>{media.name}</h2>
-                                    <button onClick={() => setSelectedMedias([...selectedMedias, media])}>Selecionar</button>
+                                    <button disabled={selectedMedias.includes(media)} onClick={() => setSelectedMedias([...selectedMedias, media])}>Selecionar</button>
                                 </div>
                             </div>
                         ))

@@ -5,6 +5,7 @@
     font-family: 'Roboto', sans-serif;
     color: #fafafa;
     list-style: none;
+    text-decoration: none;
 }
 body{
     overflow-x: hidden;

@@ -13,6 +13,7 @@ import Series from '../src/Pages/Admin/Series'
 import Books from '../src/Pages/Admin/Books'
 import Games from '../src/Pages/Admin/Games'
 import SelectMedias from './Pages/SelectMedias'
+import SelectGenders from './Pages/SelectGenders'
 
 const Routes = () => {
     return(
@@ -23,6 +24,7 @@ const Routes = () => {
                 <Route path="/signup" component={Signup} />
                 <PrivateRoute path="/timeline" component={Timeline} />
                 <PrivateRoute path="/select-medias" component={SelectMedias} />
+                <PrivateRoute path="/select-genders" component={SelectGenders} />
                 <AdminRoute path="/admin/movies" component={Movies} />
                 <AdminRoute path="/admin/series" component={Series} />
                 <AdminRoute path="/admin/books" component={Books} />
