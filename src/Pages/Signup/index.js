@@ -34,7 +34,6 @@ const Signup = () => {
 
         api.post('/signup', userSignupFormData)
             .then(res => {
-                console.log(res)
                 if(res.data.auth){
                     localStorage.setItem('mosegook_user', JSON.stringify(res.data.userDb[0]))
                     localStorage.setItem('mosegook_token', res.data.token)
