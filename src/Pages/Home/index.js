@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 import './home.css'
-import axios from 'axios'
 
 import imageNewsletter from '../../assets/Senhor_das_Estrelas_render.png'
 import userImage from '../../assets/user-image.png'
