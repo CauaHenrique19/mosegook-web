@@ -8,7 +8,10 @@ import Home from '../src/Pages/Home'
 import Login from '../src/Pages/Login'
 import Signup from '../src/Pages/Signup'
 import Timeline from '../src/Pages/Timeline'
-import Medias from '../src/Pages/Admin/Medias'
+import Movies from '../src/Pages/Admin/Movies'
+import Series from '../src/Pages/Admin/Series'
+import Books from '../src/Pages/Admin/Books'
+import Games from '../src/Pages/Admin/Games'
 
 const Routes = () => {
     return(
@@ -18,7 +21,10 @@ const Routes = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <PrivateRoute path="/timeline" component={Timeline} />
-                <AdminRoute path="/admin/movies" component={Medias} />
+                <AdminRoute path="/admin/movies" component={Movies} />
+                <AdminRoute path="/admin/series" component={Series} />
+                <AdminRoute path="/admin/books" component={Books} />
+                <AdminRoute path="/admin/games" component={Games} />
             </Switch>
         </HashRouter>
     )

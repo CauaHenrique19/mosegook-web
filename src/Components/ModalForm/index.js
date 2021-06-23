@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Context } from '../../context/context'
 import './modalForm.css'
 
-const ModalForm = () => {
+const ModalForm = ({ page }) => {
 
     const { viewModalForm, setViewModalForm } = useContext(Context)
 
@@ -14,7 +14,7 @@ const ModalForm = () => {
         <div className="modal-form-container">
             <div className="content-modal-form-container">
                 <div className="header-modal-form">
-                    <h1>Filmes</h1>
+                    <h1>{page}</h1>
                     <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="close-outline"></ion-icon></button>
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: forms['category'] }}>
