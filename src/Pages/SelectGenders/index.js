@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context/context'
+import { useHistory } from 'react-router-dom'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
 import './selectGenders.css'
 
 const SelectGenders = () => {
+    
+    const history = useHistory()
+    const { user } = useContext(Context)
 
     const [genders, setGenders] = useState([])
     const [selectedGenders, setSelectedGenders] = useState([])
@@ -19,12 +23,25 @@ const SelectGenders = () => {
             .catch(error => console.error(error.message))
     }, [])
 
+    function handleNextPage(){
+        const gendersPreferences = {
+            user_id: user.id,
+            gender_id: selectedGenders.map(selectedGender => selectedGender.id)
+        }
+
+        api.post('/user-preferences-genders', gendersPreferences)
+            .then(res => {
+                history.push('/select-medias')
+            })
+            .catch(error => console.error(error.message))   
+    }
+
     return (
         <div className="genders-container">
             { loading && <Loading />}
             <header>
                 <h1>Mosegook</h1>
-                { selectedGenders.length >= 1 && <Link to="/select-medias">Próximo<ion-icon name="arrow-forward-outline"></ion-icon></Link> }
+                { selectedGenders.length >= 3 && <button onClick={handleNextPage}>Próximo<ion-icon name="arrow-forward-outline"></ion-icon></button> }
             </header>
             <div className="main-genders">
                 <div className="right-container">

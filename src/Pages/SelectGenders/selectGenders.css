@@ -10,24 +10,27 @@
     justify-content: space-between;
     padding: 0 150px;
 }
-.genders-container header a{
+.genders-container header button{
     display: flex;
     align-items: center;
     font-size: 1.5rem;
     padding: 5px 15px;
     border-radius: 50px;
     margin-right: 40px;
+    border: none;
+    background-color: initial;
+    cursor: pointer;
+    transition: background-color 0.4s;
 }
-.genders-container header a ion-icon{
+.genders-container header button ion-icon{
     margin-left: 15px;
     font-size: 1.5rem
 }
-.genders-container header a:hover{
+.genders-container header button:hover{
     background-color: #fafafa;
     color: black;
 }
-.genders-container header a:hover ion-icon{
-    background-color: #fafafa;
+.genders-container header button:hover ion-icon{
     color: black;
 }
 .genders-container .main-genders{

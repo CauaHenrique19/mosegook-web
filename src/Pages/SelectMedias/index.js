@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context/context'
+import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
 import './selectMedias.css'
 
 const SelectMedias = () => {
+
+    const history = useHistory()
+    const { user } = useContext(Context)
 
     const [medias, setMedias] = useState([])
     const [selectedMedias, setSelectedMedias] = useState([])
@@ -19,19 +23,28 @@ const SelectMedias = () => {
             .catch(error => console.error(error.message))
     }, [])
 
-    useEffect(() => {
-        console.log(selectedMedias)
-    }, [selectedMedias])
+    function handleSendPreferences(){
+        const mediasPreferences = {
+            user_id: user.id,
+            media_id: selectedMedias.map(selectedMedia => selectedMedia.id)
+        }
+        
+        api.post('/user-preferences-medias', mediasPreferences)
+            .then(res => {
+                history.push('/timeline')
+            })
+            .catch(error => console.error(error.message))   
+    }
 
     return (
         <div className="medias-container">
             { loading && <Loading />}
             <header>
                 <div className="logo-container">
-                    <Link to="/select-genders" ><ion-icon name="arrow-back-outline"></ion-icon></Link>
+                    <Link to="/select-genders"><ion-icon name="arrow-back-outline"></ion-icon></Link>
                     <h1>Mosegook</h1>
                 </div>
-                { selectedMedias.length >= 1 && <Link to="/timeline">Finalizar<ion-icon name="checkmark-outline"></ion-icon></Link> }
+                { selectedMedias.length >= 3 && <button onClick={handleSendPreferences} to="/timeline">Finalizar<ion-icon name="checkmark-outline"></ion-icon></button> }
             </header>
             <div className="main-medias">
                 <div className="right-container">

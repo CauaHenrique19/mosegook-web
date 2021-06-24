@@ -23,21 +23,26 @@
     margin-right: 15px;
     font-size: 1.7rem;
 }
-.medias-container header a:nth-child(2){
+.medias-container header button{
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     padding: 5px 15px;
     border-radius: 50px;
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.4s;
 }
-.medias-container header a:nth-child(2) ion-icon{
+.medias-container header button ion-icon{
     margin-left: 15px;
     font-size: 1.5rem
 }
-.medias-container header a:nth-child(2):hover{
-    background-color: #fafafa;
+.medias-container header button:hover{
     color: black;
-}
-.medias-container header a:nth-child(2):hover ion-icon{
     background-color: #fafafa;
+}
+.medias-container header button:hover ion-icon{
     color: black;
 }
 .medias-container .main-medias{
@@ -183,6 +188,9 @@
 .medias .media-info-container button:hover{
     background-color: rgb(165, 42, 67);
     background-color: rgb(94, 15, 168);
+}
+.medias .media-info-container button:disabled:hover{
+    background-color: gray;
 }
 .medias .media:last-child{
     margin-right: 0;
