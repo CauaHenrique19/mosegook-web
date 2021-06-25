@@ -25,7 +25,7 @@ const Games = () => {
     return (
         <div className="games-container">
             { loading && <Loading /> }
-            { viewModalForm && <ModalForm page="games" /> }
+            { viewModalForm && <ModalForm page="Games" /> }
             <MenuAdmin page="games" />
             <div className="main-games-container">
                 <div className="statistics-games-main-container">

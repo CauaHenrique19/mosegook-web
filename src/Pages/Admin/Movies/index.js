@@ -25,7 +25,7 @@ const Movies = () => {
     return (
         <div className="movies-container">
             { loading && <Loading /> }
-            { viewModalForm && <ModalForm page="Filmes" /> }
+            { viewModalForm && <ModalForm type="form-gender" page="Filmes" /> }
             <MenuAdmin page="movies" />
             <div className="main-movies-container">
                 <div className="statistics-movies-main-container">
