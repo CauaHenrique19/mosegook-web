@@ -12,7 +12,8 @@ const Medias = ({ category_id, page, texts, pageName }) => {
     const [medias, setMedias] = useState([])
     const [loading, setLoading] = useState(true)
     const [amountAvaliations, setAmountAvaliations] = useState([])
-    const [mostRated, setMostRated] = useState([]) 
+    const [mostRated, setMostRated] = useState([])
+    const [mostGoodRated, setMostGoodRated] = useState([])
 
     useEffect(() => {
         api(`/medias/${category_id}`)
@@ -26,6 +27,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
             .then(res => {
                 setAmountAvaliations(res.data.amountAvaliations)
                 setMostRated(res.data.mostRated)
+                setMostGoodRated(res.data.mostGoodRated)
             })
             .catch(error => console.error(error.message))
     }, [])
@@ -62,6 +64,15 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                         <div>
                             <h1 className="number-statisc">{ mostRated.length > 0 ? mostRated[0].amount_avaliations : '0'}</h1>
                             <h2 className="statistic-description">{ mostRated.length > 0 ? mostRated[0].name : 'Nenhuma' }</h2>
+                        </div>
+                        <div>
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div className="statistic">
+                        <div>
+                            <h1 className="number-statisc">{ mostGoodRated.length > 0 ? mostGoodRated[0].media_stars.replace('.', ',') : '0'}</h1>
+                            <h2 className="statistic-description">{ mostGoodRated.length > 0 ? mostGoodRated[0].name : 'Nenhuma' }</h2>
                         </div>
                         <div>
                             <ion-icon name="star-outline"></ion-icon>

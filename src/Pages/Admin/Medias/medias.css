@@ -58,6 +58,9 @@
 .medias-admin-container .statistic:nth-child(3){
     background-color: rgb(212, 50, 83);
 }
+.medias-admin-container .statistic:nth-child(4){
+    background-color: rgb(221, 133, 0)
+}
 .medias-main-container{
     height: calc(100% - 15vh - 60px);
     margin: 0 20px 20px 20px;

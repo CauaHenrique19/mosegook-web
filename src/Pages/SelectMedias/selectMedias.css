@@ -1,29 +1,29 @@
-.medias-container{
+.select-select-medias-container{
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #0f0f0f;
 }
-.medias-container header{
+.select-select-medias-container header{
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 50px 0 150px;
 }
-.medias-container header a{
+.select-select-medias-container header a{
     display: flex;
     align-items: center;
 }
-.medias-container header .logo-container{
+.select-select-medias-container header .logo-container{
     display: flex;
     align-items: center;
 }
-.medias-container header .logo-container ion-icon{
+.select-select-medias-container header .logo-container ion-icon{
     margin-right: 15px;
     font-size: 1.7rem;
 }
-.medias-container header button{
+.select-select-medias-container header button{
     display: flex;
     align-items: center;
     font-size: 1.5rem;
@@ -34,46 +34,46 @@
     cursor: pointer;
     transition: background-color 0.4s;
 }
-.medias-container header button ion-icon{
+.select-select-medias-container header button ion-icon{
     margin-left: 15px;
     font-size: 1.5rem
 }
-.medias-container header button:hover{
+.select-select-medias-container header button:hover{
     color: black;
     background-color: #fafafa;
 }
-.medias-container header button:hover ion-icon{
+.select-select-medias-container header button:hover ion-icon{
     color: black;
 }
-.medias-container .main-medias{
+.select-select-medias-container .main-medias{
     display: flex;
 }
-.medias-container .right-container{
+.select-select-medias-container .right-container{
     display: flex;
     flex-direction: column;
     margin-right: 100px;
 }
-.medias-container .right-container > h1{
+.select-medias-container .right-container > h1{
     margin: 60px 0 0 150px;
 }
-.medias-container .info-medias h1{
+.select-medias-container .info-medias h1{
     margin: 30px 0 10px 150px;
     font-size: 3rem;
     width: 650px;
 }
-.medias-container .info-medias h3{
+.select-medias-container .info-medias h3{
     margin: 0 0 0 150px;
     font-weight: 300;
     font-size: 1.5rem;
     width: 650px;
 }
-.medias-container .selected-medias{
+.select-medias-container .selected-medias{
     display: grid;
     grid-template-columns: repeat(4, 150px);
     grid-gap: 15px;
     margin: 20px 0 0 150px;
 }
-.medias-container .selected-medias .media{
+.select-medias-container .selected-medias .media{
     width: 150px;
     height: fit-content;
     display: flex;
@@ -83,19 +83,19 @@
     transition: all 0.4s;
     position: relative;
 }
-.medias-container .selected-medias .media-image-container{
+.select-medias-container .selected-medias .media-image-container{
     height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
 }
-.medias-container .selected-medias .media-image-container img{
+.select-medias-container .selected-medias .media-image-container img{
     width: 150px;
     height: 200px;
     border-radius: 3px;
 }
-.medias-container .selected-medias .media-info-container{
+.select-medias-container .selected-medias .media-info-container{
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -103,10 +103,10 @@
     background-color: black;
     padding: 15px;
 }
-.medias-container .selected-medias .media-info-container h3{
+.select-medias-container .selected-medias .media-info-container h3{
     font-size: 1rem;
 }
-.medias-container .selected-medias .media button{
+.select-medias-container .selected-medias .media button{
     width: 35px;
     height: 35px;
     border-radius: 50px;
@@ -122,10 +122,10 @@
     align-items: center;
     justify-content: center;
 }
-.medias-container .selected-medias .media button ion-icon{
+.select-medias-container .selected-medias .media button ion-icon{
     font-size: 1.3rem;
 }
-.medias-container .medias{
+.select-medias-container .medias{
     height: 90vh;
     display: grid;
     grid-template-columns: repeat(3, 300px);
@@ -133,16 +133,16 @@
     overflow-y: auto;
     padding: 15px;
 }
-.medias-container .medias::-webkit-scrollbar{
+.select-medias-container .medias::-webkit-scrollbar{
     width: 10px;
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.158);
 }
-.medias-container .medias::-webkit-scrollbar-thumb{
+.select-medias-container .medias::-webkit-scrollbar-thumb{
     background-color: rgb(0, 0, 0);
     border-radius: 5px;
 }
-.medias .media{
+.select-medias-container .medias .media{
     width: 300px;
     height: 500px;
     display: flex;
@@ -151,19 +151,19 @@
     cursor: pointer;
     transition: all 0.4s;
 }
-.medias .media-image-container{
+.select-medias-container .medias .media-image-container{
     height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
 }
-.medias .media-image-container img{
+.select-medias-container .medias .media-image-container img{
     width: 300px;
     height: 400px;
     border-radius: 3px;
 }
-.medias .media-info-container{
+.select-medias-container .medias .media-info-container{
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -171,7 +171,7 @@
     background-color: black;
     padding: 15px;
 }
-.medias .media-info-container button{
+.select-medias-container .medias .media-info-container button{
     width: fit-content;
     height: 35px;
     border: none;
@@ -182,20 +182,20 @@
     transition: background-color 0.3s;
     padding: 0px 15px;
 }
-.medias .media-info-container button:disabled{
+.select-medias-container .medias .media-info-container button:disabled{
     background-color: gray;
 }
-.medias .media-info-container button:hover{
+.select-medias-container .medias .media-info-container button:hover{
     background-color: rgb(165, 42, 67);
     background-color: rgb(94, 15, 168);
 }
-.medias .media-info-container button:disabled:hover{
+.select-medias-container .medias .media-info-container button:disabled:hover{
     background-color: gray;
 }
-.medias .media:last-child{
+.select-medias-container .medias .media:last-child{
     margin-right: 0;
 }
-.medias .media:hover{
+.select-medias-container .medias .media:hover{
     box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
     transform: scale(1.05);
 }

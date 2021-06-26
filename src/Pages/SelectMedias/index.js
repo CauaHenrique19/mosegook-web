@@ -37,7 +37,7 @@ const SelectMedias = () => {
     }
 
     return (
-        <div className="medias-container">
+        <div className="select-medias-container">
             { loading && <Loading />}
             <header>
                 <div className="logo-container">
