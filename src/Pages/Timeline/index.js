@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
+import api from '../../services/api'
 import './timeline.css'
 
-import userImage from '../../assets/user-image.png'
-
 const Timeline = () => {
+
+    const { user } = useContext(Context)
+    const [usersToFollow, setUsersToFollow] = useState([])
+    const [mediasToDiscover, setMediasToDiscover] = useState([])
+
+    useEffect(() => {
+        api.get(`/users-to-follow/${user.id}`)
+            .then(res => setUsersToFollow(res.data))
+            .catch(error => console.error(error.message))
+        api.get(`/medias/medias-to-discover/${user.id}`)
+            .then(res => setMediasToDiscover(res.data.medias))
+            .catch(error => console.error(error.message))
+    }, [])
+
     return (
         <div className="timeline-container">
             <div className="most-rated-by-friends-container">
@@ -65,90 +79,6 @@ const Timeline = () => {
                 </div>
                 <div className="main-timeline">
                     <div className="column-avaliations">
-                        <div className="coment">
-                            <div className="header-coment">
-                                <div className="info-user">
-                                    <ion-icon name="chatbox"></ion-icon>
-                                    <div className="user-info">
-                                        <h3>Jamalzin</h3>
-                                        <p>@jamalzinbotafogo</p>
-                                    </div>
-                                </div>
-                                <div className="info-post">
-                                    <p>26/06/2021 às 20:17</p>
-                                </div>
-                            </div>
-                            <div className="content-coment">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been
-                                the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                galley
-                                of type and scrambled it to make a type specimen book.
-                            </div>
-                            <div className="footer-coment">
-                                <div className="info-media">
-                                    <div className="color-coment">
-                                        <ion-icon name="game-controller"></ion-icon>
-                                    </div>
-                                    <div className="info-footer">
-                                        <h3>Sobre</h3>
-                                        <p>Pantera Negra</p>
-                                    </div>
-                                </div>
-                                <div className="info-avaliation">
-                                    <div className="amount-coments">
-                                        <ion-icon name="chatbubble"></ion-icon>
-                                        <p>21</p>
-                                    </div>
-                                    <div className="amount-likes">
-                                        <ion-icon name="heart"></ion-icon>
-                                        <p>100</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="coment">
-                            <div className="header-coment">
-                                <div className="info-user">
-                                    <ion-icon name="chatbox"></ion-icon>
-                                    <div className="user-info">
-                                        <h3>Jamalzin</h3>
-                                        <p>@jamalzinbotafogo</p>
-                                    </div>
-                                </div>
-                                <div className="info-post">
-                                    <p>26/06/2021 às 20:17</p>
-                                </div>
-                            </div>
-                            <div className="content-coment">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                been
-                                the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                galley
-                                of type and scrambled it to make a type specimen book.
-                            </div>
-                            <div className="footer-coment">
-                                <div className="info-media">
-                                    <div className="color-coment">
-                                        <ion-icon name="game-controller"></ion-icon>
-                                    </div>
-                                    <div className="info-footer">
-                                        <h3>Sobre</h3>
-                                        <p>Pantera Negra</p>
-                                    </div>
-                                </div>
-                                <div className="info-avaliation">
-                                    <div className="amount-coments">
-                                        <ion-icon name="chatbubble"></ion-icon>
-                                        <p>21</p>
-                                    </div>
-                                    <div className="amount-likes">
-                                        <ion-icon name="heart"></ion-icon>
-                                        <p>100</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div className="coment">
                             <div className="header-coment">
                                 <div className="info-user">
@@ -340,139 +270,54 @@ const Timeline = () => {
                             <div className="header-who-follow">
                                 <h1>Quem Seguir</h1>
                             </div>
-                            <div className="content-who-follow">
-                                <div className="user-to-follow">
-                                    <div>
-                                        <div className="img-user-to-follow-container">
-                                            <img src={userImage} alt="" />
-                                        </div>
-                                        <div className="user-to-follow-info-container">
-                                            <h2>Nome</h2>
-                                            <p>@user</p>
-                                        </div>
-                                    </div>
-                                    <button>Ver Perfil</button>
-                                </div>
-                                <div className="user-to-follow">
-                                    <div>
-                                        <div className="img-user-to-follow-container">
-                                            <img src={userImage} alt="" />
-                                        </div>
-                                        <div className="user-to-follow-info-container">
-                                            <h2>Nome</h2>
-                                            <p>@user</p>
+                            {
+                                usersToFollow && usersToFollow.map(user => (
+                                    <div key={user.id} className="content-who-follow">
+                                        <div className="user-to-follow">
+                                            <div>
+                                                <div className="img-user-to-follow-container">
+                                                    <img src={user.url_image} alt="" />
+                                                </div>
+                                                <div className="user-to-follow-info-container">
+                                                    <h2>{user.name}</h2>
+                                                    <p>@{user.user}</p>
+                                                </div>
+                                            </div>
+                                            <button>Ver Perfil</button>
                                         </div>
                                     </div>
-                                    <button>Ver Perfil</button>
-                                </div>
-                                <div className="user-to-follow">
-                                    <div>
-                                        <div className="img-user-to-follow-container">
-                                            <img src={userImage} alt="" />
-                                        </div>
-                                        <div className="user-to-follow-info-container">
-                                            <h2>Nome</h2>
-                                            <p>@user</p>
-                                        </div>
-                                    </div>
-                                    <button>Ver Perfil</button>
-                                </div>
-                                <div className="user-to-follow">
-                                    <div>
-                                        <div className="img-user-to-follow-container">
-                                            <img src={userImage} alt="" />
-                                        </div>
-                                        <div className="user-to-follow-info-container">
-                                            <h2>Nome</h2>
-                                            <p>@user</p>
-                                        </div>
-                                    </div>
-                                    <button>Ver Perfil</button>
-                                </div>
-                                <div className="user-to-follow">
-                                    <div>
-                                        <div className="img-user-to-follow-container">
-                                            <img src={userImage} alt="" />
-                                        </div>
-                                        <div className="user-to-follow-info-container">
-                                            <h2>Nome</h2>
-                                            <p>@user</p>
-                                        </div>
-                                    </div>
-                                    <button>Ver Perfil</button>
-                                </div>
-                            </div>
+                                ))
+                            }
                         </div>
                         <div className="discover-medias">
                             <div className="discover-medias-header">
                                 <h1>Descubra novas mídias</h1>
                             </div>
                             <div className="main-discover-medias">
-                                <div className="media-to-discover">
-                                    <div className="img-media-to-discover-container">
-                                        <img src="https://mosegook.s3.amazonaws.com/6d3a7a4d19b4feb790843a5fd9f522c2-poster-sem-remorso-timeline.png" alt="" />
-                                    </div>
-                                    <div className="info-media-to-discover-container">
-                                        <h2>Sem Remorso</h2>
-                                        <div className="genders-media-to-discover">
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
+                                {
+                                    mediasToDiscover && mediasToDiscover.map(media => (
+                                        <div key={media.id} className="media-to-discover">
+                                            <div className="img-media-to-discover-container">
+                                                <img src={media.url_poster_timeline} alt="" />
+                                            </div>
+                                            <div className="info-media-to-discover-container">
+                                                <h2>{media.name}</h2>
+                                                <div className="genders-media-to-discover">
+                                                    {
+                                                        media.genders.map(gender => (
+                                                            <div
+                                                                style={{ backgroundColor: gender.color }}
+                                                                key={gender.id}
+                                                                className="gender-media-to-discover">
+                                                                {gender.name}
+                                                            </div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="media-to-discover">
-                                    <div className="img-media-to-discover-container">
-                                        <img src="https://mosegook.s3.amazonaws.com/127ab83a9f2624944e607bf437ed5c28-poster-cyberpunk-timeline.png" alt="" />
-                                    </div>
-                                    <div className="info-media-to-discover-container">
-                                        <h2>Cyberpunk 2077</h2>
-                                        <div className="genders-media-to-discover">
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="media-to-discover">
-                                    <div className="img-media-to-discover-container">
-                                        <img src="https://mosegook.s3.amazonaws.com/1f099038601bd2deb5dcf5a1a91203da-poster-stranger-things-timeline.png" alt="" />
-                                    </div>
-                                    <div className="info-media-to-discover-container">
-                                        <h2>Stranger Things</h2>
-                                        <div className="genders-media-to-discover">
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="media-to-discover">
-                                    <div className="img-media-to-discover-container">
-                                        <img src="https://mosegook.s3.amazonaws.com/694e617d971776e3a2c1976e194dac3e-poster-revolucao-dos-bichos-timeline.png" alt="" />
-                                    </div>
-                                    <div className="info-media-to-discover-container">
-                                        <h2>A Revolução dos Bichos</h2>
-                                        <div className="genders-media-to-discover">
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="media-to-discover">
-                                    <div className="img-media-to-discover-container">
-                                        <img src="https://mosegook.s3.amazonaws.com/44a23fbec9ea425a717f7b8d981f9fcf-poster-the-100-timeline.png" alt="" />
-                                    </div>
-                                    <div className="info-media-to-discover-container">
-                                        <h2>The 100</h2>
-                                        <div className="genders-media-to-discover">
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                            <div className="gender-media-to-discover">Ação</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
