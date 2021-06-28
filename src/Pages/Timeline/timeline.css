@@ -352,6 +352,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 20px;
+    max-width: 410px;
 }
 .timeline-content-container .main-timeline .who-follow{
     width: 100%;

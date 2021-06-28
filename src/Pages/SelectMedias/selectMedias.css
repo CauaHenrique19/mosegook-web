@@ -1,29 +1,29 @@
-.select-select-medias-container{
+.select-medias-container{
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #0f0f0f;
 }
-.select-select-medias-container header{
+.select-medias-container header{
     height: 10vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 50px 0 150px;
 }
-.select-select-medias-container header a{
+.select-medias-container header a{
     display: flex;
     align-items: center;
 }
-.select-select-medias-container header .logo-container{
+.select-medias-container header .logo-container{
     display: flex;
     align-items: center;
 }
-.select-select-medias-container header .logo-container ion-icon{
+.select-medias-container header .logo-container ion-icon{
     margin-right: 15px;
     font-size: 1.7rem;
 }
-.select-select-medias-container header button{
+.select-medias-container header button{
     display: flex;
     align-items: center;
     font-size: 1.5rem;
@@ -34,21 +34,21 @@
     cursor: pointer;
     transition: background-color 0.4s;
 }
-.select-select-medias-container header button ion-icon{
+.select-medias-container header button ion-icon{
     margin-left: 15px;
     font-size: 1.5rem
 }
-.select-select-medias-container header button:hover{
+.select-medias-container header button:hover{
     color: black;
     background-color: #fafafa;
 }
-.select-select-medias-container header button:hover ion-icon{
+.select-medias-container header button:hover ion-icon{
     color: black;
 }
-.select-select-medias-container .main-medias{
+.select-medias-container .main-select-medias{
     display: flex;
 }
-.select-select-medias-container .right-container{
+.select-medias-container .right-container{
     display: flex;
     flex-direction: column;
     margin-right: 100px;

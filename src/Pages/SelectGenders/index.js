@@ -21,6 +21,8 @@ const SelectGenders = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
+
+        console.log(user)
     }, [])
 
     function handleNextPage(){
@@ -31,6 +33,7 @@ const SelectGenders = () => {
 
         api.post('/user-preferences-genders', gendersPreferences)
             .then(res => {
+                console.log(res.data)
                 history.push('/select-medias')
             })
             .catch(error => console.error(error.message))   
@@ -52,7 +55,7 @@ const SelectGenders = () => {
                         <div className="genders">
                             {
                                 selectedGenders && selectedGenders.map(selectedGender => (
-                                    <div style={{ backgroundColor: selectedGender.color }}  className="gender selected">
+                                    <div key={selectedGender.id} style={{ backgroundColor: selectedGender.color }}  className="gender selected">
                                         {selectedGender.name}
                                         <button onClick={() => {
                                             selectedGenders.splice(selectedGenders.indexOf(selectedGender), 1)

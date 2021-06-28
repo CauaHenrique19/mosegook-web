@@ -21,6 +21,8 @@ const SelectMedias = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
+
+        console.log(user)
     }, [])
 
     function handleSendPreferences(){
@@ -46,7 +48,7 @@ const SelectMedias = () => {
                 </div>
                 { selectedMedias.length >= 3 && <button onClick={handleSendPreferences} to="/timeline">Finalizar<ion-icon name="checkmark-outline"></ion-icon></button> }
             </header>
-            <div className="main-medias">
+            <div className="main-select-medias">
                 <div className="right-container">
                     <div className="info-medias">
                         <h1>Selecione no mínimo 3 mídias que você goste</h1>

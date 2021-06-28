@@ -37,7 +37,7 @@ const Signup = () => {
                 if(res.data.auth){
                     localStorage.setItem('mosegook_user', JSON.stringify(res.data.userDb[0]))
                     localStorage.setItem('mosegook_token', res.data.token)
-                    setUser(res.data.userDb)
+                    setUser(res.data.userDb[0])
                     setToken(res.data.token)
                     history.push('/select-genders')
                 }
