@@ -205,13 +205,15 @@
 }
 .timeline-content-container .main-timeline .coment{
     width: 405px;
-    height: 320px;
+    max-height: 350px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.205);
     transition: transform 0.5s, width 0.5s;
     margin-bottom: 5px;
     border-radius: 5px;
+    position: relative;
 }
 .timeline-content-container .main-timeline .coment:hover{
     transform: scale(1.1);
@@ -228,8 +230,11 @@
     color: #fafafa;
     fill: #fafafa;
 }
+.timeline-content-container .main-timeline .coment:hover .links-coment-container{
+    display: flex;
+}
 .timeline-content-container .main-timeline .coment .header-coment{
-    height: 12vh;
+    height: 7vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -252,22 +257,20 @@
 .timeline-content-container .main-timeline .coment .header-coment .info-post p{
     width: fit-content;
     padding: 4px 12px;
-    background-color: rgb(0, 160, 223);
     color: #fafafa;
     border-radius: 50px;
     font-size: 0.8rem;
 }
-.timeline-content-container .main-timeline .column-coments .coment .header-coment .info-post p{
+/* .timeline-content-container .main-timeline .column-coments .coment .header-coment .info-post p{
     background-color: rgb(0, 128, 79);
-}
+} */
 .timeline-content-container .main-timeline .coment .content-coment{
-    height: 100%;
-    padding: 0px 10px;
+    padding: 10px;
     font-size: 1.3rem;
 }
 .timeline-content-container .main-timeline .coment .footer-coment{
     width: 100%;
-    height: 10vh;
+    height: 6vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -286,13 +289,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 3px;
-    background-color: rgb(0, 128, 79);
+    /* background-color: rgb(0, 128, 79); */
 }
 .timeline-content-container .main-timeline .coment .footer-coment .color-coment ion-icon{
     font-size: 2rem;
-}
-.timeline-content-container .main-timeline .column-avaliations .coment{
-    height: 350px;
 }
 .timeline-content-container .main-timeline .column-avaliations .coment .color-coment{
     background-color: rgb(0, 160, 223);
@@ -305,19 +305,48 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    background-color: rgb(0, 160, 223);
     padding: 4px 12px;
     margin-right: 5px;
     border-radius: 50px;
-}
-.timeline-content-container .main-timeline .column-coments .coment .info-avaliation .amount-coments,
-.timeline-content-container .main-timeline .column-coments .coment .info-avaliation .amount-likes{
-    background-color: rgb(0, 128, 79);
 }
 .timeline-content-container .main-timeline .coment .info-avaliation .amount-coments ion-icon,
 .timeline-content-container .main-timeline .coment .info-avaliation .amount-likes ion-icon{
     margin-right: 5px;
     font-size: 1.2rem;
+}
+.timeline-content-container .main-timeline .coment .links-coment-container{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.692);
+    position: absolute;
+    z-index: 10;
+    border-radius: 3px;
+}
+.timeline-content-container .main-timeline .coment .links-coment-container button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #fafafa;
+    background-color: initial;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 1.7rem;
+    transition: background-color 0.3s;
+}
+.timeline-content-container .main-timeline .coment .links-coment-container button:hover{
+    background-color: white;
+}
+.timeline-content-container .main-timeline .coment .links-coment-container button:nth-child(1):hover ion-icon{
+    color: red;
+}
+.timeline-content-container .main-timeline .coment .links-coment-container button:nth-child(2):hover ion-icon{
+    color: black;
 }
 .timeline-content-container .main-timeline .column{
     display: flex;
