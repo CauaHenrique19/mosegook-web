@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
+import Loading from '../../Components/Loading'
 import './timeline.css'
 
 const Timeline = () => {
@@ -10,6 +11,14 @@ const Timeline = () => {
     const [usersToFollow, setUsersToFollow] = useState([])
     const [mediasToDiscover, setMediasToDiscover] = useState([])
     const [avaliations, setAvaliations] = useState([])
+    const [mediasRated, setMediasRated] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    let [count, setCount] = useState(1)
+    let [valueSlider] = useState(-100)
+    let [actualValueSlider, setActualValueSlider] = useState(0)
+    let [maxCount, setMaxCount] = useState()
+    let [selectedMedia, setSelectedMedia] = useState([])
 
     useEffect(() => {
         api.get(`/users-to-follow/${user.id}`)
@@ -21,53 +30,106 @@ const Timeline = () => {
         api.get(`/avaliations-timeline/${user.id}`)
             .then(res => setAvaliations(res.data.avaliations))
             .catch(error => console.error(error.message))
+        api.get(`/medias-rated-follow/${user.id}`)
+            .then(res => { 
+                setMediasRated(res.data.medias)
+                setLoading(false)
+            })
+            .catch(error => console.error(error.message))
     }, [])
+
+    const buttonPreviousEL = document.querySelector('.previous-button')
+    const buttonNextEL = document.querySelector('.next-button')
+    const el = document.querySelector('.most-rated-by-friends-slider')
+
+    useEffect(() => {
+        maxCount = mediasRated.length
+        setMaxCount(maxCount)
+    }, [mediasRated])
+
+    useEffect(() => {
+        selectedMedia = mediasRated[count - 1]
+        setSelectedMedia(selectedMedia)
+    }, [count, mediasRated])
+
+    function previous() {
+        actualValueSlider === 0 ? actualValueSlider = 0 : actualValueSlider -= valueSlider
+        setActualValueSlider(actualValueSlider)
+
+        el.style.transform = `translate3d(${actualValueSlider}%, 0, 0)`
+
+        count -= 1
+        setCount(count)
+        verifyCount()
+    }
+
+    function next() {
+        actualValueSlider === 0 ? actualValueSlider = valueSlider : setActualValueSlider(1)
+        actualValueSlider = valueSlider * count
+        setActualValueSlider(actualValueSlider)
+
+        el.style.transform = `translate3d(${actualValueSlider}%, 0, 0)`
+
+        count += 1
+        setCount(count)
+        verifyCount()
+    }
+
+    function verifyCount() {
+        count === 1 ? buttonPreviousEL.style.display = 'none' : buttonPreviousEL.style.display = 'flex'
+        count === maxCount ? buttonNextEL.style.display = 'none' : buttonNextEL.style.display = 'flex'
+    }
 
     return (
         <div className="timeline-container">
+            { loading && <Loading /> }
             <div className="most-rated-by-friends-container">
-                <button onClick={() => console.log('dokawda')}>
+                <button className="previous-button" onClick={() => previous()}>
+                    <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                <button className="next-button" onClick={() => next()}>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </button>
-                <div className="info-media-most-rated">
-                    <div className="info-media-content-most-rated">
-                        <div className="name">
-                            <h2>Nome</h2>
-                            <h2>Vingadores Ultimato</h2>
-                        </div>
-                        <div className="timeline-genders">
-                            <h2>Gêneros</h2>
-                            <div className="timeline-genders-content">
-                                <div className="timeline-gender">Ação</div>
-                                <div className="timeline-gender">Aventura</div>
+                {
+                    selectedMedia && 
+                    <div className="info-media-most-rated">
+                        <div className="info-media-content-most-rated">
+                            <div className="name">
+                                <h2>Nome</h2>
+                                <h2>{selectedMedia.name}</h2>
+                            </div>
+                            <div className="timeline-genders">
+                                <h2>Gêneros</h2>
+                                <div className="timeline-genders-content">
+                                    {
+                                        selectedMedia.genders && selectedMedia.genders.map(gender => (
+                                            <div className="timeline-gender">{gender.name}</div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <div className="avaliation">
+                                <h2>Avaliação</h2>
+                                <div className="avaliation-content">
+                                    <ion-icon name="star"></ion-icon>
+                                    <h2>{selectedMedia.stars}</h2>
+                                </div>
                             </div>
                         </div>
-                        <div className="avaliation">
-                            <h2>Avaliação</h2>
-                            <div className="avaliation-content">
-                                <ion-icon name="star"></ion-icon>
-                                <h2>5</h2>
-                            </div>
+                        <div className="input-container">
+                            <input type="text" placeholder="Procurar Mídias" />
+                            <ion-icon name="search-outline"></ion-icon>
                         </div>
                     </div>
-                    <div className="input-container">
-                        <input type="text" placeholder="Procurar Mídias" />
-                        <ion-icon name="search-outline"></ion-icon>
-                    </div>
-                </div>
+                }
                 <div className="most-rated-by-friends-slider">
-                    <div className="media-friends-comented">
-                        <img src="https://mosegook.s3.amazonaws.com/6d3a7a4d19b4feb790843a5fd9f522c2-poster-sem-remorso-timeline.png" alt="" />
-                    </div>
-                    <div className="media-friends-comented">
-                        <img src="https://mosegook.s3.amazonaws.com/6d3a7a4d19b4feb790843a5fd9f522c2-poster-sem-remorso-timeline.png" alt="" />
-                    </div>
-                    <div className="media-friends-comented">
-                        <img src="https://mosegook.s3.amazonaws.com/6d3a7a4d19b4feb790843a5fd9f522c2-poster-sem-remorso-timeline.png" alt="" />
-                    </div>
-                    <div className="media-friends-comented">
-                        <img src="https://mosegook.s3.amazonaws.com/6d3a7a4d19b4feb790843a5fd9f522c2-poster-sem-remorso-timeline.png" alt="" />
-                    </div>
+                    {
+                        mediasRated && mediasRated.map(media => (
+                            <div key={media.id} className="media-friends-comented">
+                                <img src={media.url_poster_timeline} alt="" />
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
             <div className="timeline-content-container">

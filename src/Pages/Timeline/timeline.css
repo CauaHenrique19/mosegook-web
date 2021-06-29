@@ -133,12 +133,11 @@
 .timeline-container .most-rated-by-friends-container{
     overflow: hidden;
 }
-.timeline-container .most-rated-by-friends-container > button{
+.timeline-container .most-rated-by-friends-container button{
     width: 50px;
     height: 50px;
     background-color: rgba(0, 0, 0, 0.527);
     position: absolute;
-    right: 30px;
     border: none;
     border-radius: 50px;
     z-index: 1;
@@ -148,6 +147,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.timeline-container .most-rated-by-friends-container > button.next-button{
+    right: 30px;
+}
+.timeline-container .most-rated-by-friends-container > button.previous-button{
+    left: 30px;
+    display: none;
 }
 .timeline-container .most-rated-by-friends-container > button ion-icon{
     color: #fafafa;
