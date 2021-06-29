@@ -21,14 +21,12 @@ const Timeline = () => {
         api.get(`/avaliations-timeline/${user.id}`)
             .then(res => setAvaliations(res.data.avaliations))
             .catch(error => console.error(error.message))
-
-        console.log(user)
     }, [])
 
     return (
         <div className="timeline-container">
             <div className="most-rated-by-friends-container">
-                <button>
+                <button onClick={() => console.log('dokawda')}>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </button>
                 <div className="info-media-most-rated">
@@ -73,11 +71,11 @@ const Timeline = () => {
                 </div>
             </div>
             <div className="timeline-content-container">
-                <div class="menu-timeline-container">
-                    <div class="header-menu">
+                <div className="menu-timeline-container">
+                    <div className="header-menu">
                         <h1>Mosegook</h1>
                     </div>
-                    <ul class="content-menu">
+                    <ul className="content-menu">
                         <li className="selected"><Link to="/timeline"><ion-icon name="home-outline"></ion-icon>Timeline</Link></li>
                         <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
                         <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
@@ -85,49 +83,9 @@ const Timeline = () => {
                 </div>
                 <div className="main-timeline">
                     <div className="column-avaliations">
-                        <div className="coment">
-                            <div className="header-coment">
-                                <div className="info-user">
-                                    <ion-icon /*style={{ color: avaliation.color }}*/ name="chatbox"></ion-icon>
-                                    <div className="user-info">
-                                        <h3>{/*avaliation.user_name*/}</h3>
-                                        <p>@{/*avaliation.user*/}</p>
-                                    </div>
-                                </div>
-                                <div className="info-post">
-                                    <p /*style={{ backgroundColor: avaliation.color }}*/>{/*avaliation.created_at.toLocaleString()*/}</p>
-                                </div>
-                            </div>
-                            <div className="content-coment">{/*avaliation.content*/}</div>
-                            <div className="footer-coment">
-                                <div className="info-media">
-                                    <div /*style={{ backgroundColor: avaliation.color }}*/ className="color-coment">
-                                        <ion-icon /*name={avaliation.icon}*/></ion-icon>
-                                    </div>
-                                    <div className="info-footer">
-                                        <h3>Sobre</h3>
-                                        <p>{/*avaliation.media_name*/}</p>
-                                    </div>
-                                </div>
-                                <div className="info-avaliation">
-                                    <div /*style={{ backgroundColor: avaliation.color }}*/ className="amount-coments">
-                                        <ion-icon name="chatbubble"></ion-icon>
-                                        <p>0</p>
-                                    </div>
-                                    <div /*style={{ backgroundColor: avaliation.color }}*/ className="amount-likes">
-                                        <ion-icon name="heart"></ion-icon>
-                                        <p>0</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="links-coment-container">
-                                <button><ion-icon name="heart-outline"></ion-icon></button>
-                                <button><ion-icon name="add-outline"></ion-icon></button>
-                            </div>
-                        </div>
                         {
                             avaliations && avaliations.map(avaliation => (
-                                <div className="coment">
+                                <div key={avaliation.id} className="coment">
                                     <div className="header-coment">
                                         <div className="info-user">
                                             <ion-icon style={{ color: avaliation.color }} name="chatbox"></ion-icon>
