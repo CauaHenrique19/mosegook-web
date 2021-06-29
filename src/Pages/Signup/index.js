@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Context } from '../../context/context'
 import api from '../../services/api'
+import Loading from '../../Components/Loading'
 import './signup.css'
 
 const Signup = () => {
@@ -19,6 +20,7 @@ const Signup = () => {
 
     const [viewPassword, setViewPassword] = useState(false)
     const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const fileInput = useRef(null)
 
@@ -32,6 +34,8 @@ const Signup = () => {
         userSignupFormData.append('gender', gender)
         userSignupFormData.append('file', imageSelected)
 
+        setLoading(true)
+
         api.post('/signup', userSignupFormData)
             .then(res => {
                 if(res.data.auth){
@@ -39,6 +43,7 @@ const Signup = () => {
                     localStorage.setItem('mosegook_token', res.data.token)
                     setUser(res.data.userDb[0])
                     setToken(res.data.token)
+                    setLoading(false)
                     history.push('/select-genders')
                 }
                 else{
@@ -50,6 +55,7 @@ const Signup = () => {
 
     return (
         <div className="container-signup">
+            { loading && <Loading /> }
             <div className="form-container">
                 <header>
                     <h1>Mosegook</h1>

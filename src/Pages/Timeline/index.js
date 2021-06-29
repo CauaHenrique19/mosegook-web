@@ -103,7 +103,7 @@ const Timeline = () => {
                                 <div className="timeline-genders-content">
                                     {
                                         selectedMedia.genders && selectedMedia.genders.map(gender => (
-                                            <div className="timeline-gender">{gender.name}</div>
+                                            <div style={{ backgroundColor: gender.color }} className="timeline-gender">{gender.name}</div>
                                         ))
                                     }
                                 </div>
@@ -112,7 +112,7 @@ const Timeline = () => {
                                 <h2>Avaliação</h2>
                                 <div className="avaliation-content">
                                     <ion-icon name="star"></ion-icon>
-                                    <h2>{selectedMedia.stars}</h2>
+                                    <h2>{selectedMedia.avaliation}</h2>
                                 </div>
                             </div>
                         </div>

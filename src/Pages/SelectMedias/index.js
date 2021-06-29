@@ -78,7 +78,7 @@ const SelectMedias = () => {
                 <div className="medias">
                     {
                         medias && medias.map(media => (
-                            <div key={media.id} className="media">
+                            <div onClick={() => setSelectedMedias([...selectedMedias, media])} key={media.id} className="media">
                                 <div className="media-image-container">
                                     <img src={media.url_poster} alt={media.name} />
                                 </div>
