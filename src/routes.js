@@ -14,6 +14,7 @@ import Books from '../src/Pages/Admin/books'
 import Games from '../src/Pages/Admin/games'
 import SelectMedias from './Pages/SelectMedias'
 import SelectGenders from './Pages/SelectGenders'
+import User from './Pages/User'
 
 const Routes = () => {
     return(
@@ -22,6 +23,7 @@ const Routes = () => {
                 <Route path="/home" component={Home} exact />
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
+                <Route path="/user/:user" component={User} />
                 <PrivateRoute path="/timeline" component={Timeline} />
                 <PrivateRoute path="/select-medias" component={SelectMedias} />
                 <PrivateRoute path="/select-genders" component={SelectGenders} />

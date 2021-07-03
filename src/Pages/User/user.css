@@ -1,0 +1,199 @@
+.profile-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #0f0f0f;
+}
+.profile-info-container{
+    width: fit-content;
+    height: 100%;
+    margin-right: 30px;
+}
+.profile-info-container .user-info-container{
+    height: fit-content;
+    position: relative;
+    margin-top: 150px;
+}
+.profile-info-container .user-info-container button{
+    width: 100px;
+    background-color: initial;
+    margin-left: 15px;
+    border: 1px solid blueviolet;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+}
+.profile-info-container .user-info-container button:hover{
+    background-color: blueviolet;
+}
+.profile-info-container .user-info-container > img{
+    width: 230px;
+    height: 230px;
+    border-radius: 3px;
+    position: absolute;
+    top: -100px;
+    left: 50px;
+}
+.profile-info-container .user-info-container .user-info{
+    padding: 150px 35px 35px 35px;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    /* background-color: #313131; */
+}
+.profile-info-container .user-info-container .user-info .follow-container{
+    display: flex;
+}
+.profile-info-container .user-info-container .user-info .follow-container p{
+    border-radius: 50px;
+    background-color: #fafafa;
+    color: black;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-weight: 500;
+}
+.profile-info-container .user-info-container .user-info h1:nth-child(2){
+    margin-bottom: 10px;
+    color: rgba(128, 128, 128, 0.678);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.profile-info-container .user-info-container .user-info .biography{
+    width: 400px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.profile-info-container .user-medias-preferences{
+    height: fit-content;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.profile-info-container .user-medias-preferences > h1{
+    margin-bottom: 20px;
+}
+.profile-info-container .user-medias-preferences .user-medias-preferences-container{
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-gap: 10px;
+}
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference{
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 10px 16px 4px rgba(0, 0, 0, 0.233);
+}
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-img-container img{
+    width: 150px;
+    height: 200px;
+    border-radius: 3px;
+}
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-media-info-container{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+.profile-info-container .user-genders-preferences > h1{
+    margin-bottom: 20px;
+}
+.profile-info-container .user-genders-preferences .user-genders-preferences-container{
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
+    margin-bottom: 20px;
+}
+.profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: blueviolet;
+    border-radius: 3px;
+}
+.profile-interations-container{
+    display: flex;
+    width: 50%;
+    margin-top: 150px;
+    /* background-color: #313131; */
+}
+.profile-interations-container .coment{
+    width: 470px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    transition: transform 0.5s, width 0.5s;
+    border-radius: 3px;
+    margin: 0 5px 5px 0;
+    cursor: pointer;
+}
+.profile-interations-container .coment:hover{
+    transform: scale(1.1);
+    background-image: url('../../assets/bg-avaliations-320.png');
+    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
+}
+.profile-interations-container .column-avaliations .coment:hover{
+    background-image: url('../../assets/bg-avaliations-320.png');
+}
+.profile-interations-container .coment:hover .header-coment i, 
+.profile-interations-container .coment:hover .header-coment svg,
+.profile-interations-container .coment:hover .header-coment .user-info p,
+.profile-interations-container .coment:hover .footer-coment .color-coment{
+    color: #fafafa;
+    fill: #fafafa;
+}
+.profile-interations-container .coment .header-coment{
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    /* margin-bottom: 10px; */
+}
+.profile-interations-container .coment .header-coment svg{
+    margin-right: 10px;
+}
+.profile-interations-container .coment .header-coment i{
+    margin-right: 10px;
+    font-size: 2.5rem;
+    color: rgb(0, 160, 223);
+}
+.profile-interations-container .coment .header-coment p{
+    color: gray;
+}
+.profile-interations-container .coment .content-coment{
+    height: 100%;
+    padding: 0px 10px;
+    font-size: 1.3rem;
+}
+.profile-interations-container .coment .footer-coment{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+}
+.profile-interations-container .coment .footer-coment .info-footer{
+    margin-left: 5px;
+}
+.profile-interations-container .coment .footer-coment .color-coment{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: rgb(0, 128, 79);
+}
+.profile-interations-container .coment .footer-coment .color-coment i{
+    font-size: 1.4rem;
+}
+.profile-interations-container .column-avaliations .coment{
+    height: 350px;
+}
+.profile-interations-container .column-avaliations .coment .color-coment{
+    background-color: rgb(0, 160, 223);
+}
