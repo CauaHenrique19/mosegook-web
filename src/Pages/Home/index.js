@@ -209,7 +209,7 @@ const Home = () => {
                 <div className="newsletter-main">
                     <div className="input-container">
                         <input type="text" placeholder="Nome" />
-                        <button>Sugerir-se</button>
+                        <button>Sugerir</button>
                     </div>
                     <img src={imageNewsletter} alt="" />
                 </div>
