@@ -1,0 +1,157 @@
+.catalog-container{
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    background-color: #0f0f0f;
+}
+.menu-catalog-container{
+    width: 350px;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+.menu-catalog-container .logo-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding-left: 50px;
+}
+.menu-catalog-container .menu-item{
+    width: 100%;
+    height: 80px;
+    padding: 0px 50px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    border: none;
+    background-color: initial;
+    cursor: pointer;
+    outline: none;
+}
+.menu-catalog-container .menu-item ion-icon{
+    width: 30px;
+    margin-right: 15px;
+    font-size: 2rem;
+    color: blueviolet;
+}
+.menu-catalog-container .menu-item.selected{
+    background: linear-gradient(to left, rgba(137, 43, 226, 0.384), transparent);
+    border-left: 3px solid rgb(0, 160, 223);
+    border-left: 3px solid blueviolet;
+}
+.menu-catalog-container .menu-item:hover{
+    border-right: 3px solid blueviolet;
+    background-color: rgba(87, 87, 87, 0.164);
+}
+.menu-catalog-container .menu-item.selected:hover{
+    border-right: none;
+    background: linear-gradient(to left, rgba(137, 43, 226, 0.384), transparent);
+}
+.catalog-container .medias-catalog-container{
+    width: 100%;
+    padding: 30px;
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container h1{
+    font-size: 3rem;
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container .input-container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 50px;
+    width: 350px;
+    margin-right: 20px;
+    border: 2px solid rgba(128, 128, 128, 0.678);
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container .input-container input{
+    width: 300px;
+    height: 50px;
+    background: initial;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 0px 25px;
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container .input-container input::placeholder{
+    color: rgba(128, 128, 128, 0.678);
+}
+.catalog-container .medias-catalog-container .header-medias-catalog-container .input-container ion-icon{
+    font-size: 1.7rem;
+    color: rgba(128, 128, 128, 0.678);
+}
+.catalog-container .medias-catalog-container .header-search-result{
+    margin-bottom: 10px;
+}
+.catalog-container .medias-catalog-container .header-search-result h1{
+    font-weight: 300;
+}
+.catalog-container .medias-catalog-container .not-result-container{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.catalog-container .medias-catalog-container .not-result-container ion-icon{
+    font-size: 15rem;
+    margin-bottom: 20px;
+    color: rgba(128, 128, 128, 0.322);
+}
+.catalog-container .medias-catalog-container .not-result-container h1{
+    width: 400px;
+    font-size: 3rem;
+    text-align: center;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container{
+    display: grid;
+    grid-template-columns: repeat(5, 300px);
+    grid-gap: 10px;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media{
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media-image-container{
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media-image-container img{
+    width: 300px;
+    height: 400px;
+    border-radius: 3px;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media-info-container{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 15px;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media:last-child{
+    margin-right: 0;
+}
+.catalog-container .medias-catalog-container .medias-main-catalog-container .media:hover{
+    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
+    transform: scale(1.05);
+}

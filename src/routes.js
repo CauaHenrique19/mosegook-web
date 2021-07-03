@@ -15,6 +15,7 @@ import Games from '../src/Pages/Admin/games'
 import SelectMedias from './Pages/SelectMedias'
 import SelectGenders from './Pages/SelectGenders'
 import User from './Pages/User'
+import Catalog from './Pages/Catalog'
 
 const Routes = () => {
     return(
@@ -24,6 +25,7 @@ const Routes = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/user/:user" component={User} />
+                <Route path="/catalog" component={Catalog} />
                 <PrivateRoute path="/timeline" component={Timeline} />
                 <PrivateRoute path="/select-medias" component={SelectMedias} />
                 <PrivateRoute path="/select-genders" component={SelectGenders} />
