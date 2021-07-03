@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Loading from '../../Components/Loading'
 import api from '../../services/api'
 import './home.css'
 
@@ -8,7 +9,7 @@ import userImage from '../../assets/user-image.png'
 
 const Home = () => {
 
-    const [loadingRes, setLoadingRes] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [medias, setMedias] = useState([])
     const [numberVisualizers, setNumberVisualizers] = useState([])
 
@@ -17,10 +18,10 @@ const Home = () => {
     let [actualValueSlider, setActualValueSlider] = useState(0)
 
     useEffect(() => {
-        api.get('/medias')
+        api.get('/medias/most-rated')
             .then(res => {
-                setMedias(res.data)
-                setLoadingRes(true)
+                setMedias(res.data.medias)
+                setLoading(false)
             })
             .catch(err => console.error(err.message))
     }, [])
@@ -74,48 +75,10 @@ const Home = () => {
             <div className="container-home">
                 <header className="header">
                     <div className="left-wrapper">
-                        <h1>Avaliação de Filmes</h1>
-                    </div>
-                    <div className="center-wrapper">
-                        <ul className="menu">
-                            <li className="item-menu">
-                                Filmes
-                                <div className="dropdown-content">
-                                    <h1>Gêneros</h1>
-                                    <ul className="dropdown-menu">
-                                        <li className="dropdown-menu-item">Ação</li>
-                                        <li className="dropdown-menu-item">Aventura</li>
-                                        <li className="dropdown-menu-item">Cinema de arte</li>
-                                        <li className="dropdown-menu-item">Chanchada</li>
-                                        <li className="dropdown-menu-item">Comédia</li>
-                                        <li className="dropdown-menu-item">Comédia de Ação</li>
-                                        <li className="dropdown-menu-item">Comédia de Terror</li>
-                                        <li className="dropdown-menu-item">Comédia Dramática</li>
-                                        <li className="dropdown-menu-item">Comédia Romântica</li>
-                                        <li className="dropdown-menu-item">Dança</li>
-                                        <li className="dropdown-menu-item">Documentário</li>
-                                        <li className="dropdown-menu-item">Docuficção</li>
-                                        <li className="dropdown-menu-item">Drama</li>
-                                        <li className="dropdown-menu-item">Espionagem</li>
-                                        <li className="dropdown-menu-item">Faroeste</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li className="item-menu">
-                                Séries
-                                <div className="dropdown-content"></div>
-                            </li>
-                            <li className="item-menu">
-                                Livros
-                                <div className="dropdown-content"></div>
-                            </li>
-                            <li className="item-menu">
-                                Jogos
-                                <div className="dropdown-content"></div>
-                            </li>
-                        </ul>
+                        <h1>Mosegook</h1>
                     </div>
                     <div className="right-wrapper">
+                        <Link to="/catalog">Catálogo</Link>
                         <Link to="/login">Entrar</Link>
                     </div>
                 </header>
@@ -193,6 +156,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="most-rated">
+                {loading && <Loading />}
                 <div className="header-most-rated">
                     <h1>Os mais bem avaliados pela comunidade</h1>
                     <div className="pages-visualizer">
@@ -221,17 +185,16 @@ const Home = () => {
                     </button>
                     <div className="media-slider">
                         {
-                            loadingRes ?
-                                medias && medias.map(media => (
-                                    <div key={media.id} className="media">
-                                        <div className="media-image-container">
-                                            <img src={media.url_poster} alt="" />
-                                        </div>
-                                        <div className="media-info-container">
-                                            <h2>{media.name}</h2>
-                                        </div>
+                            medias && medias.map(media => (
+                                <div key={media.id} className="media">
+                                    <div className="media-image-container">
+                                        <img src={media.url_poster} alt="" />
                                     </div>
-                                )) : <h1>Carregando...</h1>
+                                    <div className="media-info-container">
+                                        <h2>{media.name}</h2>
+                                    </div>
+                                </div>
+                            ))
                         }
                     </div>
                 </div>
@@ -242,11 +205,11 @@ const Home = () => {
                 </div>
             </div>
             <div className="newsletter">
-                <h1>Fique sabendo das nossas novidades</h1>
+                <h1>Não Encontrou uma mídia de seu gosto? Sugestione aqui.</h1>
                 <div className="newsletter-main">
                     <div className="input-container">
-                        <input type="text" placeholder="Seu email" />
-                        <button>Inscrever-se</button>
+                        <input type="text" placeholder="Nome" />
+                        <button>Sugerir-se</button>
                     </div>
                     <img src={imageNewsletter} alt="" />
                 </div>
@@ -364,22 +327,19 @@ const Home = () => {
                     <Link to="">
                         <ion-icon name="logo-instagram"></ion-icon>
                     </Link>
-                    <Link to="">
-                        <ion-icon name="logo-whatsapp"></ion-icon>
-                    </Link>
                 </div>
             </div>
             <footer className="footer">
                 <div className="left-container">
                     <div>
-                        <h1>Avaliação de Filmes</h1>
+                        <h1>Mosegook</h1>
                         <h2>Plataforma de Avaliação de filmes, séries, livros e jogos</h2>
                     </div>
-                    <h2>Avaliação de Filmes © 2021</h2>
+                    <h2>Mosegook © 2021</h2>
                 </div>
                 <div className="right-container">
                     <h2>Desenvolvido por</h2>
-                    <h2>Cauã Henrique</h2>
+                    <h2>Cauã Henrique e Diogo Velozo</h2>
                 </div>
             </footer>
         </>
