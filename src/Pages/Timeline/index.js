@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useReducer } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
@@ -183,8 +183,8 @@ const Timeline = () => {
                                         </div>
                                     </div>
                                     <div className="links-coment-container">
-                                        <button><ion-icon name="heart-outline"></ion-icon></button>
-                                        <button><ion-icon name="add-outline"></ion-icon></button>
+                                        <button disabled ><ion-icon name="heart-outline"></ion-icon></button>
+                                        <Link to={`avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
                                     </div>
                                 </div>
                             ))
@@ -261,7 +261,7 @@ const Timeline = () => {
                                                     <p>@{user.user}</p>
                                                 </div>
                                             </div>
-                                            <button>Ver Perfil</button>
+                                            <Link to={`user/${user.user}`}>Ver Perfil</Link>
                                         </div>
                                     </div>
                                 ))

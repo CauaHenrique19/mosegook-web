@@ -331,7 +331,8 @@
     z-index: 10;
     border-radius: 3px;
 }
-.timeline-content-container .main-timeline .coment .links-coment-container button{
+.timeline-content-container .main-timeline .coment .links-coment-container button,
+.timeline-content-container .main-timeline .coment .links-coment-container a{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -345,13 +346,14 @@
     font-size: 1.7rem;
     transition: background-color 0.3s;
 }
-.timeline-content-container .main-timeline .coment .links-coment-container button:hover{
+.timeline-content-container .main-timeline .coment .links-coment-container button:hover,
+.timeline-content-container .main-timeline .coment .links-coment-container a:hover{
     background-color: white;
 }
-.timeline-content-container .main-timeline .coment .links-coment-container button:nth-child(1):hover ion-icon{
+.timeline-content-container .main-timeline .coment .links-coment-container button:hover ion-icon{
     color: red;
 }
-.timeline-content-container .main-timeline .coment .links-coment-container button:nth-child(2):hover ion-icon{
+.timeline-content-container .main-timeline .coment .links-coment-container a:hover ion-icon{
     color: black;
 }
 .timeline-content-container .main-timeline .column{
@@ -403,9 +405,12 @@
     margin: 0;
     height: fit-content;
 }
-.timeline-content-container .main-timeline .who-follow .content-who-follow .user-to-follow button{
+.timeline-content-container .main-timeline .who-follow .content-who-follow .user-to-follow a{
     width: 100px;
     height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: initial;
     border: 1px solid #fafafa;
     border-radius: 50px;
@@ -413,7 +418,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
-.timeline-content-container .main-timeline .who-follow .content-who-follow .user-to-follow button:hover{
+.timeline-content-container .main-timeline .who-follow .content-who-follow .user-to-follow a:hover{
     background-color: #fafafa;
     color: black;
 }
