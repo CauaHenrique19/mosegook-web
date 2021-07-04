@@ -31,7 +31,7 @@ const Catalog = () => {
     function handleSearchByCategory(categoryId){
         setCategoryId(categoryId)
         setSearchString("")
-        const mediasSearched = medias.filter(media => media.category_id == categoryId)
+        const mediasSearched = medias.filter(media => media.category_id === categoryId)
         setFilteredMedias(mediasSearched)
     }
 

@@ -15,7 +15,7 @@ const AvaliationDetailed = (props) => {
     }, [props])
 
     useEffect(() => {
-        if(avaliationId != 0){
+        if(avaliationId !== 0){
             api.get(`/avaliation-detailed/${avaliationId}`)
                 .then(res => {
                     if(res.data.avaliation){

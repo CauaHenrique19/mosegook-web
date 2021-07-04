@@ -21,8 +21,6 @@ const SelectMedias = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
-
-        console.log(user)
     }, [])
 
     function handleSendPreferences(){

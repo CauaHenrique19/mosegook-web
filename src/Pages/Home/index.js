@@ -186,7 +186,7 @@ const Home = () => {
                     <div className="media-slider">
                         {
                             medias && medias.map(media => (
-                                <div key={media.id} className="media">
+                                <div key={media.name} className="media">
                                     <div className="media-image-container">
                                         <img src={media.url_poster} alt="" />
                                     </div>
@@ -318,13 +318,13 @@ const Home = () => {
             <div className="social-media">
                 <h1>Visite Nossas Redes Sociais</h1>
                 <div className="buttons-social-media">
-                    <Link to="">
+                    <Link to="/home">
                         <ion-icon name="logo-facebook"></ion-icon>
                     </Link>
-                    <Link to="">
+                    <Link to="/home">
                         <ion-icon name="logo-twitter"></ion-icon>
                     </Link>
-                    <Link to="">
+                    <Link to="/home">
                         <ion-icon name="logo-instagram"></ion-icon>
                     </Link>
                 </div>

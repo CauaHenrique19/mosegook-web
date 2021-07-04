@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useReducer } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
@@ -36,7 +36,7 @@ const Timeline = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
-    }, [])
+    }, [user.id])
 
     const buttonPreviousEL = document.querySelector('.previous-button')
     const buttonNextEL = document.querySelector('.next-button')
@@ -103,7 +103,7 @@ const Timeline = () => {
                                 <div className="timeline-genders-content">
                                     {
                                         selectedMedia.genders && selectedMedia.genders.map(gender => (
-                                            <div style={{ backgroundColor: gender.color }} className="timeline-gender">{gender.name}</div>
+                                            <div key={gender.color} style={{ backgroundColor: gender.color }} className="timeline-gender">{gender.name}</div>
                                         ))
                                     }
                                 </div>
@@ -125,7 +125,7 @@ const Timeline = () => {
                 <div className="most-rated-by-friends-slider">
                     {
                         mediasRated && mediasRated.map(media => (
-                            <div key={media.id} className="media-friends-comented">
+                            <div key={media.url_poster_timeline} className="media-friends-comented">
                                 <img src={media.url_poster_timeline} alt="" />
                             </div>
                         ))
@@ -250,7 +250,7 @@ const Timeline = () => {
                             </div>
                             {
                                 usersToFollow && usersToFollow.map(user => (
-                                    <div key={user.id} className="content-who-follow">
+                                    <div key={user.user} className="content-who-follow">
                                         <div className="user-to-follow">
                                             <div>
                                                 <div className="img-user-to-follow-container">
@@ -274,7 +274,7 @@ const Timeline = () => {
                             <div className="main-discover-medias">
                                 {
                                     mediasToDiscover && mediasToDiscover.map(media => (
-                                        <div key={media.id} className="media-to-discover">
+                                        <div key={media.name} className="media-to-discover">
                                             <div className="img-media-to-discover-container">
                                                 <img src={media.url_poster_timeline} alt="" />
                                             </div>
@@ -285,7 +285,7 @@ const Timeline = () => {
                                                         media.genders.map(gender => (
                                                             <div
                                                                 style={{ backgroundColor: gender.color }}
-                                                                key={gender.id}
+                                                                key={gender.color}
                                                                 className="gender-media-to-discover">
                                                                 {gender.name}
                                                             </div>

@@ -5,6 +5,9 @@
     flex-direction: column;
     background-color: black;
 }
+.menu-container > ion-icon{
+    display: none;
+}
 .menu-container .logo-container{
     height: 15vh;
     display: flex;
@@ -39,4 +42,33 @@
 .menu-item.selected:hover{
     border-right: none;
     background: linear-gradient(to left, rgba(137, 43, 226, 0.384), transparent);
+}
+@media(max-width: 500px){
+    .menu-container{
+        width: 10vw;
+        background-color: black;
+    }
+    .menu-container .logo-container{
+        display: none;
+    }
+    .menu-container ul{
+        width: 10vw;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    .menu-container ul .menu-item{
+        width: 10vw;
+        height: 50px;
+        padding: 0;
+        justify-content: center;
+    }
+    .menu-container ul .menu-item ion-icon{
+        margin: 0;
+    }
+    .menu-container ul .menu-item h2{
+        display: none;
+    }
+    .menu-container ul .menu-item:hover{
+        border: none;
+    }
 }

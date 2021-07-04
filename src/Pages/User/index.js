@@ -3,7 +3,6 @@ import api from '../../services/api'
 import Loading from '../../Components/Loading'
 
 import './user.css'
-import imageUser from '../../assets/user-image.png'
 
 const User = (props) => {
 

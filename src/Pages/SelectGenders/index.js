@@ -21,8 +21,6 @@ const SelectGenders = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
-
-        console.log(user)
     }, [])
 
     function handleNextPage(){

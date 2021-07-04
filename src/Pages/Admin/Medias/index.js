@@ -30,7 +30,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                 setMostGoodRated(res.data.mostGoodRated)
             })
             .catch(error => console.error(error.message))
-    }, [])
+    }, [category_id])
 
     return (
         <div className="medias-admin-container">
@@ -89,9 +89,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                             </div>
                             <button>
                                 <ion-icon name="add-outline"></ion-icon>
-                                {
-                                    pageName === "série" ? 'Nova série' : 'Novo ' + pageName
-                                }
+                                {pageName === "série" ? 'Nova série' : 'Novo ' + pageName}
                             </button>
                         </div>
                     </div>
