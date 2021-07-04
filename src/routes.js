@@ -16,6 +16,7 @@ import SelectMedias from './Pages/SelectMedias'
 import SelectGenders from './Pages/SelectGenders'
 import User from './Pages/User'
 import Catalog from './Pages/Catalog'
+import AvaliationDetailed from './Pages/AvaliationDetailed'
 
 const Routes = () => {
     return(
@@ -33,6 +34,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/series" component={Series} />
                 <AdminRoute path="/admin/books" component={Books} />
                 <AdminRoute path="/admin/games" component={Games} />
+                <Route path="/avaliation/:id" component={AvaliationDetailed} />
             </Switch>
         </HashRouter>
     )
