@@ -16,7 +16,8 @@
 }
 .avaliation-container .avaliation, 
 .avaliation-container .coment{
-    height: 350px;
+    height: auto;
+    max-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,7 +28,8 @@
     position: relative;
 }
 .avaliation-container .coment{
-    min-height: 350px;
+    height: auto;
+    max-height: 350px;
     height: fit-content;
     margin: 0 5px 5px 0;
     transition: transform 0.3s;
@@ -79,7 +81,7 @@
 .avaliation-container .avaliation .content-coment,
 .avaliation-container .coment .content-coment{
     height: 100%;
-    padding: 0 10px;
+    padding: 10px;
     font-size: 1.3rem;
 }
 .avaliation-container .avaliation .footer-coment,
