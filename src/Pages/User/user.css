@@ -1,4 +1,5 @@
 .profile-container{
+    min-height: 100vh;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -30,10 +31,30 @@
     height: 100%;
     margin-right: 30px;
 }
+.profile-info-container .nothing-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+}
+.profile-info-container .nothing-container ion-icon{
+    font-size: 3rem;
+    color: rgba(128, 128, 128, 0.582);
+}
+.profile-info-container .nothing-container h1{
+    max-width: 350px;
+    text-align: center;
+    font-size: 1.2rem;
+}
 .profile-info-container .user-info-container{
     height: fit-content;
     position: relative;
     margin-top: 150px;
+    margin-bottom: 10px;
 }
 .profile-info-container .user-info-container button{
     width: 100px;
@@ -281,4 +302,25 @@
 }
 .profile-interations-container .coment .links-coment-container button:nth-child(2):hover ion-icon{
     color: black;
+}
+.profile-interations-container .coment-column .nothing-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+}
+.profile-interations-container .coment-column .nothing-container h1{
+    /* width: 150px; */
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile-interations-container .coment-column .nothing-container ion-icon{
+    font-size: 15rem;
+    margin-bottom: 20px;
+    color: rgba(128, 128, 128, 0.322);
 }

@@ -14,6 +14,7 @@ const User = (props) => {
     const [coments, setComents] = useState([])
 
     useEffect(() => {
+        setLoading(true)
         setUserRoute(props.match.params.user)
     }, [props])
 
@@ -26,7 +27,6 @@ const User = (props) => {
                 }
                 else {
                     setUser(res.data)
-                    setLoading(false)
                     setUserExistis(true)
                 }
             })
@@ -44,6 +44,7 @@ const User = (props) => {
             .then(res => {
                 if (res.data.coments.length > 0) {
                     setComents(res.data.coments)
+                    setLoading(false)
                 }
             })
             .catch(error => console.error(error.message))
@@ -52,13 +53,13 @@ const User = (props) => {
     return (
         <div className="profile-container">
             {
-                !userExistis &&
-                    <div className="container-user-not-exists">
-                        <ion-icon name="alert-circle"></ion-icon>
-                        <h1>Este usuário não existe!</h1>
-                    </div>
+                userExistis !== undefined && userExistis === false &&
+                <div className="container-user-not-exists">
+                    <ion-icon name="alert-circle"></ion-icon>
+                    <h1>Este usuário não existe!</h1>
+                </div> 
             }
-            { loading && <Loading /> }
+            {loading && <Loading />}
             <div className="profile-info-container">
                 {
                     user &&
@@ -84,33 +85,48 @@ const User = (props) => {
                         </div>
                     </div>
                 }
-                <div className="user-medias-preferences">
-                    <h1>Mídias</h1>
-                    <div className="user-medias-preferences-container">
-                        {
-                            user && user.medias.map(media => (
-                                <div key={media.id} className="user-media-preference">
-                                    <div className="user-media-preference-img-container">
-                                        <img src={media.url_poster} alt="" />
-                                    </div>
-                                    <div className="user-media-preference-media-info-container">
-                                        <h2>{media.name}</h2>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-                <div className="user-genders-preferences">
-                    <h1>Gêneros</h1>
-                    <div className="user-genders-preferences-container">
-                        {
-                            user && user.genders.map(gender => (
-                                <div key={gender.id} style={{ backgroundColor: gender.color }} className="user-gender-preference">{gender.name}</div>
-                            ))
-                        }
-                    </div>
-                </div>
+                {
+                    user && user.medias.length > 0 ?
+                        <div className="user-medias-preferences">
+                            <h1>Mídias</h1>
+                            <div className="user-medias-preferences-container">
+                                {
+                                    user && user.medias.map(media => (
+                                        <div key={media.id} className="user-media-preference">
+                                            <div className="user-media-preference-img-container">
+                                                <img src={media.url_poster} alt="" />
+                                            </div>
+                                            <div className="user-media-preference-media-info-container">
+                                                <h2>{media.name}</h2>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        :
+                        <div className="nothing-container">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            <h1>Esse usuário não possui preferência por mídias</h1>
+                        </div>
+                }
+                {
+                    user && user.genders.length > 0 ?
+                        <div className="user-genders-preferences">
+                            <h1>Gêneros</h1>
+                            <div className="user-genders-preferences-container">
+                                {
+                                    user && user.genders.map(gender => (
+                                        <div key={gender.id} style={{ backgroundColor: gender.color }} className="user-gender-preference">{gender.name}</div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        : <div className="nothing-container">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            <h1>Esse usuário não possui preferência por gêneros</h1>
+                        </div>
+                }
             </div>
             <div className="profile-interations-container">
                 <div className="avaliations-column">
@@ -166,7 +182,7 @@ const User = (props) => {
                 </div>
                 <div className="coment-column">
                     {
-                        user && coments.length > 0 && coments.map(coment => (
+                        user && coments.length > 0 ? coments.map(coment => (
                             <div className="coment">
                                 <div className="header-coment">
                                     <div className="info-user">
@@ -214,10 +230,14 @@ const User = (props) => {
                                 </div>
                             </div>
                         ))
+                        : <div className="nothing-container">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            <h1>Esse usuário não realizou comentários</h1>
+                        </div>
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
