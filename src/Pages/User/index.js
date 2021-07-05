@@ -16,7 +16,7 @@ const User = (props) => {
     useEffect(() => {
         setLoading(true)
         setUserRoute(props.match.params.user)
-    }, [props])
+    }, [])
 
     useEffect(() => {
         api.get(`/users/${userRoute}`)
@@ -52,13 +52,13 @@ const User = (props) => {
 
     return (
         <div className="profile-container">
-            {
+            {/* {
                 userExistis !== undefined && userExistis === false &&
                 <div className="container-user-not-exists">
                     <ion-icon name="alert-circle"></ion-icon>
                     <h1>Este usuário não existe!</h1>
                 </div> 
-            }
+            } */}
             {loading && <Loading />}
             <div className="profile-info-container">
                 {
