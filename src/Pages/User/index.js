@@ -7,20 +7,19 @@ import './user.css'
 const User = (props) => {
 
     const [loading, setLoading] = useState(true)
-    const [userRoute, setUserRoute] = useState()
     const [user, setUser] = useState()
     const [userNotExists, setUserNotExists] = useState()
     const [avaliations, setAvaliations] = useState([])
     const [coments, setComents] = useState([])
 
     useEffect(() => {
+
         async function getDatas(){
             setLoading(true)
-            setUserRoute(props.match.params.user)
-    
-            const { data: dataUser } = await api.get(`/users/${userRoute}`)
-            const { data: dataAvaliations } = await api.get(`avaliations/${userRoute}`)
-            const { data: dataComents } = await api.get(`coments/${userRoute}`)
+
+            const { data: dataUser } = await api.get(`/users/${props.match.params.user}`)
+            const { data: dataAvaliations } = await api.get(`avaliations/${props.match.params.user}`)
+            const { data: dataComents } = await api.get(`coments/${props.match.params.user}`)
 
             if(!dataUser.message){
                 setUser(dataUser)
@@ -41,7 +40,7 @@ const User = (props) => {
 
         getDatas()
         
-    }, [props, userRoute])
+    }, [props])
 
     return (
         <div className="profile-container">
