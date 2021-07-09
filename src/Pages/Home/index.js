@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 import Loading from '../../Components/Loading'
 import api from '../../services/api'
@@ -9,6 +10,7 @@ import userImage from '../../assets/user-image.png'
 
 const Home = () => {
 
+    const { token } = useContext(Context)
     const [loading, setLoading] = useState(true)
     const [medias, setMedias] = useState([])
     const [numberVisualizers, setNumberVisualizers] = useState([])
@@ -79,7 +81,8 @@ const Home = () => {
                     </div>
                     <div className="right-wrapper">
                         <Link to="/catalog">Catálogo</Link>
-                        <Link to="/login">Entrar</Link>
+                        { !token && <Link to="/login">Entrar</Link> }
+                        { token && <Link to="/timeline">Timeline</Link> }
                     </div>
                 </header>
                 <main className="main">
@@ -90,7 +93,7 @@ const Home = () => {
                             qualquer pessoa ou amigos. Temos vários títulos famosos mas se não tiver,
                             você poderá indicar um título da sua preferência.
                         </p>
-                        <Link to="/signup">Começar a avaliar</Link>
+                        { !token && <Link to="/signup">Começar a avaliar</Link> }
                     </div>
                     <div className="button-next-page" onClick={() => window.scrollTo({ top: 937, behavior: 'smooth' })} >
                         <ion-icon name="chevron-down-outline"></ion-icon>
