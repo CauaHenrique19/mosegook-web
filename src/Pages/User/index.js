@@ -9,56 +9,49 @@ const User = (props) => {
     const [loading, setLoading] = useState(true)
     const [userRoute, setUserRoute] = useState()
     const [user, setUser] = useState()
-    const [userExistis, setUserExistis] = useState()
+    const [userNotExists, setUserNotExists] = useState()
     const [avaliations, setAvaliations] = useState([])
     const [coments, setComents] = useState([])
 
     useEffect(() => {
-        setLoading(true)
-        setUserRoute(props.match.params.user)
-    }, [])
+        async function getDatas(){
+            setLoading(true)
+            setUserRoute(props.match.params.user)
+    
+            const { data: dataUser } = await api.get(`/users/${userRoute}`)
+            const { data: dataAvaliations } = await api.get(`avaliations/${userRoute}`)
+            const { data: dataComents } = await api.get(`coments/${userRoute}`)
 
-    useEffect(() => {
-        api.get(`/users/${userRoute}`)
-            .then(res => {
-                if (res.data.message) {
-                    setUserExistis(false)
-                    setLoading(false)
-                }
-                else {
-                    setUser(res.data)
-                    setUserExistis(true)
-                }
-            })
-            .catch(error => console.error(error.message))
+            if(!dataUser.message){
+                setUser(dataUser)
+                setLoading(false)
+                setUserNotExists(false)
+            }
+            else if(dataUser.message){
+                setUserNotExists(true)
+                setLoading(false)
+            }
+            if(dataAvaliations.avaliations.length > 0){
+                setAvaliations(dataAvaliations.avaliations)
+            }
+            if(dataComents.coments.length > 0){
+                setComents(dataComents.coments)
+            }
+        }
 
-        api.get(`avaliations/${userRoute}`)
-            .then(res => {
-                if (res.data.avaliations.length > 0) {
-                    setAvaliations(res.data.avaliations)
-                }
-            })
-            .catch(error => console.error(error.message))
-
-        api.get(`coments/${userRoute}`)
-            .then(res => {
-                if (res.data.coments.length > 0) {
-                    setComents(res.data.coments)
-                    setLoading(false)
-                }
-            })
-            .catch(error => console.error(error.message))
-    }, [userRoute])
+        getDatas()
+        
+    }, [props, userRoute])
 
     return (
         <div className="profile-container">
-            {/* {
-                userExistis !== undefined && userExistis === false &&
+            {
+                userNotExists &&
                 <div className="container-user-not-exists">
                     <ion-icon name="alert-circle"></ion-icon>
                     <h1>Este usuário não existe!</h1>
                 </div> 
-            } */}
+            }
             {loading && <Loading />}
             <div className="profile-info-container">
                 {
@@ -92,7 +85,7 @@ const User = (props) => {
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
-                                        <div key={media.id} className="user-media-preference">
+                                        <div key={media.key_poster} className="user-media-preference">
                                             <div className="user-media-preference-img-container">
                                                 <img src={media.url_poster} alt="" />
                                             </div>
@@ -117,7 +110,7 @@ const User = (props) => {
                             <div className="user-genders-preferences-container">
                                 {
                                     user && user.genders.map(gender => (
-                                        <div key={gender.id} style={{ backgroundColor: gender.color }} className="user-gender-preference">{gender.name}</div>
+                                        <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">{gender.name}</div>
                                     ))
                                 }
                             </div>
@@ -183,7 +176,7 @@ const User = (props) => {
                 <div className="coment-column">
                     {
                         user && coments.length > 0 ? coments.map(coment => (
-                            <div className="coment">
+                            <div key={coment.id} className="coment">
                                 <div className="header-coment">
                                     <div className="info-user">
                                         <ion-icon style={{ color: coment.category_color }} name="chatbox"></ion-icon>
