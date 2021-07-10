@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://mosegook-web --acl public-read"
+    "deploy": "aws s3 sync build/ s3://www.mosegook.com.br --acl public-read"
   },
   "eslintConfig": {
     "extends": [
