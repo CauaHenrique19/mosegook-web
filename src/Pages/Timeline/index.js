@@ -80,6 +80,11 @@ const Timeline = () => {
         count === maxCount ? buttonNextEL.style.display = 'none' : buttonNextEL.style.display = 'flex'
     }
 
+    function handleLogout(e){
+        e.preventDefault()
+        console.log('e')
+    }
+
     return (
         <div className="timeline-container">
             { loading && <Loading /> }
@@ -142,7 +147,8 @@ const Timeline = () => {
                         <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
                         <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
                         { user.admin && <li><Link to="/admin/movies"><ion-icon name="settings-outline"></ion-icon>Administrador</Link></li> }
-                        <li><button><ion-icon name="log-out-outline"></ion-icon>Sair</button></li>
+                        <li><Link to={`/user/${user.user}`}><ion-icon name="person-outline"></ion-icon>Perfil</Link></li>
+                        <li><Link onClick={e => handleLogout(e)} to="/"><ion-icon name="log-out-outline"></ion-icon>Sair</Link></li>
                     </ul>
                 </div>
                 <div className="main-timeline">
