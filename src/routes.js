@@ -22,7 +22,7 @@ const Routes = () => {
     return(
         <HashRouter>
            <Switch>
-                <Route path="/home" component={Home} exact />
+                <Route path="/" component={Home} exact />
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/user/:user" component={User} />

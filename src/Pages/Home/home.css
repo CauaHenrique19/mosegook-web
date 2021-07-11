@@ -452,6 +452,7 @@
     position: absolute;
     right: -150px;
     top: -387px;
+    z-index: 10;
 }
 .we-peoples-about-us{
     height: 90vh;
