@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from '../../context/context'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
 
 import './user.css'
 
 const User = (props) => {
+
+    const { user: userContext } = useContext(Context)
 
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState()
@@ -63,7 +66,8 @@ const User = (props) => {
                             <div className="follow-container">
                                 <p>{user.following_count.amount} Seguindo</p>
                                 <p>{user.followers_count.amount} Seguidores</p>
-                                <button>Seguir</button>
+                                { userContext.user === user.user.user && <button>Editar Perfil</button> }
+                                { userContext.user !== user.user.user && <button>Seguir</button>}
                             </div>
                             <p className="biography">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
