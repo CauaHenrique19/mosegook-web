@@ -111,8 +111,28 @@
     margin-top: 20px;
     margin-bottom: 30px;
 }
-.profile-info-container .user-medias-preferences > h1{
-    margin-bottom: 20px;
+.profile-info-container .user-medias-preferences .header-medias-preferences{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.profile-info-container .user-medias-preferences .header-medias-preferences button{
+    height: 35px;
+    width: 35px;
+    background-color: initial;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+.profile-info-container .user-medias-preferences .header-medias-preferences button:hover{
+    background-color: rgba(0, 0, 0, 0.384);
 }
 .profile-info-container .user-medias-preferences .user-medias-preferences-container{
     display: grid;
@@ -121,6 +141,7 @@
 }
 .profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference{
     width: 150px;
+    height: 270px;
     cursor: pointer;
     transition: transform 0.3s;
 }
@@ -128,25 +149,52 @@
     transform: scale(1.1);
     box-shadow: 0px 10px 16px 4px rgba(0, 0, 0, 0.233);
 }
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-img-container{
+    height: 200px;
+}
 .profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-img-container img{
     width: 150px;
     height: 200px;
     border-radius: 3px;
 }
 .profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-media-info-container{
+    height: 70px;
     padding: 10px;
     display: flex;
     align-items: center;
     background-color: black;
 }
+.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-media-info-container h2{
+    font-size: 1.1rem;
+}
 .profile-info-container .user-genders-preferences > h1{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .profile-info-container .user-genders-preferences .user-genders-preferences-container{
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-gap: 15px;
     margin-bottom: 20px;
+}
+.profile-info-container .user-genders-preferences .header-genders-preferences{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.profile-info-container .user-genders-preferences .header-genders-preferences button{
+    height: 35px;
+    width: 35px;
+    background-color: initial;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
 }
 .profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference{
     display: flex;
@@ -155,6 +203,9 @@
     width: 100px;
     height: 100px;
     border-radius: 3px;
+}
+.profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference p{
+    text-align: center;
 }
 .profile-interations-container{
     display: flex;
@@ -304,7 +355,7 @@
 .profile-interations-container .coment .links-coment-container button:nth-child(2):hover ion-icon{
     color: black;
 }
-.profile-interations-container .coment-column .nothing-container{
+.profile-interations-container .nothing-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -314,13 +365,13 @@
     border-radius: 3px;
     border: 1px solid rgba(128, 128, 128, 0.205);
 }
-.profile-interations-container .coment-column .nothing-container h1{
+.profile-interations-container .nothing-container h1{
     /* width: 150px; */
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
 }
-.profile-interations-container .coment-column .nothing-container ion-icon{
+.profile-interations-container .nothing-container ion-icon{
     font-size: 15rem;
     margin-bottom: 20px;
     color: rgba(128, 128, 128, 0.322);

@@ -84,7 +84,10 @@ const User = (props) => {
                 {
                     user && user.medias.length > 0 ?
                         <div className="user-medias-preferences">
-                            <h1>Mídias</h1>
+                            <div className="header-medias-preferences">
+                                <h1>Mídias</h1>
+                                { user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button> }
+                            </div>
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
@@ -109,11 +112,16 @@ const User = (props) => {
                 {
                     user && user.genders.length > 0 ?
                         <div className="user-genders-preferences">
-                            <h1>Gêneros</h1>
+                            <div className="header-genders-preferences">
+                                <h1>Gêneros</h1>
+                                { user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button> }
+                            </div>
                             <div className="user-genders-preferences-container">
                                 {
                                     user && user.genders.map(gender => (
-                                        <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">{gender.name}</div>
+                                        <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">
+                                            <p>{gender.name}</p>
+                                        </div>
                                     ))
                                 }
                             </div>
@@ -127,7 +135,7 @@ const User = (props) => {
             <div className="profile-interations-container">
                 <div className="avaliations-column">
                     {
-                        user && avaliations.length > 0 && avaliations.map(avaliation => (
+                        user && avaliations.length > 0 ? avaliations.map(avaliation => (
                             <div key={avaliation.id} className="coment">
                                 <div className="header-coment">
                                     <div className="info-user">
@@ -173,7 +181,11 @@ const User = (props) => {
                                     <button><ion-icon name="add-outline"></ion-icon></button>
                                 </div>
                             </div>
-                        ))
+                        )) :
+                        <div className="nothing-container">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            <h1>Esse usuário não realizou avaliações</h1>
+                        </div>
                     }
                 </div>
                 <div className="coment-column">
@@ -193,11 +205,7 @@ const User = (props) => {
                                     </div>
                                 </div>
                                 <div className="content-coment">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                    been
-                                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                    galley
-                                    of type and scrambled it to make a type specimen book.
+                                    { coment.content }
                                 </div>
                                 <div className="footer-coment">
                                     <div className="info-media">
