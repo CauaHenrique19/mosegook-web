@@ -11,11 +11,11 @@
 .avaliation-container .avaliations-coments-container{
     display: grid;
     grid-template-columns: 50% 50%;
-    /* grid-template-rows: 350px; */
     margin: 15px 15px 15px 0;
 }
 .avaliation-container .avaliation, 
 .avaliation-container .coment{
+    width: calc(100% - 15px);
     height: auto;
     max-height: 350px;
     display: flex;
@@ -152,14 +152,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     border: 1px solid #fafafa;
     background-color: initial;
     border-radius: 50px;
     cursor: pointer;
     margin-right: 5px;
-    font-size: 2.5rem;
+    font-size: 2rem;
     transition: background-color 0.3s;
 }
 .avaliation-container .avaliation .links-coment-container button:hover,
@@ -173,7 +173,6 @@
 .media-avaliation-container{
     width: fit-content;
     height: 85vh;
-    /* background-color: black; */
     border-radius: 4px;
     margin-top: 100px;
 }
@@ -230,4 +229,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.media-avaliation-container .genders-avaliation-container .gender-avaliation-container p{
+    text-align: center;
 }
