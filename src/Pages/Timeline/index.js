@@ -11,6 +11,7 @@ const Timeline = () => {
     const [usersToFollow, setUsersToFollow] = useState([])
     const [mediasToDiscover, setMediasToDiscover] = useState([])
     const [avaliations, setAvaliations] = useState([])
+    const [coments, setComents] = useState([])
     const [mediasRated, setMediasRated] = useState([])
     const [loading, setLoading] = useState(true)
     const [viewInputSearchUser, setViewInputSearchUser] = useState(false)
@@ -32,8 +33,11 @@ const Timeline = () => {
             .then(res => setAvaliations(res.data.avaliations))
             .catch(error => console.error(error.message))
         api.get(`/medias-rated-follow/${user.id}`)
+            .then(res => setMediasRated(res.data.medias))
+            .catch(error => console.error(error.message))
+        api.get(`/coments-timeline/${user.id}`)
             .then(res => {
-                setMediasRated(res.data.medias)
+                setComents(res.data)
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
@@ -187,7 +191,7 @@ const Timeline = () => {
                                                     </div>
                                                 </div>
                                                 <div className="info-post">
-                                                    <p style={{ backgroundColor: avaliation.color }}>{avaliation.created_at.toLocaleString()}</p>
+                                                    <p style={{ backgroundColor: avaliation.color }}>{avaliation.created_at}</p>
                                                 </div>
                                             </div>
                                             <div className="content-coment">{avaliation.content}</div>
@@ -221,52 +225,50 @@ const Timeline = () => {
                                 }
                             </div>
                             <div className="column-coments">
-                                <div className="coment">
-                                    <div className="header-coment">
-                                        <div className="info-user">
-                                            <ion-icon name="chatbox"></ion-icon>
-                                            <div className="user-info">
-                                                <h3>Jamalzin</h3>
-                                                <p>@jamalzinbotafogo</p>
+                                {
+                                    coments && coments.map(coment => (
+                                        <div key={coment.id} className="coment">
+                                            <div className="header-coment">
+                                                <div className="info-user">
+                                                    <ion-icon style={{ color: coment.category_color }} name="chatbox"></ion-icon>
+                                                    <div className="user-info">
+                                                        <h3>{coment.user_name}</h3>
+                                                        <p>@{coment.user_user}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="info-post">
+                                                    <p style={{ backgroundColor: coment.category_color }}>{coment.created_at}</p>
+                                                </div>
+                                            </div>
+                                            <div className="content-coment">{ coment.content }</div>
+                                            <div className="footer-coment">
+                                                <div className="info-media">
+                                                    <div style={{ backgroundColor: coment.category_color }} className="color-coment">
+                                                        <ion-icon name={coment.category_icon}></ion-icon>
+                                                    </div>
+                                                    <div className="info-footer">
+                                                        <h3>Sobre</h3>
+                                                        <p>{coment.media_name}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="info-avaliation">
+                                                    <div style={{ backgroundColor: coment.category_color }} className="amount-coments">
+                                                        <ion-icon name="chatbubble"></ion-icon>
+                                                        <p>0</p>
+                                                    </div>
+                                                    <div style={{ backgroundColor: coment.category_color }} className="amount-likes">
+                                                        <ion-icon name="heart"></ion-icon>
+                                                        <p>0</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="links-coment-container">
+                                                <button><ion-icon name="heart-outline"></ion-icon></button>
+                                                <button><ion-icon name="add-outline"></ion-icon></button>
                                             </div>
                                         </div>
-                                        <div className="info-post">
-                                            <p>26/06/2021 às 20:17</p>
-                                        </div>
-                                    </div>
-                                    <div className="content-coment">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                                        been
-                                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                                        galley
-                                        of type and scrambled it to make a type specimen book.
-                                    </div>
-                                    <div className="footer-coment">
-                                        <div className="info-media">
-                                            <div className="color-coment">
-                                                <ion-icon name="film"></ion-icon>
-                                            </div>
-                                            <div className="info-footer">
-                                                <h3>sobre</h3>
-                                                <p>Pantera Negra</p>
-                                            </div>
-                                        </div>
-                                        <div className="info-avaliation">
-                                            <div className="amount-coments">
-                                                <ion-icon name="chatbubble"></ion-icon>
-                                                <p>21</p>
-                                            </div>
-                                            <div className="amount-likes">
-                                                <ion-icon name="heart"></ion-icon>
-                                                <p>100</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="links-coment-container">
-                                        <button><ion-icon name="heart-outline"></ion-icon></button>
-                                        <button><ion-icon name="add-outline"></ion-icon></button>
-                                    </div>
-                                </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
