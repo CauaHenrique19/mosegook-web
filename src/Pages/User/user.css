@@ -211,149 +211,9 @@
     display: flex;
     width: 50%;
     margin-top: 150px;
-    /* background-color: #313131; */
 }
 .profile-interations-container .avaliations-column{
     margin-right: 5px;
-}
-.profile-interations-container .coment{
-    width: 405px;
-    max-height: 350px;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(128, 128, 128, 0.205);
-    transition: transform 0.5s, width 0.5s;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    position: relative;
-}
-.profile-interations-container .coment:hover{
-    transform: scale(1.1);
-    background-image: url('../../assets/bg-avaliations-320.png');
-    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
-}
-.profile-interations-container .coment:hover{
-    background-image: url('../../assets/bg-avaliations-350.png');
-}
-.profile-interations-container .coment:hover .header-coment ion-icon, 
-.profile-interations-container .coment:hover .header-coment svg,
-.profile-interations-container .coment:hover .header-coment .user-info p,
-.profile-interations-container .coment:hover .footer-coment .color-coment{
-    color: #fafafa;
-    fill: #fafafa;
-}
-.profile-interations-container .coment:hover .links-coment-container{
-    display: flex;
-}
-.profile-interations-container .coment .header-coment{
-    height: 7vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
-}
-.profile-interations-container .coment .header-coment .info-user{
-    display: flex;
-}
-.profile-interations-container .coment .header-coment svg{
-    margin-right: 10px;
-}
-.profile-interations-container .coment .header-coment ion-icon{
-    margin-right: 10px;
-    font-size: 3.1rem;
-    /* color: rgb(0, 160, 223); */
-}
-.profile-interations-container .coment .header-coment p{
-    color: gray;
-}
-.profile-interations-container .coment .header-coment .info-post p{
-    width: fit-content;
-    padding: 4px 12px;
-    color: #fafafa;
-    border-radius: 50px;
-    font-size: 0.8rem;
-}
-.profile-interations-container .coment .content-coment{
-    padding: 10px;
-    font-size: 1.3rem;
-}
-.profile-interations-container .coment .footer-coment{
-    width: 100%;
-    height: 6vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
-}
-.profile-interations-container .coment .footer-coment .info-media{
-    display: flex;
-}
-.profile-interations-container .coment .footer-coment .info-footer{
-    margin-left: 5px;
-}
-.profile-interations-container .coment .footer-coment .color-coment{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    /* background-color: rgb(0, 128, 79); */
-}
-.profile-interations-container .coment .footer-coment .color-coment ion-icon{
-    font-size: 2rem;
-}
-.profile-interations-container .coment .info-avaliation{
-    display: flex;
-}
-.profile-interations-container .coment .info-avaliation .amount-coments,
-.profile-interations-container .coment .info-avaliation .amount-likes{
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    padding: 4px 12px;
-    margin-right: 5px;
-    border-radius: 50px;
-}
-.profile-interations-container .coment .info-avaliation .amount-coments ion-icon,
-.profile-interations-container .coment .info-avaliation .amount-likes ion-icon{
-    margin-right: 5px;
-    font-size: 1.2rem;
-}
-.profile-interations-container .coment .links-coment-container{
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.692);
-    position: absolute;
-    z-index: 10;
-    border-radius: 3px;
-}
-.profile-interations-container .coment .links-coment-container button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #fafafa;
-    background-color: initial;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-right: 5px;
-    font-size: 1.7rem;
-    transition: background-color 0.3s;
-}
-.profile-interations-container .coment .links-coment-container button:hover{
-    background-color: white;
-}
-.profile-interations-container .coment .links-coment-container button:nth-child(1):hover ion-icon{
-    color: red;
-}
-.profile-interations-container .coment .links-coment-container button:nth-child(2):hover ion-icon{
-    color: black;
 }
 .profile-interations-container .nothing-container{
     display: flex;
@@ -366,7 +226,6 @@
     border: 1px solid rgba(128, 128, 128, 0.205);
 }
 .profile-interations-container .nothing-container h1{
-    /* width: 150px; */
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;

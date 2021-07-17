@@ -88,19 +88,19 @@
     color: #fafafa;
     font-size: 0.8rem;
 }
-.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .avaliation{
+.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation{
     margin-right: 10px;
     padding-right: 10px;
     border-right: 1px solid rgba(128, 128, 128, 0.205);
 }
-.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .avaliation .avaliation-content{
+.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation .avaliation-content{
     display: flex;
     align-items: center;
 }
-.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .avaliation .avaliation-content h2{
+.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation .avaliation-content h2{
     font-size: 1.3rem;
 }
-.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .avaliation .avaliation-content ion-icon{
+.timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation .avaliation-content ion-icon{
     color: rgb(255, 187, 0);
     margin-right: 5px;
     font-size: 1.3rem;
@@ -261,150 +261,6 @@
 }
 .timeline-content-container .main-timeline .column-avaliations{
     margin-right: 5px;
-}
-.timeline-content-container .main-timeline .coment{
-    width: 405px;
-    max-height: 350px;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(128, 128, 128, 0.205);
-    transition: transform 0.5s, width 0.5s;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    position: relative;
-}
-.timeline-content-container .main-timeline .coment:hover{
-    transform: scale(1.1);
-    background-image: url('../../assets/bg-avaliations-320.png');
-    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
-}
-.timeline-content-container .main-timeline .column-avaliations .coment:hover{
-    background-image: url('../../assets/bg-avaliations-350.png');
-}
-.timeline-content-container .main-timeline .coment:hover .header-coment ion-icon, 
-.timeline-content-container .main-timeline .coment:hover .header-coment svg,
-.timeline-content-container .main-timeline .coment:hover .header-coment .user-info p,
-.timeline-content-container .main-timeline .coment:hover .footer-coment .color-coment{
-    color: #fafafa;
-    fill: #fafafa;
-}
-.timeline-content-container .main-timeline .coment:hover .links-coment-container{
-    display: flex;
-}
-.timeline-content-container .main-timeline .coment .header-coment{
-    height: 7vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
-}
-.timeline-content-container .main-timeline .coment .header-coment .info-user{
-    display: flex;
-}
-.timeline-content-container .main-timeline .coment .header-coment svg{
-    margin-right: 10px;
-}
-.timeline-content-container .main-timeline .coment .header-coment ion-icon{
-    margin-right: 10px;
-    font-size: 3.1rem;
-    color: rgb(0, 160, 223);
-}
-.timeline-content-container .main-timeline .coment .header-coment p{
-    color: gray;
-}
-.timeline-content-container .main-timeline .coment .header-coment .info-post p{
-    width: fit-content;
-    padding: 4px 12px;
-    color: #fafafa;
-    border-radius: 50px;
-    font-size: 0.8rem;
-}
-.timeline-content-container .main-timeline .coment .content-coment{
-    padding: 10px;
-    font-size: 1.3rem;
-}
-.timeline-content-container .main-timeline .coment .footer-coment{
-    width: 100%;
-    height: 6vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 10px;
-}
-.timeline-content-container .main-timeline .coment .footer-coment .info-media{
-    display: flex;
-}
-.timeline-content-container .main-timeline .coment .footer-coment .info-footer{
-    margin-left: 5px;
-}
-.timeline-content-container .main-timeline .coment .footer-coment .color-coment{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    /* background-color: rgb(0, 128, 79); */
-}
-.timeline-content-container .main-timeline .coment .footer-coment .color-coment ion-icon{
-    font-size: 2rem;
-}
-.timeline-content-container .main-timeline .column-avaliations .coment .color-coment{
-    background-color: rgb(0, 160, 223);
-}
-.timeline-content-container .main-timeline .coment .info-avaliation{
-    display: flex;
-}
-.timeline-content-container .main-timeline .coment .info-avaliation .amount-coments,
-.timeline-content-container .main-timeline .coment .info-avaliation .amount-likes{
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    padding: 4px 12px;
-    margin-right: 5px;
-    border-radius: 50px;
-}
-.timeline-content-container .main-timeline .coment .info-avaliation .amount-coments ion-icon,
-.timeline-content-container .main-timeline .coment .info-avaliation .amount-likes ion-icon{
-    margin-right: 5px;
-    font-size: 1.2rem;
-}
-.timeline-content-container .main-timeline .coment .links-coment-container{
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.692);
-    position: absolute;
-    z-index: 10;
-    border-radius: 3px;
-}
-.timeline-content-container .main-timeline .coment .links-coment-container button,
-.timeline-content-container .main-timeline .coment .links-coment-container a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid #fafafa;
-    background-color: initial;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-right: 5px;
-    font-size: 1.7rem;
-    transition: background-color 0.3s;
-}
-.timeline-content-container .main-timeline .coment .links-coment-container button:hover,
-.timeline-content-container .main-timeline .coment .links-coment-container a:hover{
-    background-color: white;
-}
-.timeline-content-container .main-timeline .coment .links-coment-container button:hover ion-icon{
-    color: red;
-}
-.timeline-content-container .main-timeline .coment .links-coment-container a:hover ion-icon{
-    color: black;
 }
 .timeline-content-container .main-timeline .column{
     display: flex;
