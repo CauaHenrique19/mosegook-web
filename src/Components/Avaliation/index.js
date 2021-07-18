@@ -43,11 +43,11 @@ const Avaliation = ({ avaliation }) => {
                 <div className="info-avaliation">
                     <div style={{ backgroundColor: avaliation.category_color }} className="amount-avaliations">
                         <ion-icon name="chatbubble"></ion-icon>
-                        <p>0</p>
+                        <p>{avaliation.amountComents}</p>
                     </div>
                     <div style={{ backgroundColor: avaliation.category_color }} className="amount-likes">
                         <ion-icon name="heart"></ion-icon>
-                        <p>0</p>
+                        <p>{avaliation.amountLikes}</p>
                     </div>
                 </div>
             </div>
