@@ -9,7 +9,7 @@ import './timeline.css'
 
 const Timeline = () => {
 
-    const { user } = useContext(Context)
+    const { user, setUser, setToken } = useContext(Context)
     const [usersToFollow, setUsersToFollow] = useState([])
     const [mediasToDiscover, setMediasToDiscover] = useState([])
     const [avaliations, setAvaliations] = useState([])
@@ -94,6 +94,10 @@ const Timeline = () => {
 
     function handleLogout(e) {
         e.preventDefault()
+        localStorage.removeItem('mosegook_token')
+        localStorage.removeItem('mosegook_user')
+        setUser({})
+        setToken('')
     }
 
     function setStateUserSearch(e){
