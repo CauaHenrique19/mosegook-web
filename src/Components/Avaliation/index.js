@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './avaliation.css'
 
 const Avaliation = ({ avaliation }) => {
+
+    const [liked, setLiked] = useState(false)
+
+    function handleLike(){
+        setLiked(!liked)
+    }
+
     return (
         <div key={avaliation.id} className="avaliation">
             <div className="header-avaliation">
@@ -45,7 +52,9 @@ const Avaliation = ({ avaliation }) => {
                 </div>
             </div>
             <div className="links-avaliation-container">
-                <button disabled ><ion-icon name="heart-outline"></ion-icon></button>
+                <button onClick={() => handleLike()}>
+                    <ion-icon name={liked ? 'heart' : 'heart-outline'}></ion-icon>
+                </button>
                 <Link to={`avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>
