@@ -216,7 +216,8 @@
 }
 .timeline-content-container .main-timeline .container-new-avaliation textarea{
     width: 100%;
-    min-height: 100px;
+    height: 70px;
+    min-height: 70px;
     resize: vertical;
     background-color: initial;
     border: none;
@@ -225,7 +226,7 @@
     margin: 10px 0;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation{
-    height: 5vh;
+    height: 4vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -250,7 +251,7 @@
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation button ion-icon,
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation button svg{
     margin-right: 10px;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 .timeline-content-container .main-timeline .columns-container{
     display: flex;
