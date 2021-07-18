@@ -120,7 +120,7 @@ const Timeline = () => {
         setSearchUsers('')
         setViewInputSearchUser(!viewInputSearchUser)
     }
-    
+
     return (
         <div className="timeline-container">
             {loading && <Loading />}

@@ -125,6 +125,18 @@
 }
 .avaliation .links-avaliation-container button:hover ion-icon{
     color: red;
+    animation: none;
+}
+@keyframes heart{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 .avaliation .links-avaliation-container a:hover ion-icon{
     color: black;

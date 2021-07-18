@@ -5,8 +5,15 @@ import './avaliation.css'
 const Avaliation = ({ avaliation }) => {
 
     const [liked, setLiked] = useState(false)
-
+    
     function handleLike(){
+        if(liked){
+            avaliation.amountLikes = parseInt(avaliation.amountLikes - 1)
+        }
+        else{
+            avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
+        }
+
         setLiked(!liked)
     }
 
@@ -53,7 +60,7 @@ const Avaliation = ({ avaliation }) => {
             </div>
             <div className="links-avaliation-container">
                 <button onClick={() => handleLike()}>
-                    <ion-icon name={liked ? 'heart' : 'heart-outline'}></ion-icon>
+                    <ion-icon style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} name={liked ? 'heart' : 'heart-outline'}></ion-icon>
                 </button>
                 <Link to={`avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
             </div>

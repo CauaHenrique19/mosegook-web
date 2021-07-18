@@ -1,0 +1,10 @@
+.message{
+    width: fit-content;
+    position: absolute;
+    bottom: 20px;
+    background-color: blueviolet;
+    padding: 5px 15px;
+    border-radius: 3px;
+    box-shadow: 0px 10px 30px 15px rgba(8, 8, 8, 0.781);
+    z-index: 10;
+}
