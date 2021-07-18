@@ -17,6 +17,8 @@ const Timeline = () => {
     const [mediasRated, setMediasRated] = useState([])
     const [loading, setLoading] = useState(true)
     const [viewInputSearchUser, setViewInputSearchUser] = useState(false)
+    const [searchUsers, setSearchUsers] = useState('')
+    const [usersData, setUsersData] = useState([])
 
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-100)
@@ -26,7 +28,10 @@ const Timeline = () => {
 
     useEffect(() => {
         api.get(`/users-to-follow/${user.id}`)
-            .then(res => setUsersToFollow(res.data))
+            .then(res => { 
+                setUsersData(res.data)
+                setUsersToFollow(res.data) 
+            })
             .catch(error => console.error(error.message))
         api.get(`/medias/medias-to-discover/${user.id}`)
             .then(res => setMediasToDiscover(res.data.medias))
@@ -89,9 +94,33 @@ const Timeline = () => {
 
     function handleLogout(e) {
         e.preventDefault()
-        console.log('e')
     }
 
+    function setStateUserSearch(e){
+        if(e){
+            setSearchUsers(e)
+        }
+        else{
+            clearSearch()
+        }
+    }
+
+    function handleSearchUsers(e){
+        if(e.key === 'Enter'){
+            api.get(`/users/search/${searchUsers}`)
+                .then(res => {
+                    setUsersData(res.data)
+                })
+                .catch(error => console.log(error))
+        }
+    }
+
+    function clearSearch(){
+        setUsersData(usersToFollow)
+        setSearchUsers('')
+        setViewInputSearchUser(!viewInputSearchUser)
+    }
+    
     return (
         <div className="timeline-container">
             {loading && <Loading />}
@@ -187,11 +216,12 @@ const Timeline = () => {
                         <div className="who-follow">
                             <div className="header-who-follow">
                                 { !viewInputSearchUser && <h1>Quem Seguir</h1> }
-                                { viewInputSearchUser && <input type="text" placeholder="Pesquisar" /> }
+                                { viewInputSearchUser && <input type="text" placeholder="Pesquisar" value={searchUsers} onChange={e => setStateUserSearch(e.target.value)} onKeyPress={e => handleSearchUsers(e)} /> }
+                                { searchUsers && viewInputSearchUser && <button onClick={() => clearSearch()}><ion-icon name="close-outline"></ion-icon></button> }
                                 <button onClick={() => setViewInputSearchUser(!viewInputSearchUser)}><ion-icon name="search-outline"></ion-icon></button>
                             </div>
                             {
-                                usersToFollow && usersToFollow.map(user => (
+                                usersData.length > 0 ? usersData.map(user => (
                                     <div key={user.user} className="content-who-follow">
                                         <div className="user-to-follow">
                                             <div>
@@ -206,7 +236,10 @@ const Timeline = () => {
                                             <Link to={`user/${user.user}`}>Ver Perfil</Link>
                                         </div>
                                     </div>
-                                ))
+                                )) : <div className="nothing-container">
+                                    <ion-icon name="alert-circle"></ion-icon>
+                                    <h1>Nenhum Resultado para "{searchUsers}"</h1>
+                                </div>
                             }
                         </div>
                         <div className="discover-medias">

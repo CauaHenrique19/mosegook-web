@@ -358,6 +358,25 @@
     background-color: #fafafa;
     color: black;
 }
+.timeline-content-container .main-timeline .who-follow .nothing-container{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 3px;
+}
+.timeline-content-container .main-timeline .who-follow .nothing-container h1{
+    width: 300px;
+    text-align: center;
+}
+.timeline-content-container .main-timeline .who-follow .nothing-container ion-icon{
+    font-size: 7rem;
+    margin-bottom: 10px;
+    color: #242424;
+}
 .timeline-container .main-timeline .discover-medias .discover-medias-header{
     height: 5vh;
     border-bottom: 1px solid rgba(128, 128, 128, 0.205);
