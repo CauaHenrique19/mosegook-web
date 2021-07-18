@@ -41,7 +41,7 @@ const Coment = ({ coment }) => {
             </div>
             <div className="links-coment-container">
                 <button><ion-icon name="heart-outline"></ion-icon></button>
-                <Link><ion-icon name="add-outline"></ion-icon></Link>
+                <Link to="/"><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>
     )
