@@ -1,16 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../../context/context'
+import api from '../../services/api'
 import './avaliation.css'
 
 const Avaliation = ({ avaliation }) => {
 
+    const { user } = useContext(Context)
     const [liked, setLiked] = useState(false)
+    const [like, setLike] = useState([])
+
+    useEffect(() => {
+        api.get(`/likes/avaliations/user/${user.id}/${avaliation.id}`)
+            .then(res => {
+                if(res.data.id){
+                    setLike(res.data)
+                    setLiked(true)
+                }
+                else{
+                    setLiked(false)
+                }
+            })
+            .catch(error => console.error(error))
+    }, [])
     
     function handleLike(){
         if(liked){
+            api.delete(`/likes/avaliations/${like.id}`, like)
+                .then(_ => '')
+                .catch(error => console.error(error))
             avaliation.amountLikes = parseInt(avaliation.amountLikes - 1)
         }
         else{
+            const like = { user_id: user.id, avaliation_id: avaliation.id }
+
+            api.post('/likes/avaliations', like)
+                .then(res => setLike(like))
+                .catch(error => console.error(error))
+
             avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
         }
 
