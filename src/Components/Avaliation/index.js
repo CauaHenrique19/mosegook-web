@@ -26,22 +26,25 @@ const Avaliation = ({ avaliation }) => {
     
     function handleLike(){
         if(liked){
-            api.delete(`/likes/avaliations/${like.id}`, like)
-                .then(_ => '')
+            api.delete(`/likes/avaliations/${like.id}`)
+                .then(_ => {
+                    avaliation.amountLikes = parseInt(avaliation.amountLikes - 1)
+                    setLiked(false)
+                })
                 .catch(error => console.error(error))
-            avaliation.amountLikes = parseInt(avaliation.amountLikes - 1)
         }
         else{
             const like = { user_id: user.id, avaliation_id: avaliation.id }
 
             api.post('/likes/avaliations', like)
-                .then(res => setLike(like))
+                .then(res => { 
+                    setLike(res.data[0])
+                    setLiked(true)
+                    avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
+                })
                 .catch(error => console.error(error))
-
-            avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
         }
 
-        setLiked(!liked)
     }
 
     return (
