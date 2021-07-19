@@ -57,6 +57,8 @@ const User = (props) => {
         }
         else{
             setFollowing(true)
+            console.log(follow)
+            console.log('askodkasokdasd')
             user.followers_count.amount = parseInt(user.followers_count.amount += 1)
         }
     }

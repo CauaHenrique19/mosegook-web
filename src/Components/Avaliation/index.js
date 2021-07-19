@@ -39,8 +39,8 @@ const Avaliation = ({ avaliation }) => {
             api.post('/likes/avaliations', like)
                 .then(res => { 
                     setLike(res.data[0])
-                    setLiked(true)
                     avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
+                    setLiked(true)
                 })
                 .catch(error => console.error(error))
         }
