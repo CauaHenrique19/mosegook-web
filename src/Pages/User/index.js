@@ -16,6 +16,7 @@ const User = (props) => {
     const [userNotExists, setUserNotExists] = useState()
     const [avaliations, setAvaliations] = useState([])
     const [coments, setComents] = useState([])
+    const [following, setFollowing] = useState(false)
 
     useEffect(() => {
 
@@ -47,6 +48,19 @@ const User = (props) => {
         
     }, [props])
 
+    function handleFollow(){
+        const follow = { user_id: userContext.id, following_user_id: user.user.id }
+        
+        if(following){
+            setFollowing(false)
+            user.followers_count.amount = parseInt(user.followers_count.amount -= 1)
+        }
+        else{
+            setFollowing(true)
+            user.followers_count.amount = parseInt(user.followers_count.amount += 1)
+        }
+    }
+
     return (
         <div className="profile-container">
             {
@@ -69,7 +83,7 @@ const User = (props) => {
                                 <p>{user.following_count.amount} Seguindo</p>
                                 <p>{user.followers_count.amount} Seguidores</p>
                                 { userContext.user === user.user.user && <button>Editar Perfil</button> }
-                                { userContext.user !== user.user.user && <button>Seguir</button>}
+                                { userContext.user !== user.user.user && <button onClick={() => handleFollow()}>{following ? 'Deixar de seguir' : 'Seguir'}</button>}
                             </div>
                             <p className="biography">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
