@@ -32,6 +32,16 @@ const Medias = ({ category_id, page, texts, pageName }) => {
             .catch(error => console.error(error.message))
     }, [category_id])
 
+    function handleEditMedia(media){
+        
+        api.put(`/medias/${media.id}`, media)
+            .then(res => console.log(res))
+            .catch(error => console.error(error))
+        
+
+            
+    }
+
     return (
         <div className="medias-admin-container">
             { loading && <Loading /> }
@@ -102,7 +112,10 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                     </div>
                                     <div className="media-info-container">
                                         <h2>{media.name}</h2>
-                                        <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="trash-outline"></ion-icon></button>
+                                        <div className="buttons-media-info-container">
+                                            <button onClick={() => handleEditMedia(media)}><ion-icon name="create-outline"></ion-icon></button>
+                                            <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="trash-outline"></ion-icon></button>
+                                        </div>
                                     </div>
                                 </div>
                             ))

@@ -164,6 +164,9 @@
     background-color: black;
     padding: 15px;
 }
+.medias-admin-container .medias-main-container .media-info-container .buttons-media-info-container{
+    display: flex;
+}
 .medias-admin-container .medias-main-container .media-info-container button{
     width: 35px;
     height: 35px;
@@ -177,8 +180,15 @@
     align-items: center;
     justify-content: center;
 }
+.medias-admin-container .medias-main-container .media-info-container button:nth-child(1){
+    background-color: rgb(221, 133, 0);
+    margin-right: 10px;
+}
 .medias-admin-container .medias-main-container .media-info-container button:hover{
     background-color: rgb(165, 42, 67);
+}
+.medias-admin-container .medias-main-container .media-info-container button:nth-child(1):hover{
+    background-color: rgb(185, 111, 0);
 }
 .medias-admin-container .medias-main-container .media-info-container button ion-icon{
     font-size: 1.3rem;
