@@ -17,6 +17,8 @@ const Timeline = () => {
     const [mediasRated, setMediasRated] = useState([])
     const [loading, setLoading] = useState(true)
     const [viewInputSearchUser, setViewInputSearchUser] = useState(false)
+    const [viewInputSearchMediaMention, setViewInputSearchMediaMention] = useState(false)
+    const [searchMediaMention, setSearchMediaMention] = useState('')
     const [searchUsers, setSearchUsers] = useState('')
     const [usersData, setUsersData] = useState([])
 
@@ -197,7 +199,25 @@ const Timeline = () => {
                             <h1>Avalie</h1>
                             <textarea placeholder="O que você acha?" maxLength="360" name="" id="" cols="30" rows="5"></textarea>
                             <div className="footer-container-new-avaliation">
-                                <button><ion-icon name="videocam-outline"></ion-icon>Mencionar Mídia</button>
+                                <div className="mention-media">
+                                    <button 
+                                        onClick={() => setViewInputSearchMediaMention(!viewInputSearchMediaMention)}>
+                                        <ion-icon name="videocam-outline"></ion-icon>
+                                        Mencionar Mídia
+                                    </button>
+                                    {
+                                        viewInputSearchMediaMention && 
+                                        <div className="input-container">
+                                            <input 
+                                                value={searchMediaMention} 
+                                                onChange={e => setSearchMediaMention(e.target.value)} 
+                                                type="text" 
+                                                placeholder="Nome da mídia" 
+                                            />
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </div>
+                                    }
+                                </div>
                                 <button> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 51 40"
                                         fill="#fafafa">
