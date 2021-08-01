@@ -14,6 +14,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
     const [amountAvaliations, setAmountAvaliations] = useState([])
     const [mostRated, setMostRated] = useState([])
     const [mostGoodRated, setMostGoodRated] = useState([])
+    const [data, setData] = useState({})
 
     useEffect(() => {
         api(`/medias/${category_id}`)
@@ -32,20 +33,10 @@ const Medias = ({ category_id, page, texts, pageName }) => {
             .catch(error => console.error(error.message))
     }, [category_id])
 
-    function handleEditMedia(media){
-        
-        api.put(`/medias/${media.id}`, media)
-            .then(res => console.log(res))
-            .catch(error => console.error(error))
-        
-
-            
-    }
-
     return (
         <div className="medias-admin-container">
             { loading && <Loading /> }
-            { viewModalForm && <ModalForm type="form-gender" page={texts} /> }
+            { viewModalForm && <ModalForm type="form-media" page={texts} data={data} /> }
             <MenuAdmin page={page} />
             <div className="main-medias-container">
                 <div className="statistics-medias-main-container">
@@ -113,7 +104,14 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                     <div className="media-info-container">
                                         <h2>{media.name}</h2>
                                         <div className="buttons-media-info-container">
-                                            <button onClick={() => handleEditMedia(media)}><ion-icon name="create-outline"></ion-icon></button>
+                                            <button 
+                                                onClick={() => {
+                                                    setViewModalForm(!viewModalForm)
+                                                    setData(media)
+                                                }}
+                                            >
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </button>
                                             <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="trash-outline"></ion-icon></button>
                                         </div>
                                     </div>
