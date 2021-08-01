@@ -209,10 +209,10 @@ const Timeline = () => {
                         </div>
                         <div className="columns">
                             <div className="column-avaliations">
-                                {avaliations && avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />)}
+                                {avaliations.length > 0 && avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />)}
                             </div>
                             <div className="column-coments">
-                                {coments && coments.map(coment => <Coment key={coment.id} coment={coment} />)}
+                                {coments.length > 0 && coments.map(coment => <Coment key={coment.id} coment={coment} />)}
                             </div>
                         </div>
                     </div>
