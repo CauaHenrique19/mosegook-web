@@ -19,6 +19,8 @@ const Timeline = () => {
     const [viewInputSearchUser, setViewInputSearchUser] = useState(false)
     const [viewInputSearchMediaMention, setViewInputSearchMediaMention] = useState(false)
     const [searchMediaMention, setSearchMediaMention] = useState('')
+    const [mediasToMention, setMediasToMention] = useState([])
+    const [mentionedMedia, setMentionedMedia] = useState(null)
     const [searchUsers, setSearchUsers] = useState('')
     const [usersData, setUsersData] = useState([])
 
@@ -127,6 +129,18 @@ const Timeline = () => {
         setViewInputSearchUser(!viewInputSearchUser)
     }
 
+    function handleSearchMediasMention(e){
+        if(e.key === 'Enter'){
+            api.get(`/medias/search/${searchMediaMention}`)
+                .then(res => setMediasToMention(res.data.medias))
+                .catch(error => console.error(error.data))
+        }
+    }
+
+    useEffect(() => {
+        console.log(mentionedMedia)
+    }, [mentionedMedia])
+
     return (
         <div className="timeline-container">
             {loading && <Loading />}
@@ -209,8 +223,9 @@ const Timeline = () => {
                                         viewInputSearchMediaMention && 
                                         <div className="input-container">
                                             <input 
-                                                value={searchMediaMention} 
-                                                onChange={e => setSearchMediaMention(e.target.value)} 
+                                                value={searchMediaMention}
+                                                onChange={e => setSearchMediaMention(e.target.value)}
+                                                onKeyPress={e => handleSearchMediasMention(e)} 
                                                 type="text" 
                                                 placeholder="Nome da mídia" 
                                             />
@@ -226,6 +241,38 @@ const Timeline = () => {
                                     Avaliar
                                 </button>
                             </div>
+                            {
+                                mediasToMention.length > 0 && 
+                                    <div className="medias-to-mention">
+                                        <h1>{`${mediasToMention.length} resultados para '${searchMediaMention}'`}</h1>
+                                        <div className="medias-to-mention-container">
+                                            {
+                                                mediasToMention.length > 0 && mediasToMention.map(media => (
+                                                    <div onClick={() => setMentionedMedia(media)} key={media.name} className="media-to-mention">
+                                                        <div className="img-media-to-mention-container">
+                                                            <img src={media.url_poster_timeline} alt="" />
+                                                        </div>
+                                                        <div className="info-media-to-mention-container">
+                                                            <h2>{media.name}</h2>
+                                                            <div className="genders-media-to-mention">
+                                                                {
+                                                                    media.genders.map(gender => (
+                                                                        <div
+                                                                            style={{ backgroundColor: gender.color }}
+                                                                            key={gender.color}
+                                                                            className="gender-media-to-mention">
+                                                                            {gender.name}
+                                                                        </div>
+                                                                    ))
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                            }
                         </div>
                         <div className="columns">
                             <div className="column-avaliations">

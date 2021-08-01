@@ -288,6 +288,62 @@
     margin-right: 10px;
     font-size: 1.7rem;
 }
+.timeline-content-container .main-timeline .container-new-avaliation .medias-to-mention h1{
+    margin: 10px 0;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .medias-to-mention-container{
+    /* width: 100%; */
+    height: fit-content;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: 400px 400px;
+    grid-template-rows: 130px;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention{
+    position: relative;
+    width: 400px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
+    z-index: 10;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention .img-media-to-mention-container img{
+    width: 400px;
+    height: 130px;
+    border-radius: 3px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    filter: brightness(0.8);
+    transition: filter 0.3s;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention:hover .img-media-to-mention-container img{
+    filter: brightness(0.5);
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention .info-media-to-mention-container{
+    position: absolute;
+    padding: 0px 20px;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention .genders-media-to-mention{
+    display: flex;
+    margin-top: 5px;
+}
+.timeline-container .main-timeline .container-new-avaliation .media-to-mention .gender-media-to-mention{
+    width: fit-content;
+    height: 20px;
+    background-color: blueviolet;
+    border-radius: 50px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    font-size: 0.9rem;
+}
 .timeline-content-container .main-timeline .columns-container{
     display: flex;
     flex-direction: column;
