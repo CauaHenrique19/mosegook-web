@@ -292,17 +292,17 @@
     margin: 10px 0;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .medias-to-mention-container{
-    /* width: 100%; */
+    width: fit-content;
     height: fit-content;
     display: grid;
     gap: 10px 10px;
-    grid-template-columns: 400px 400px;
-    grid-template-rows: 130px;
+    grid-template-columns: 375px 375px;
+    grid-template-rows: 120px;
 }
 .timeline-container .main-timeline .container-new-avaliation .media-to-mention{
     position: relative;
-    width: 400px;
-    height: 130px;
+    width: 375px;
+    height: 120px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -314,8 +314,8 @@
     z-index: 10;
 }
 .timeline-container .main-timeline .container-new-avaliation .media-to-mention .img-media-to-mention-container img{
-    width: 400px;
-    height: 130px;
+    width: 375px;
+    height: 120px;
     border-radius: 3px;
     border: 1px solid rgba(128, 128, 128, 0.205);
     filter: brightness(0.8);
