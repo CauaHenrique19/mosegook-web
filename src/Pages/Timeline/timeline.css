@@ -44,6 +44,11 @@
     border-radius: 5px;
     padding: 10px 20px;
     border: 1px solid rgba(128, 128, 128, 0.205);
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated{
     display: flex;
@@ -54,7 +59,7 @@
     font-size: 1.3rem;
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated h2:last-child{
-    color: grey;
+    color: #fafafa;
     font-size: 1.1rem;
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .name{
@@ -64,7 +69,7 @@
     justify-content: center;
     margin-right: 10px;
     padding-right: 15px;
-    border-right: 1px solid rgba(128, 128, 128, 0.205);
+    border-right: 1px solid rgba(255, 255, 255, 0.377);
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders{
     width: fit-content;
@@ -72,7 +77,7 @@
     flex-direction: column;
     margin-right: 10px;
     padding-right: 10px;
-    border-right: 1px solid rgba(128, 128, 128, 0.205);
+    border-right: 1px solid rgba(255, 255, 255, 0.377);
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders .timeline-genders-content{
     display: flex;
@@ -91,7 +96,7 @@
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation{
     margin-right: 10px;
     padding-right: 10px;
-    border-right: 1px solid rgba(128, 128, 128, 0.205);
+    border-right: 1px solid rgba(255, 255, 255, 0.377);
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation .avaliation-content{
     display: flex;
@@ -119,6 +124,9 @@
     font-size: 1.5rem;
     margin-right: 10px;
     background-color: initial;
+}
+.timeline-container .most-rated-by-friends-container .input-container input::placeholder{
+    color: #fafafa;
 }
 .timeline-container .most-rated-by-friends-container .input-container ion-icon{
     display: flex;
