@@ -6,7 +6,7 @@ const MenuAdmin = ({ page }) => {
     return (
         <div className="menu-container">
             <div className="logo-container">
-                <h1>Mosegook</h1>
+                <Link to="/"><h1>Mosegook</h1></Link>
             </div>
             <ul>
                 <Link to="/admin/movies" className={page === "movies" ? "menu-item selected" : "menu-item"}>
