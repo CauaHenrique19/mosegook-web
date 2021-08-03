@@ -137,10 +137,6 @@ const Timeline = () => {
         }
     }
 
-    useEffect(() => {
-        console.log(mentionedMedia)
-    }, [mentionedMedia])
-
     return (
         <div className="timeline-container">
             {loading && <Loading />}
@@ -212,6 +208,18 @@ const Timeline = () => {
                         <div className="container-new-avaliation">
                             <h1>Avalie</h1>
                             <textarea placeholder="O que você acha?" maxLength="360" name="" id="" cols="30" rows="5"></textarea>
+                            {
+                                mentionedMedia && 
+                                <div className="media-mentioned-container">
+                                    <div style={{ backgroundColor: mentionedMedia.color }} className="color-media-mentioned">
+                                        <ion-icon name={mentionedMedia.icon}></ion-icon>
+                                    </div>
+                                    <div className="info-media-mentioned">
+                                        <h2>Sobre</h2>
+                                        <h2>{mentionedMedia.name}</h2>
+                                    </div>
+                                </div>
+                            }
                             <div className="footer-container-new-avaliation">
                                 <div className="mention-media">
                                     <button 
@@ -229,6 +237,15 @@ const Timeline = () => {
                                                 type="text" 
                                                 placeholder="Nome da mídia" 
                                             />
+                                            {
+                                                searchMediaMention && 
+                                                <ion-icon 
+                                                    onClick={() => { 
+                                                        setMediasToMention([])
+                                                        setSearchMediaMention('')
+                                                    }} 
+                                                    name="close-outline"></ion-icon>
+                                            }
                                             <ion-icon name="search-outline"></ion-icon>
                                         </div>
                                     }
@@ -244,11 +261,17 @@ const Timeline = () => {
                             {
                                 mediasToMention.length > 0 && 
                                     <div className="medias-to-mention">
-                                        <h1>{`${mediasToMention.length} resultados para '${searchMediaMention}'`}</h1>
                                         <div className="medias-to-mention-container">
                                             {
                                                 mediasToMention.length > 0 && mediasToMention.map(media => (
-                                                    <div onClick={() => setMentionedMedia(media)} key={media.name} className="media-to-mention">
+                                                    <div 
+                                                        onClick={() => { 
+                                                            setMentionedMedia(media)
+                                                            setMediasToMention([])
+                                                        }} 
+                                                        key={media.name} 
+                                                        className="media-to-mention"
+                                                    >
                                                         <div className="img-media-to-mention-container">
                                                             <img src={media.url_poster_timeline} alt="" />
                                                         </div>

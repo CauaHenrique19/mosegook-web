@@ -232,12 +232,33 @@
     outline: none;
     font-size: 1.5rem;
     margin: 10px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .color-media-mentioned{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .color-media-mentioned ion-icon{
+    font-size: 2.5rem;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .info-media-mentioned h2:nth-child(2){
+    font-weight: 300;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation{
     height: 4vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media{
     height: 100%;
@@ -245,26 +266,6 @@
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media button{
     margin-right: 10px;
-}
-.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    border: 1px solid rgba(128, 128, 128, 0.205);
-    border-radius: 50px;
-    padding: 0 15px 0 20px;
-}
-.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container input{
-    width: 250px;
-    height: 100%;
-    background-color: initial;
-    border: none;
-    outline: none;
-    font-size: 1.3rem;
-    margin-right: 5px;
-}
-.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container ion-icon{
-    font-size: 1.3rem;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation button{
     width: fit-content;
@@ -288,8 +289,34 @@
     margin-right: 10px;
     font-size: 1.7rem;
 }
-.timeline-content-container .main-timeline .container-new-avaliation .medias-to-mention h1{
-    margin: 10px 0;
+.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 50px;
+    padding: 0 15px 0 20px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container input{
+    width: 250px;
+    height: 100%;
+    background-color: initial;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    margin-right: 5px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container ion-icon{
+    font-size: 1.3rem;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container ion-icon[name="close-outline"]{
+    border-radius: 50px;
+    padding: 2px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation .mention-media .input-container ion-icon:nth-child(2):hover{
+    background-color: rgba(0, 0, 0, 0.336);
 }
 .timeline-content-container .main-timeline .container-new-avaliation .medias-to-mention-container{
     width: fit-content;
