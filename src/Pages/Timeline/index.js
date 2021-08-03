@@ -218,6 +218,9 @@ const Timeline = () => {
                                         <h2>Sobre</h2>
                                         <h2>{mentionedMedia.name}</h2>
                                     </div>
+                                    <button onClick={() => setMentionedMedia(null)}>
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                    </button>
                                 </div>
                             }
                             <div className="footer-container-new-avaliation">

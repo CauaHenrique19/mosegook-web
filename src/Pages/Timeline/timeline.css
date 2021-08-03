@@ -234,9 +234,24 @@
     margin: 10px 0;
     border-bottom: 1px solid rgba(128, 128, 128, 0.205);
 }
+.timeline-content-container .main-timeline .container-new-avaliation textarea::-webkit-scrollbar{
+    width: 7px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation textarea::-webkit-scrollbar-thumb{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container{
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container:hover button{
+    display: flex;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .color-media-mentioned{
     width: 60px;
@@ -249,6 +264,28 @@
 }
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .color-media-mentioned ion-icon{
     font-size: 2.5rem;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .info-media-mentioned{
+    margin-right: 20px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container button{
+    display: none;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    background-color: #d43253;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container button:hover{
+    background-color: #a12b43;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container button ion-icon{
+    font-size: 1.5rem;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .info-media-mentioned h2:nth-child(2){
     font-weight: 300;
