@@ -74,7 +74,13 @@ const Avaliation = ({ avaliation }) => {
                     </div>
                     <div className="info-footer">
                         <h3>Sobre</h3>
-                        <p>{avaliation.media_name}</p>
+                        <p>
+                            {
+                                avaliation.media_name.length > 18 ?
+                                `${avaliation.media_name.substring(0, 20)}...` :
+                                avaliation.media_name
+                            }
+                        </p>
                     </div>
                 </div>
                 <div className="info-avaliation">
