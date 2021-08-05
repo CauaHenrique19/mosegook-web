@@ -20,9 +20,12 @@ const Timeline = () => {
     const [viewInputSearchMediaMention, setViewInputSearchMediaMention] = useState(false)
     const [searchMediaMention, setSearchMediaMention] = useState('')
     const [mediasToMention, setMediasToMention] = useState([])
-    const [mentionedMedia, setMentionedMedia] = useState(null)
     const [searchUsers, setSearchUsers] = useState('')
     const [usersData, setUsersData] = useState([])
+    
+    const [contentAvaliation, setContentAvaliation] = useState('')
+    const [stars, setStars] = useState(0)
+    const [mentionedMedia, setMentionedMedia] = useState(null)
 
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-100)
@@ -137,6 +140,29 @@ const Timeline = () => {
         }
     }
 
+    function handleAvaliate(){
+        const avaliation = { user_id: user.id, media_id: mentionedMedia.id, content: contentAvaliation, stars }
+
+        api.post('/avaliations', avaliation)
+            .then(res => {
+                const updatedAvaliation = { 
+                    ...res.data[0], 
+                    user_name: user.name, 
+                    user_id: user.id, 
+                    user_user: user.user,
+                    media_name: mentionedMedia.name,
+                    category_icon: mentionedMedia.icon,
+                    category_color: mentionedMedia.color,
+                    amountComents: 0,
+                    amountLikes: 0
+                }
+                setAvaliations([updatedAvaliation, ...avaliations])
+                console.log(updatedAvaliation)
+            })
+            .catch(error => console.error(error.message))
+
+    }
+
     return (
         <div className="timeline-container">
             {loading && <Loading />}
@@ -207,20 +233,39 @@ const Timeline = () => {
                     <div className="columns-container">
                         <div className="container-new-avaliation">
                             <h1>Avalie</h1>
-                            <textarea placeholder="O que você acha?" maxLength="360" name="" id="" cols="30" rows="5"></textarea>
+                            <textarea 
+                                value={contentAvaliation} 
+                                onChange={e => setContentAvaliation(e.target.value)} 
+                                placeholder="O que você acha?" 
+                                maxLength="360" 
+                                cols="30" 
+                                rows="5"
+                            ></textarea>
                             {
                                 mentionedMedia && 
                                 <div className="media-mentioned-container">
-                                    <div style={{ backgroundColor: mentionedMedia.color }} className="color-media-mentioned">
-                                        <ion-icon name={mentionedMedia.icon}></ion-icon>
+                                    <div className="media-mentioned">
+                                        <div style={{ backgroundColor: mentionedMedia.color }} className="color-media-mentioned">
+                                            <ion-icon name={mentionedMedia.icon}></ion-icon>
+                                        </div>
+                                        <div className="info-media-mentioned">
+                                            <h2>Sobre</h2>
+                                            <h2>{mentionedMedia.name}</h2>
+                                        </div>
+                                        <button onClick={() => setMentionedMedia(null)}>
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </button>
                                     </div>
-                                    <div className="info-media-mentioned">
-                                        <h2>Sobre</h2>
-                                        <h2>{mentionedMedia.name}</h2>
+                                    <div className="stars">
+                                        <h2>Estrelas</h2>
+                                        <div>
+                                            <div>
+                                                <ion-icon name="star"></ion-icon>
+                                                <h2>{stars}</h2>
+                                            </div>
+                                            <input value={stars} type="range" onChange={e => setStars(e.target.value)} name="stars" id="stars" max="5" step="0.1" />
+                                        </div>
                                     </div>
-                                    <button onClick={() => setMentionedMedia(null)}>
-                                        <ion-icon name="trash-outline"></ion-icon>
-                                    </button>
                                 </div>
                             }
                             <div className="footer-container-new-avaliation">
@@ -253,7 +298,7 @@ const Timeline = () => {
                                         </div>
                                     }
                                 </div>
-                                <button> 
+                                <button onClick={() => handleAvaliate()}> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 51 40"
                                         fill="#fafafa">
                                         <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>

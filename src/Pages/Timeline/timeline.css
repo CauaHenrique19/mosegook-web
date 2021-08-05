@@ -248,9 +248,14 @@
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
-.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container:hover button{
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .media-mentioned{
+    display: flex;
+    align-items: center;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .media-mentioned:hover button{
     display: flex;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .color-media-mentioned{
@@ -289,6 +294,29 @@
 }
 .timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .info-media-mentioned h2:nth-child(2){
     font-weight: 300;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .stars{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .stars h2{
+    font-weight: 300;
+    text-align: right;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .stars div{
+    display: flex;
+    align-items: center;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .stars div ion-icon{
+    color: rgb(255, 187, 0);
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+.timeline-content-container .main-timeline .container-new-avaliation .media-mentioned-container .stars div input{
+    width: 200px;
+    margin-left: 10px;
 }
 .timeline-content-container .main-timeline .container-new-avaliation .footer-container-new-avaliation{
     height: 4vh;
