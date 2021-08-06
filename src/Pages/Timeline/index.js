@@ -44,7 +44,11 @@ const Timeline = () => {
             .then(res => setMediasToDiscover(res.data.medias))
             .catch(error => console.error(error.message))
         api.get(`/avaliations-timeline/${user.id}`)
-            .then(res => setAvaliations(res.data.avaliations))
+            .then(res => {
+                if(res.data.avaliations.length > 0){
+                    setAvaliations(res.data.avaliations) 
+                }
+            })
             .catch(error => console.error(error.message))
         api.get(`/medias-rated-follow/${user.id}`)
             .then(res => setMediasRated(res.data.medias))

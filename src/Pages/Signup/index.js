@@ -25,6 +25,8 @@ const Signup = () => {
     const fileInput = useRef(null)
 
     function handleSignup(){
+        console.log({ name, user, email, password, confirmPassword, gender, imageSelected })
+
         const userSignupFormData = new FormData()
         userSignupFormData.append('name', name)
         userSignupFormData.append('user', user)
@@ -38,6 +40,7 @@ const Signup = () => {
 
         api.post('/signup', userSignupFormData)
             .then(res => {
+                setLoading(false)
                 if(res.data.auth){
                     localStorage.setItem('mosegook_user', JSON.stringify(res.data.userDb[0]))
                     localStorage.setItem('mosegook_token', res.data.token)
@@ -47,8 +50,10 @@ const Signup = () => {
                     history.push('/select-genders')
                 }
                 else{
-                    console.log(res.data.message)
+                    console.log(res.data)
+                    setLoading(false)
                 }
+                
             })
             .catch(error => console.error(error.message))
     }
