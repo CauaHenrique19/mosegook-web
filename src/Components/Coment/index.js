@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Avaliation from '../Avaliation'
 import './coment.css'
 
 const Coment = ({ coment }) => {
@@ -25,7 +26,13 @@ const Coment = ({ coment }) => {
                     </div>
                     <div className="info-footer">
                         <h3>Sobre</h3>
-                        <p>{coment.media_name}</p>
+                        <p>
+                            {
+                                coment.media_name.length > 18 ? 
+                                `${coment.media_name.substring(0, 17)}...` :
+                                coment.media_name
+                            }
+                        </p>
                     </div>
                 </div>
                 <div className="info-coment">
