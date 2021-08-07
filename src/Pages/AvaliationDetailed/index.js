@@ -43,7 +43,7 @@ const AvaliationDetailed = (props) => {
                     user_name: user.name, 
                     user_id: user.id, 
                     user_user: user.user,
-                    media_name: avaliationDetailed.media_name,
+                    media_name: avaliationDetailed.avaliation.media_name,
                     category_icon: avaliationDetailed.avaliation.category_icon,
                     category_color: avaliationDetailed.avaliation.category_color,
                     amountComents: 0,
