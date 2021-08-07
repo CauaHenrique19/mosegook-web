@@ -9,6 +9,7 @@ import './medias.css'
 const Medias = ({ category_id, page, texts, pageName }) => {
 
     const { viewModalForm, setViewModalForm } = useContext(Context)
+    const [filteredMedias, setFilteredMedias] = useState([])
     const [medias, setMedias] = useState([])
     const [loading, setLoading] = useState(true)
     const [amountAvaliations, setAmountAvaliations] = useState([])
@@ -20,6 +21,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
         api(`/medias/${category_id}`)
             .then(res => {
                 setMedias(res.data)
+                setFilteredMedias(res.data)
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
@@ -32,6 +34,11 @@ const Medias = ({ category_id, page, texts, pageName }) => {
             })
             .catch(error => console.error(error.message))
     }, [category_id])
+
+    function handleSearch(search){
+        const mediasSearched = medias.filter(media => media.name.toLowerCase().includes(search))
+        setFilteredMedias(mediasSearched)
+    }
 
     return (
         <div className="medias-admin-container">
@@ -85,7 +92,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                         <h1>{texts}</h1>
                         <div>
                             <div className="input-container">
-                                <input type="text" placeholder="Pesquisar" />
+                                <input onChange={e => handleSearch(e.target.value)} type="text" placeholder="Pesquisar" />
                                 <ion-icon name="search-outline"></ion-icon>
                             </div>
                             <button>
@@ -94,9 +101,16 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                             </button>
                         </div>
                     </div>
+                    {
+                        filteredMedias.length === 0 && 
+                        <div className="nothing-container">
+                            <h1>Nenhum resultado encontrado!</h1>
+                            <p>Tente usar outra palavra para pesquisar e se encontrarmos um resultado mostraremos aqui!</p>
+                        </div>
+                    }
                     <div className="medias">
                         {
-                            medias && medias.map(media => (
+                            filteredMedias.length > 0 && filteredMedias.map(media => (
                                 <div key={media.id} className="media">
                                     <div className="media-image-container">
                                         <img src={media.url_poster} alt="" />
@@ -116,7 +130,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                         </div>
                                     </div>
                                 </div>
-                            ))
+                            )) 
                         }
                     </div>
                 </div>
