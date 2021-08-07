@@ -46,10 +46,8 @@ const AvaliationDetailed = (props) => {
                     media_name: avaliationDetailed.avaliation.media_name,
                     category_icon: avaliationDetailed.avaliation.category_icon,
                     category_color: avaliationDetailed.avaliation.category_color,
-                    amountComents: 0,
                     amountLikes: 0
                 }
-                console.log(updatedComent)
                 setComents([updatedComent, ...coments])
             })
             .catch(error => console.error(error.message))

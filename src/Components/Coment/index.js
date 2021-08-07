@@ -36,13 +36,9 @@ const Coment = ({ coment }) => {
                     </div>
                 </div>
                 <div className="info-coment">
-                    <div style={{ backgroundColor: coment.category_color }} className="amount-coments">
-                        <ion-icon name="chatbubble"></ion-icon>
-                        <p>0</p>
-                    </div>
                     <div style={{ backgroundColor: coment.category_color }} className="amount-likes">
                         <ion-icon name="heart"></ion-icon>
-                        <p>0</p>
+                        <p>{coment.amountLikes}</p>
                     </div>
                 </div>
             </div>
