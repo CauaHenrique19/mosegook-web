@@ -8,6 +8,63 @@
 .avaliation-container{
     width: 40%;
 }
+.avaliation-container .form-coment{
+    width: calc(100% - 15px);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 3px;
+    padding: 15px;
+}
+.avaliation-container .form-coment h1{
+    margin-bottom: 5px;
+}
+.avaliation-container .form-coment textarea{
+    width: 100%;
+    min-height: 100px;
+    height: 70px;
+    background-color: initial;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    resize: vertical;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.avaliation-container .form-coment textarea::-webkit-scrollbar{
+    width: 7px;
+}
+.avaliation-container .form-coment textarea::-webkit-scrollbar-thumb{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.avaliation-container .form-coment button{
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: blueviolet;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    align-self: flex-end;
+}
+.avaliation-container .form-coment button ion-icon{
+    margin-right: 10px;
+}
+.avaliation-container .form-coment button:hover{
+    background-color: rgb(106, 21, 185);
+}
 .avaliation-container .avaliations-coments-container .header-avaliations-coments-container{
     margin: 20px 15px 20px 0;
 }
@@ -41,13 +98,9 @@
     border: 1px solid rgba(128, 128, 128, 0.205);
     position: relative;
 }
-/* .avaliation-container .coment{
-    height: auto;
-    max-height: 350px;
-    height: fit-content;
-    margin: 0 5px 5px 0;
-    transition: transform 0.3s;
-} */
+.avaliation-container .coment{
+    width: calc(100% - 5px);
+}
 .avaliation-container .coment:nth-child(2n){
     margin-right: 0;
 }
