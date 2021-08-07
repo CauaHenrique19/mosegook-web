@@ -67,6 +67,9 @@
     transition: background-color 0.3s;
     padding: 0 15px;
 }
+.profile-info-container .user-info-container button.selected{
+    background-color: blueviolet;
+}
 .profile-info-container .user-info-container button:hover{
     background-color: blueviolet;
 }

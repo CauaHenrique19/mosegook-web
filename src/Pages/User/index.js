@@ -17,20 +17,21 @@ const User = (props) => {
     const [avaliations, setAvaliations] = useState([])
     const [coments, setComents] = useState([])
     const [following, setFollowing] = useState(false)
+    const [amountFollowers, setAmountFollowers] = useState(0)
 
     useEffect(() => {
-
         async function getDatas(){
             setLoading(true)
 
             const { data: dataUser } = await api.get(`/users/${props.match.params.user}`)
-            const { data: dataAvaliations } = await api.get(`avaliations/${props.match.params.user}`)
-            const { data: dataComents } = await api.get(`coments/${props.match.params.user}`)
+            const { data: dataAvaliations } = await api.get(`/avaliations/${props.match.params.user}`)
+            const { data: dataComents } = await api.get(`/coments/${props.match.params.user}`)
 
             if(!dataUser.message){
                 setUser(dataUser)
                 setLoading(false)
                 setUserNotExists(false)
+                setAmountFollowers(parseInt(dataUser.followers_count.amount))
             }
             else if(dataUser.message){
                 setUserNotExists(true)
@@ -48,18 +49,31 @@ const User = (props) => {
         
     }, [props])
 
+    useEffect(async () => {
+        if(user != undefined){
+            const { data: followUser } = await api.get(`/follow-user/${userContext.id}/${user.user.id}`)
+            setFollowing(followUser.follow)
+        }
+    }, [user, userContext])
+
     function handleFollow(){
         const follow = { user_id: userContext.id, following_user_id: user.user.id }
         
         if(following){
-            setFollowing(false)
-            user.followers_count.amount = parseInt(user.followers_count.amount -= 1)
+            api.delete(`/follow/${userContext.id}/${user.user.id}`, follow)
+                .then(res => {
+                    setFollowing(false)
+                    setAmountFollowers(parseInt(user.followers_count.amount -= 1))
+                })
+                .catch(error => console.error(error.message))
         }
         else{
-            setFollowing(true)
-            console.log(follow)
-            console.log('askodkasokdasd')
-            user.followers_count.amount = parseInt(user.followers_count.amount += 1)
+            api.post('/follow', follow)
+                .then(res => {
+                    setFollowing(true)
+                    setAmountFollowers(parseInt(user.followers_count.amount += 1))
+                })
+                .catch(error => console.error(error.message))
         }
     }
 
@@ -83,9 +97,15 @@ const User = (props) => {
                             <h1>@{user.user.user}</h1>
                             <div className="follow-container">
                                 <p>{user.following_count.amount} Seguindo</p>
-                                <p>{user.followers_count.amount} Seguidores</p>
+                                <p>{amountFollowers} Seguidores</p>
                                 { userContext.user === user.user.user && <button>Editar Perfil</button> }
-                                { userContext.user !== user.user.user && <button onClick={() => handleFollow()}>{following ? 'Deixar de seguir' : 'Seguir'}</button>}
+                                { userContext.user !== user.user.user && 
+                                    <button 
+                                        className={following && 'selected'} 
+                                        onClick={() => handleFollow()}>
+                                        {following ? 'Deixar de seguir' : 'Seguir'}
+                                    </button>
+                                }
                             </div>
                             <p className="biography">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
