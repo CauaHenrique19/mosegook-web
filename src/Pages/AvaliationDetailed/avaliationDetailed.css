@@ -8,13 +8,27 @@
 .avaliation-container{
     width: 40%;
 }
-.avaliation-container .avaliations-coments-container{
+.avaliation-container .avaliations-coments-container .header-avaliations-coments-container{
+    margin: 20px 15px 20px 0;
+}
+.avaliation-container .avaliations-coments-container .coments{
     display: grid;
     grid-template-columns: 50% 50%;
     margin: 15px 15px 15px 0;
 }
-.avaliation-container .avaliation, 
-.avaliation-container .coment{
+.avaliation-container .avaliations-coments-container .nothing-container{
+    width: calc(100% - 15px);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 15px 0 0;
+}
+.avaliation-container .avaliations-coments-container .nothing-container ion-icon{
+    font-size: 5rem;
+}
+.avaliation-container .avaliation{
     width: calc(100% - 15px);
     height: auto;
     max-height: 350px;
@@ -27,81 +41,72 @@
     border: 1px solid rgba(128, 128, 128, 0.205);
     position: relative;
 }
-.avaliation-container .coment{
+/* .avaliation-container .coment{
     height: auto;
     max-height: 350px;
     height: fit-content;
     margin: 0 5px 5px 0;
     transition: transform 0.3s;
-}
+} */
 .avaliation-container .coment:nth-child(2n){
     margin-right: 0;
 }
 .avaliation-container .coment:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-.avaliation-container .avaliation:hover .links-coment-container,
-.avaliation-container .coment:hover .links-coment-container{
+.avaliation-container .avaliation:hover{
+    transform: none;
+}
+.avaliation-container .avaliation:hover .links-coment-container{
     display: flex;
 }
-.avaliation-container .avaliation .header-coment,
-.avaliation-container .coment .header-coment{
+.avaliation-container .avaliation .header-coment{
     min-height: 7vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 10px;
 }
-.avaliation-container .avaliation .header-coment .info-user,
-.avaliation-container .coment .header-coment .info-user{
+.avaliation-container .avaliation .header-coment .info-user{
     display: flex;
 }
-.avaliation-container .avaliation .header-coment svg,
-.avaliation-container .coment .header-coment svg{
+.avaliation-container .avaliation .header-coment svg{
     margin-right: 10px;
 }
-.avaliation-container .avaliation .header-coment ion-icon,
-.avaliation-container .coment .header-coment ion-icon{
+.avaliation-container .avaliation .header-coment ion-icon{
     margin-right: 10px;
     font-size: 3.1rem;
     color: rgb(0, 160, 223);
 }
-.avaliation-container .avaliation .header-coment p,
-.avaliation-container .coment .header-coment p{
+.avaliation-container .avaliation .header-coment p{
     color: gray;
 }
-.avaliation-container .avaliation .header-coment .info-post p,
-.avaliation-container .coment .header-coment .info-post p{
+.avaliation-container .avaliation .header-coment .info-post p{
     width: fit-content;
     padding: 4px 12px;
     color: #fafafa;
     border-radius: 50px;
     font-size: 0.8rem;
 }
-.avaliation-container .avaliation .content-coment,
-.avaliation-container .coment .content-coment{
+.avaliation-container .avaliation .content-coment{
     height: 100%;
     padding: 10px;
     font-size: 1.3rem;
 }
-.avaliation-container .avaliation .footer-coment,
-.avaliation-container .coment .footer-coment{
+.avaliation-container .avaliation .footer-coment{
     min-height: 7vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px;
 }
-.avaliation-container .avaliation .footer-coment .info-media,
-.avaliation-container .coment .footer-coment .info-media{
+.avaliation-container .avaliation .footer-coment .info-media{
     display: flex;
 }
-.avaliation-container .avaliation .footer-coment .info-footer,
-.avaliation-container .coment .footer-coment .info-footer{
+.avaliation-container .avaliation .footer-coment .info-footer{
     margin-left: 5px;
 }
-.avaliation-container .avaliation .footer-coment .color-coment,
-.avaliation-container .coment .footer-coment .color-coment{
+.avaliation-container .avaliation .footer-coment .color-coment{
     width: 40px;
     height: 40px;
     display: flex;
@@ -113,14 +118,11 @@
 .avaliation-container .coment .footer-coment .color-coment ion-icon{
     font-size: 2rem;
 }
-.avaliation-container .avaliation .info-avaliation,
-.avaliation-container .coment .info-avaliation{
+.avaliation-container .avaliation .info-avaliation{
     display: flex;
 }
 .avaliation-container .avaliation .info-avaliation .amount-coments,
-.avaliation-container .avaliation .info-avaliation .amount-likes,
-.avaliation-container .coment .info-avaliation .amount-coments,
-.avaliation-container .coment .info-avaliation .amount-likes{
+.avaliation-container .avaliation .info-avaliation .amount-likes{
     display: flex;
     align-items: center;
     width: fit-content;
@@ -129,14 +131,11 @@
     border-radius: 50px;
 }
 .avaliation-container .avaliation .info-avaliation .amount-coments ion-icon,
-.avaliation-container .avaliation .info-avaliation .amount-likes ion-icon,
-.avaliation-container .coment .info-avaliation .amount-coments ion-icon,
-.avaliation-container .coment .info-avaliation .amount-likes ion-icon{
+.avaliation-container .avaliation .info-avaliation .amount-likes ion-icon{
     margin-right: 5px;
     font-size: 1.2rem;
 }
-.avaliation-container .avaliation .links-coment-container,
-.avaliation-container .coment .links-coment-container{
+.avaliation-container .avaliation .links-coment-container{
     display: none;
     align-items: center;
     justify-content: center;
@@ -147,8 +146,7 @@
     z-index: 10;
     border-radius: 3px;
 }
-.avaliation-container .avaliation .links-coment-container button,
-.avaliation-container .coment .links-coment-container button{
+.avaliation-container .avaliation .links-coment-container button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,12 +160,10 @@
     font-size: 2rem;
     transition: background-color 0.3s;
 }
-.avaliation-container .avaliation .links-coment-container button:hover,
-.avaliation-container .coment .links-coment-container button:hover{
+.avaliation-container .avaliation .links-coment-container button:hover{
     background-color: white;
 }
-.avaliation-container .avaliation .links-coment-container button:hover ion-icon,
-.avaliation-container .coment .links-coment-container button:hover ion-icon{
+.avaliation-container .avaliation .links-coment-container button:hover ion-icon{
     color: red;
 }
 .media-avaliation-container{
@@ -214,7 +210,7 @@
 }
 .media-avaliation-container .media:hover{
     box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 .media-avaliation-container .genders-avaliation-container{
     display: grid;
