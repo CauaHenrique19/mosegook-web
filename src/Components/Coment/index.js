@@ -1,9 +1,50 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
-import Avaliation from '../Avaliation'
+import api from '../../services/api'
 import './coment.css'
 
 const Coment = ({ coment }) => {
+
+    const { user } = useContext(Context)
+    const [liked, setLiked] = useState(false)
+    const [like, setLike] = useState([])
+
+    useEffect(() => {
+        api.get(`/likes/coments/user/${user.id}/${coment.id}`)
+            .then(res => {
+                if(res.data.id){
+                    setLike(res.data)
+                    setLiked(true)
+                }
+                else{
+                    setLiked(false)
+                }
+            })
+            .catch(error => console.error(error))
+    }, [])
+
+    function handleLike(){
+        if(liked){
+            api.delete(`/likes/coments/${like.id}`)
+                .then(_ => {
+                    coment.amountLikes = parseInt(coment.amountLikes - 1)
+                    setLiked(false)
+                })
+                .catch(error => console.error(error))
+        }
+        else{
+            const like = { user_id: user.id, coment_id: coment.id }
+            api.post('/likes/coments', like)
+                .then(res => { 
+                    setLike(res.data[0])
+                    coment.amountLikes = parseInt(coment.amountLikes + 1)
+                    setLiked(true)
+                })
+                .catch(error => console.error(error))
+        }
+    }
+
     return (
         <div key={coment.id} className="coment">
             <div className="header-coment">
@@ -43,7 +84,13 @@ const Coment = ({ coment }) => {
                 </div>
             </div>
             <div className="links-coment-container">
-                <button><ion-icon name="heart-outline"></ion-icon></button>
+                <button 
+                    onClick={() => handleLike()}>
+                        <ion-icon 
+                            style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} 
+                            name={liked ? 'heart' : 'heart-outline'}>
+                        </ion-icon>
+                </button>
                 <Link to="/"><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>
