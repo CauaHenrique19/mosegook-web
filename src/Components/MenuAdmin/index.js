@@ -33,9 +33,9 @@ const MenuAdmin = ({ page }) => {
                     <ion-icon name="bookmark-outline"></ion-icon>
                     <h2>Gêneros</h2>
                 </Link>
-                <Link to="" className="menu-item">
-                    <ion-icon name="chatbox-outline"></ion-icon>
-                    <h2>Avaliações</h2>
+                <Link to="/admin/users" className={page === "users" ? "menu-item selected" : "menu-item"}>
+                    <ion-icon name="person-outline"></ion-icon>
+                    <h2>Usuários</h2>
                 </Link>
                 <Link to="" className="menu-item">
                     <ion-icon name="alert-circle-outline"></ion-icon>
