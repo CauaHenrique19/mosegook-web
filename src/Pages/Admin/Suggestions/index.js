@@ -42,7 +42,7 @@ const Suggestions = () => {
                 res.data[0].name = selectedSuggestion.name
                 suggestions.push(res.data[0])
                 setSuggestions([...suggestions])
-                setSuggestions([...suggestions])
+                setFilteredSuggestions([...suggestions])
                 setModalType('')
             })
             .catch(error => console.error(error.message))
@@ -58,7 +58,7 @@ const Suggestions = () => {
                 res.data[0].name = selectedSuggestion.name
                 suggestions.push(res.data[0])
                 setSuggestions([...suggestions])
-                setSuggestions([...suggestions])
+                setFilteredSuggestions([...suggestions])
                 setModalType('')
             })
             .catch(error => console.error(error.message))
