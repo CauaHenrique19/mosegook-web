@@ -1,0 +1,266 @@
+.categories-admin-container{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.categories-admin-container .main-categories-container{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.categories-admin-container .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.categories-admin-container .modal .modal-content{
+    width: 500px;
+    height: fit-content;
+    background-color: #0f0f0f;
+    padding: 15px;
+}
+.categories-admin-container .modal .modal-content .header-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.categories-admin-container .modal .modal-content .header-modal button{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(201, 201, 201, 0.219);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.categories-admin-container .modal .modal-content .content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.categories-admin-container .modal .modal-content .content .row{
+    display: flex;
+    align-items: center;
+}
+.categories-admin-container .modal .modal-content .content h2{
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.categories-admin-container .modal .modal-content .content .row .input-container{
+    width: 50%;
+    margin-bottom: 20px;
+}
+.categories-admin-container .modal .modal-content .content .input-container input{
+    width: calc(100% - 5px);
+    height: 45px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    background-color: initial;
+    font-size: 1.5rem;
+    padding: 0 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+.categories-admin-container .modal .modal-content .content .input-container input{
+    width: calc(85%);
+}
+.categories-admin-container .modal .modal-content .content .input-container input[type="color"]{
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    border: none;
+    margin: 0;
+}
+.categories-admin-container .modal .modal-content .content .input-container input[type="color"]::-webkit-color-swatch {
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    padding: 0;
+}
+.categories-admin-container .modal .modal-content .content .input-container input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.categories-admin-container .modal .modal-content .content .input-container div{
+    display: flex;
+    align-items: center;
+}
+.categories-admin-container .modal .modal-content .content .input-container div h2{
+    font-size: 2rem;
+    margin-left: 10px;
+}
+.categories-admin-container .modal .modal-content .content .input-container ion-icon{
+    font-size: 3rem;
+}
+.categories-admin-container .modal .modal-content .buttons-modal button{
+    width: calc(50% - 5px);
+    height: 45px;
+    background-color: blueviolet;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    transition: filter 0.3s;
+}
+.categories-admin-container .modal .modal-content .buttons-modal button:first-child{
+    margin-right: 5px;
+}
+.categories-admin-container .modal .modal-content .buttons-modal button:last-child{
+    background-color: rgb(212, 50, 83);
+}
+.categories-admin-container .modal .modal-content .buttons-modal button:hover{
+    filter: brightness(0.7);
+}
+.categories-admin-container .modal .modal-content .buttons-modal button:hover{
+    filter: brightness(0.7);
+}
+.categories-admin-container .main-categories-container::-webkit-scrollbar{
+    width: 7px;
+}
+.categories-admin-container .main-categories-container::-webkit-scrollbar-thumb{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.categories-admin-container .statistics-categories-main-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+}
+.categories-admin-container .statistic{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 160, 223);
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 0px 35px;
+}
+.categories-admin-container .statistic .number-statisc{
+    font-size: 2.5rem;
+}
+.categories-admin-container .statistic .statistic-description{
+    font-weight: 400;
+}
+.categories-admin-container .statistic ion-icon{
+    font-size: 5rem;
+    align-self: flex-end;
+}
+.categories-admin-container .statistic:last-child{
+    margin-right: 0;
+}
+.categories-admin-container .statistic:nth-child(1){
+    background-color: #F64F6D;
+}
+.categories-admin-container .statistic:nth-child(2){
+    background-color: #00ad31;
+}
+.categories-admin-container .statistic:nth-child(3){
+    background-color: #ed9a00;
+}
+.categories-admin-container .statistic:nth-child(4){
+    background-color: #5E6BEB;
+}
+.categories-main-container{
+    height: calc(100% - 15vh - 60px);
+    margin: 0 20px 20px 20px;
+}
+.categories-admin-container .categories-main-container .header-categories-main-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.categories-admin-container .categories-main-container .header-categories-main-container h1{
+    font-size: 3rem;
+}
+.categories-admin-container .categories-main-container .categories .category{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+    transition: background-color 0.3s;
+}
+.categories-admin-container .categories-main-container .categories .category:hover{
+    background-color: rgba(0, 0, 0, 0.336);
+}
+.categories-admin-container .categories-main-container .categories .category:last-child{
+    border-bottom: none;
+}
+.categories-admin-container .categories-main-container .categories .category .category-id{
+    width: 150px;
+}
+.categories-admin-container .categories-main-container .categories .category .category-name{
+    width: 250px;
+}
+.categories-admin-container .categories-main-container .categories .category .category-name h2{
+    width: fit-content;
+    padding: 3px 15px;
+    border-radius: 50px;
+}
+.categories-admin-container .categories-main-container .categories .category .category-color{
+    width: 250px;
+    display: flex;
+    align-items: center;
+}
+.categories-admin-container .categories-main-container .categories .category .category-color .color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+.categories-admin-container .categories-main-container .categories .category .category-icon{
+    width: 350px;
+    display: flex;
+    align-items: center;
+}
+.categories-admin-container .categories-main-container .categories .category .category-icon ion-icon{
+    font-size: 2rem;
+    margin-right: 10px;
+}
+.categories-admin-container .categories-main-container .categories .category .buttons{
+    display: flex;
+}
+.categories-admin-container .categories-main-container .categories .category .buttons button{
+    width: fit-content;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: filter 0.3s;
+    padding: 0 20px;
+    background-color: rgb(221, 133, 0);
+}
+.categories-admin-container .categories-main-container .categories .category .buttons button:hover{
+    filter: brightness(0.8);
+}
+.categories-admin-container .categories-main-container .categories .category .buttons button ion-icon{
+    margin-right: 5px;
+}
