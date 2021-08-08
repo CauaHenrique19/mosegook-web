@@ -15,6 +15,7 @@ const Users = () => {
     const [viewModal, setViewModal] = useState(false)
     const [userSelected, setUserSelected] = useState([])
     const [admin, setAdmin] = useState(userSelected.admin)
+    const [statistics, setStatistics] = useState(null)
 
     useEffect(() => {
         api.get('/users')
@@ -24,7 +25,15 @@ const Users = () => {
                 setLoading(false)
             })
             .catch(error => console.log(error.message))
+
+        api.get('/users/statistics')
+            .then(res => setStatistics(res.data))
+            .catch(error => console.log(error.message))
     }, [])
+
+    useEffect(() => {
+        console.log(statistics)
+    }, [statistics])
 
     function handleSearch(search){
         const userSearched = users.filter(user => user.name.toLowerCase().includes(search))
@@ -74,10 +83,13 @@ const Users = () => {
                 <div className="statistics-users-main-container">
                     <div className="statistic">
                         <div>
-                            <h1 className="number-statisc">20</h1>
-                            <h2 className="statistic-description">Usuários</h2>
-                            {/* <h1 className="number-statisc">{medias.length}</h1>
-                            <h2 className="statistic-description">Usuários</h2> */}
+                            {
+                                statistics != null && 
+                                <>                                
+                                    <h1 className="number-statisc">{statistics.amount_users}</h1>
+                                    <h2 className="statistic-description">Usuários</h2>
+                                </>
+                            }
                         </div>
                         <div>
                             <ion-icon name="person-outline"></ion-icon>
@@ -85,37 +97,16 @@ const Users = () => {
                     </div>
                     <div className="statistic">
                         <div>
-                            <h1 className="number-statisc">3</h1>
-                            <h2 className="statistic-description">Administradores</h2>
+                            {
+                                statistics != null && 
+                                <>
+                                    <h1 className="number-statisc">{statistics.amount_admins}</h1>
+                                    <h2 className="statistic-description">Administradores</h2>
+                                </>
+                            }
                         </div>
-                        {/* <div>
-                            <h1 className="number-statisc">{amountAvaliations.length > 0 ? amountAvaliations[0].amount_avaliations : '0'}</h1>
-                            <h2 className="statistic-description">{amountAvaliations.length > 0 ? 'Avaliações' : 'Nenhuma'}</h2>
-                        </div> */}
                         <div>
                             <ion-icon name="settings-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        <div>
-                            <h1 className="number-statisc">chrq19</h1>
-                            <h2 className="statistic-description">Usuário mais ativo</h2>
-                        </div>
-                        {/* <div>
-                            <h1 className="number-statisc">{mostRated.length > 0 ? mostRated[0].amount_avaliations : '0'}</h1>
-                            <h2 className="statistic-description">{mostRated.length > 0 ? mostRated[0].name : 'Nenhuma'}</h2>
-                        </div> */}
-                        <div>
-                            <ion-icon name="heart-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        {/* <div>
-                            <h1 className="number-statisc">{mostGoodRated.length > 0 ? mostGoodRated[0].media_stars.replace('.', ',') : '0'}</h1>
-                            <h2 className="statistic-description">{mostGoodRated.length > 0 ? mostGoodRated[0].name : 'Nenhuma'}</h2>
-                        </div> */}
-                        <div>
-                            <ion-icon name="star-outline"></ion-icon>
                         </div>
                     </div>
                 </div>
