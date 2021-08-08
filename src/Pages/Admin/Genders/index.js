@@ -37,9 +37,31 @@ const Genders = () => {
         setFilteredGenders(gendersSearched)
     }
 
-    function handleEdit(){
+    function handleSubmit(){
         const gender = { name: nameGender, color: colorGender }
-        console.log(gender)
+
+        if(idGender != 0){
+            api.put(`/genders/${idGender}`, gender)
+                .then(res => {
+                    const genderRemove = genders.find(gender => gender.id === res.data[0].id)
+                    genders.splice(genders.indexOf(genderRemove), 1)
+                    genders.push(res.data[0])
+                    setGenders([...genders])
+                    setFilteredGenders([...genders])
+                    setViewModal(false)
+                })
+                .catch(error => console.log(error.message))
+        }
+        else{
+            api.post('/genders', gender)
+                .then(res => {
+                    const updatedGender = res.data[0]
+                    setGenders([...genders, updatedGender])
+                    setFilteredGenders([...genders, updatedGender])
+                    setViewModal(false)
+                })
+                .catch(error => console.log(error.message))
+        }
     }
 
     return (
@@ -67,7 +89,7 @@ const Genders = () => {
                             </div>
                         </div>
                         <div className="buttons-modal">
-                            <button onClick={() => handleEdit()}>Salvar</button>
+                            <button onClick={() => handleSubmit()}>Salvar</button>
                             <button onClick={() => setViewModal(false)}>Cancelar</button>
                         </div>
                     </div>
@@ -127,7 +149,7 @@ const Genders = () => {
                                 <input onChange={e => handleSearch(e.target.value)} type="text" placeholder="Pesquisar" />
                                 <ion-icon name="search-outline"></ion-icon>
                             </div>
-                            <button>
+                            <button onClick={() => setViewModal(true)}>
                                 <ion-icon name="add-outline"></ion-icon>
                                 Novo gênero
                             </button>
