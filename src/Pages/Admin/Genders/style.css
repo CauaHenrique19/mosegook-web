@@ -155,10 +155,10 @@
 .genders-admin-container .statistic:last-child{
     margin-right: 0;
 }
-.genders-admin-container .statistic:nth-child(2){
+.genders-admin-container .statistic:nth-child(3){
     background-color: rgb(0, 128, 79);
 }
-.genders-admin-container .statistic:nth-child(3){
+.genders-admin-container .statistic:nth-child(2){
     background-color: rgb(212, 50, 83);
 }
 .genders-admin-container .statistic:nth-child(4){
