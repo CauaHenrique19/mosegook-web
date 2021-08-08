@@ -1,0 +1,340 @@
+.genders-admin-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.genders-admin-container .main-genders-container{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.genders-admin-container .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.genders-admin-container .modal .modal-content{
+    width: 500px;
+    height: fit-content;
+    background-color: #0f0f0f;
+    padding: 15px;
+}
+.genders-admin-container .modal .modal-content .header-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.genders-admin-container .modal .modal-content .header-modal button{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(201, 201, 201, 0.219);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.genders-admin-container .modal .modal-content .content{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.genders-admin-container .modal .modal-content .content h2{
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.genders-admin-container .modal .modal-content .content .input-container{
+    width: 50%;
+    margin-bottom: 20px;
+}
+.genders-admin-container .modal .modal-content .content .input-container input{
+    width: calc(100% - 5px);
+    height: 45px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    background-color: initial;
+    font-size: 1.5rem;
+    padding: 0 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+.genders-admin-container .modal .modal-content .content .input-container input[type="color"]{
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    border: none;
+    margin: 0;
+}
+.genders-admin-container .modal .modal-content .content .input-container input[type="color"]::-webkit-color-swatch {
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    padding: 0;
+}
+.genders-admin-container .modal .modal-content .content .input-container input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.genders-admin-container .modal .modal-content .content .input-container div{
+    display: flex;
+    align-items: center;
+}
+.genders-admin-container .modal .modal-content .content .input-container div h2{
+    font-size: 2rem;
+    margin-left: 10px;
+}
+.genders-admin-container .modal .modal-content .buttons-modal button{
+    width: calc(50% - 5px);
+    height: 45px;
+    background-color: blueviolet;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    transition: filter 0.3s;
+}
+.genders-admin-container .modal .modal-content .buttons-modal button:first-child{
+    margin-right: 5px;
+}
+.genders-admin-container .modal .modal-content .buttons-modal button:last-child{
+    background-color: rgb(212, 50, 83);
+}
+.genders-admin-container .modal .modal-content .buttons-modal button:hover{
+    filter: brightness(0.7);
+}
+.genders-admin-container .main-genders-container::-webkit-scrollbar{
+    width: 7px;
+}
+.genders-admin-container .main-genders-container::-webkit-scrollbar-thumb{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.genders-admin-container .statistics-genders-main-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+}
+.genders-admin-container .statistic{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 160, 223);
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 0px 35px;
+}
+.genders-admin-container .statistic .number-statisc{
+    font-size: 2.5rem;
+}
+.genders-admin-container .statistic .statistic-description{
+    font-weight: 400;
+}
+.genders-admin-container .statistic ion-icon{
+    font-size: 5rem;
+    align-self: flex-end;
+}
+.genders-admin-container .statistic:last-child{
+    margin-right: 0;
+}
+.genders-admin-container .statistic:nth-child(2){
+    background-color: rgb(0, 128, 79);
+}
+.genders-admin-container .statistic:nth-child(3){
+    background-color: rgb(212, 50, 83);
+}
+.genders-admin-container .statistic:nth-child(4){
+    background-color: rgb(221, 133, 0)
+}
+.genders-main-container{
+    height: calc(100% - 15vh - 60px);
+    margin: 0 20px 20px 20px;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container h1{
+    font-size: 3rem;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container .input-container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 50px;
+    width: 350px;
+    margin-right: 20px;
+    border: 1px solid gray;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container .input-container input{
+    width: 300px;
+    height: 50px;
+    background: initial;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 0px 25px;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container .input-container input::placeholder{
+    color: gray;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container .input-container ion-icon{
+    font-size: 1.7rem;
+    color: gray;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container div{
+    display: flex;
+    align-items: center;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container div button{
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0px 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    border: 1px solid gray;
+    color: gray;
+    background-color: initial;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.4s;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container div button:hover{
+    background-color: blueviolet;
+    border: 1px solid blueviolet;
+    color: #fafafa;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container div button:hover ion-icon{
+    color: #fafafa;
+}
+.genders-admin-container .genders-main-container .header-genders-main-container div button ion-icon{
+    margin-right: 5px;
+    font-size: 1.5rem;
+    color: gray;
+}
+.genders-admin-container .genders-main-container .nothing-container{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.genders-admin-container .genders-main-container .nothing-container h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.genders-admin-container .genders-main-container .nothing-container p{
+    font-size: 1.7rem;
+    width: 650px;
+    text-align: center;
+    font-weight: 300;
+}
+.genders-admin-container .genders-main-container .genders{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}
+.genders-admin-container .genders-main-container .genders .nothing-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+}
+.genders-admin-container .genders-main-container .genders .nothing-container h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.genders-admin-container .genders-main-container .genders .nothing-container p{
+    font-size: 1.7rem;
+    width: 650px;
+    text-align: center;
+    font-weight: 300;
+}
+.genders-admin-container .genders-main-container .genders .gender{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+    transition: background-color 0.3s;
+}
+.genders-admin-container .genders-main-container .genders .gender:hover{
+    background-color: rgba(0, 0, 0, 0.336);
+}
+.genders-admin-container .genders-main-container .genders .gender:last-child{
+    border-bottom: none;
+}
+.genders-admin-container .genders-main-container .genders .gender .gender-id{
+    width: 50px;
+}
+.genders-admin-container .genders-main-container .genders .gender .gender-name{
+    width: 450px;
+}
+.genders-admin-container .genders-main-container .genders .gender .gender-name h2{
+    width: fit-content;
+    padding: 3px 15px;
+    border-radius: 50px;
+}
+.genders-admin-container .genders-main-container .genders .gender .gender-color{
+    width: 450px;
+    display: flex;
+    align-items: center;
+}
+.genders-admin-container .genders-main-container .genders .gender .gender-color .color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 15px;
+}
+.genders-admin-container .genders-main-container .genders .gender .buttons{
+    display: flex;
+}
+.genders-admin-container .genders-main-container .genders .gender .buttons button{
+    width: fit-content;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: filter 0.3s;
+    padding: 0 20px;
+    background-color: rgb(221, 133, 0);
+}
+.genders-admin-container .genders-main-container .genders .gender .buttons button:hover{
+    filter: brightness(0.8);
+}
+.genders-admin-container .genders-main-container .genders .gender .buttons button ion-icon{
+    margin-right: 5px;
+}

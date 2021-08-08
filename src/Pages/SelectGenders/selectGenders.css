@@ -52,7 +52,7 @@
     font-size: 1.5rem;
     width: 550px;
 }
-.genders-container .genders{
+.genders-container  .genders{
     display: grid;
     grid-template-columns: repeat(6, 150px);
     grid-template-rows: 150px;
@@ -62,7 +62,7 @@
     /* max-width: 750px; */
     /* margin: 40px 0 0 150px; */
 }
-.gender{
+.genders-container  .gender{
     width: 150px;
     height: 150px;
     display: flex;
@@ -79,20 +79,20 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.4s;
 }
-.gender:hover{
+.genders-container  .gender:hover{
     transform: scale(1.05);
 }
-.gender.disabled{
+.genders-container  .gender.disabled{
     border: 2px solid gray;
     transform: scale(1.05);
 }
-.gender.selected{
+.genders-container  .gender.selected{
     background-color: blueviolet;
     color: #fafafa;
     position: relative;
     cursor: auto;
 }
-.gender.selected button{
+.genders-container  .gender.selected button{
     width: 35px;
     height: 35px;
     border-radius: 50px;
@@ -108,20 +108,20 @@
     align-items: center;
     justify-content: center;
 }
-.gender.selected ion-icon {
+.genders-container  .gender.selected ion-icon {
     font-size: 1.3rem;
 }
-.gender:hover{
+.genders-container  .gender:hover{
     background-color: #99b2cf;
 }
-.gender.selected:hover{
+.genders-container .gender.selected:hover{
     background-color: rgb(117, 27, 202);
 }
-.selected-genders > h1{
+.genders-container .selected-genders > h1{
     margin: 60px 0 0 150px;
     font-size: 2.5rem;
 }
-.selected-genders .genders{
+.genders-container .selected-genders .genders{
     margin: 20px 0 0 150px;
     display: grid;
     grid-template-columns: repeat(3, 150px);
