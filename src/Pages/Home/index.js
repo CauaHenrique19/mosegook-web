@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 import Loading from '../../Components/Loading'
+import Message from '../../Components/Message'
 import api from '../../services/api'
 import './home.css'
 
@@ -10,10 +11,12 @@ import userImage from '../../assets/user-image.png'
 
 const Home = () => {
 
-    const { token } = useContext(Context)
+    const { user, token } = useContext(Context)
     const [loading, setLoading] = useState(true)
     const [medias, setMedias] = useState([])
     const [numberVisualizers, setNumberVisualizers] = useState([])
+    const [mediaName, setMediaName] = useState('')
+    const [message, setMessage] = useState('')
 
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-1812)
@@ -72,6 +75,35 @@ const Home = () => {
         count === maxCount ? buttonNextEL.style.display = 'none' : buttonNextEL.style.display = 'flex'
     }
 
+    function handleSuggestion() {
+        if (!user) {
+            setMessage('Você deve estar logado para sugerir!')
+            setTimeout(() => {
+                setMessage('')
+            }, 3000)
+        }
+        else {
+            const suggestion = { user_id: user.id, media_name: mediaName }
+            api.post('/suggestions', suggestion)
+                .then(res => {
+                    console.log(res.data)
+                    if(res.data.length > 0){
+                        setMessage("Sugestão enviada com sucesso!")
+                        setTimeout(() => {
+                            setMessage('')
+                        }, 3000)
+                    }
+                    else{
+                        setMessage(res.data.message)
+                        setTimeout(() => {
+                            setMessage('')
+                        }, 3000)
+                    }
+                })
+                .catch(error => setMessage(error.message))
+        }
+    }
+
     return (
         <>
             <div className="container-home">
@@ -81,8 +113,8 @@ const Home = () => {
                     </div>
                     <div className="right-wrapper">
                         <Link to="/catalog">Catálogo</Link>
-                        { !token && <Link to="/login">Entrar</Link> }
-                        { token && <Link to="/timeline">Timeline</Link> }
+                        {!token && <Link to="/login">Entrar</Link>}
+                        {token && <Link to="/timeline">Timeline</Link>}
                     </div>
                 </header>
                 <main className="main">
@@ -93,7 +125,7 @@ const Home = () => {
                             qualquer pessoa ou amigos. Temos vários títulos famosos mas se não tiver,
                             você poderá indicar um título da sua preferência.
                         </p>
-                        { !token && <Link to="/signup">Começar a avaliar</Link> }
+                        {!token && <Link to="/signup">Começar a avaliar</Link>}
                     </div>
                     <div className="button-next-page" onClick={() => window.scrollTo({ top: 937, behavior: 'smooth' })} >
                         <ion-icon name="chevron-down-outline"></ion-icon>
@@ -189,7 +221,7 @@ const Home = () => {
                     <div className="media-slider">
                         {
                             medias && medias.map(media => (
-                                <div key={media.name} className="media">
+                                <div key={media.url_poster} className="media">
                                     <div className="media-image-container">
                                         <img src={media.url_poster} alt="" />
                                     </div>
@@ -211,10 +243,11 @@ const Home = () => {
                 <h1>Não Encontrou uma mídia de seu gosto? Sugestione aqui.</h1>
                 <div className="newsletter-main">
                     <div className="input-container">
-                        <input type="text" placeholder="Nome" />
-                        <button>Sugerir</button>
+                        <input value={mediaName} onChange={e => setMediaName(e.target.value)} type="text" placeholder="Título da mídia" />
+                        <button onClick={() => handleSuggestion()}>Sugerir</button>
                     </div>
                     <img src={imageNewsletter} alt="" />
+                    { message && <Message message={message} /> }
                 </div>
             </div>
             <div className="we-peoples-about-us">
@@ -321,13 +354,13 @@ const Home = () => {
             <div className="social-media">
                 <h1>Visite Nossas Redes Sociais</h1>
                 <div className="buttons-social-media">
-                    <Link to="/home">
+                    <Link to="/">
                         <ion-icon name="logo-facebook"></ion-icon>
                     </Link>
-                    <Link to="/home">
+                    <Link to="/">
                         <ion-icon name="logo-twitter"></ion-icon>
                     </Link>
-                    <Link to="/home">
+                    <Link to="/">
                         <ion-icon name="logo-instagram"></ion-icon>
                     </Link>
                 </div>

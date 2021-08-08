@@ -405,6 +405,10 @@
     top: -387px;
     z-index: 10;
 }
+.newsletter .message{
+    bottom: -50px;
+    box-shadow: 0px 10px 30px 15px rgba(8, 8, 8, 0.226);
+}
 .we-peoples-about-us{
     height: 90vh;
     display: flex;
