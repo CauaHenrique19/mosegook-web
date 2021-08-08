@@ -8,13 +8,90 @@
     height: 100%;
     overflow: auto;
 }
+.suggestions-admin-container .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.suggestions-admin-container .modal .modal-content{
+    width: 500px;
+    height: fit-content;
+    background-color: #0f0f0f;
+    padding: 15px;
+}
+.suggestions-admin-container .modal .modal-content .header-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.suggestions-admin-container .modal .modal-content .header-modal button{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(201, 201, 201, 0.219);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.suggestions-admin-container .modal .modal-content .content{
+    margin-bottom: 20px;
+}
+.suggestions-admin-container .modal .modal-content .content h2{
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.suggestions-admin-container .modal .modal-content .content .check{
+    display: flex;
+    align-items: center;
+}
+.suggestions-admin-container .modal .modal-content .content .check input{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.suggestions-admin-container .modal .modal-content .content .check p{
+    font-size: 1.3rem;
+}
+.suggestions-admin-container .modal .modal-content .buttons button{
+    width: calc(50% - 5px);
+    height: 45px;
+    background-color: rgb(212, 50, 83);
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    font-size: 1.5rem;
+    transition: filter 0.3s;
+}
+.suggestions-admin-container .modal .modal-content .buttons button:nth-child(1){
+    margin-right: 5px;
+    background-color: blueviolet;
+}
+.suggestions-admin-container .modal .modal-content .buttons button:hover{
+    filter: brightness(0.7);
+}
 .suggestions-admin-container .main-suggestions-container::-webkit-scrollbar{
-    width: 10px;
-    background-color: #252525;
+    width: 7px;
 }
 .suggestions-admin-container .main-suggestions-container::-webkit-scrollbar-thumb{
-    background-color: black;
-    border-radius: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .suggestions-admin-container .statistics-suggestions-main-container{
     height: 15vh;
@@ -54,4 +131,132 @@
 }
 .suggestions-admin-container .statistic:nth-child(4){
     background-color: rgb(221, 133, 0)
+}
+.suggestions-main-container{
+    height: calc(100% - 15vh - 60px);
+    margin: 0 20px 20px 20px;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container h1{
+    font-size: 3rem;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container .input-container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 50px;
+    width: 350px;
+    margin-right: 20px;
+    border: 2px solid gray;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container .input-container input{
+    width: 300px;
+    height: 50px;
+    background: initial;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 0px 25px;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container .input-container input::placeholder{
+    color: gray;
+}
+.suggestions-admin-container .suggestions-main-container .header-suggestions-main-container .input-container ion-icon{
+    font-size: 1.7rem;
+    color: gray;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .nothing-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .nothing-container h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .nothing-container p{
+    font-size: 1.7rem;
+    width: 650px;
+    text-align: center;
+    font-weight: 300;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+    transition: background-color 0.3s;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion:hover{
+    background-color: rgba(0, 0, 0, 0.336);
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion:last-child{
+    border-bottom: none;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .image-container{
+    margin-right: 15px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .suggestion-info{
+    width: 250px;
+    display: flex;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .suggestion-info h2{
+    font-weight: 300;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .suggestion-media-name{
+    width: 450px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .suggestion-created-at{
+    width: 450px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .suggestion-status{
+    width: 200px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .buttons{
+    display: flex;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .buttons button{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .buttons button:nth-child(1){
+    background-color: rgb(0, 128, 79);
+    margin-right: 10px;
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .buttons button:nth-child(2){
+    background-color: rgb(212, 50, 83);
+}
+.suggestions-admin-container .suggestions-main-container .suggestions .suggestion .buttons button:hover{
+    filter: brightness(0.7);
 }
