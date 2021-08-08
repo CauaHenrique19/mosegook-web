@@ -32,24 +32,8 @@ const Suggestions = () => {
         setFilteredSuggestions(suggestionsSearched)
     }
 
-    function handleAccept(){
-        api.put(`/suggestions/${selectedSuggestion.id}`, { status: "accept" })
-            .then(res => {
-                const suggestion = suggestions.find(suggestion => suggestion.id === res.data[0].id)
-                suggestions.splice(suggestions.indexOf(suggestion), 1)
-                res.data[0].url_image = selectedSuggestion.url_image
-                res.data[0].user = selectedSuggestion.user
-                res.data[0].name = selectedSuggestion.name
-                suggestions.push(res.data[0])
-                setSuggestions([...suggestions])
-                setFilteredSuggestions([...suggestions])
-                setModalType('')
-            })
-            .catch(error => console.error(error.message))
-    }
-
-    function handleReject(){
-        api.put(`/suggestions/${selectedSuggestion.id}`, { status: "rejected" })
+    function handleEdit(status){
+        api.put(`/suggestions/${selectedSuggestion.id}`, { status })
             .then(res => {
                 const suggestion = suggestions.find(suggestion => suggestion.id === res.data[0].id)
                 suggestions.splice(suggestions.indexOf(suggestion), 1)
@@ -85,11 +69,11 @@ const Suggestions = () => {
                         <div className="buttons">
                             {
                                 modalType === "accept" && 
-                                <button onClick={() => handleAccept()}>Aceitar</button>
+                                <button onClick={() => handleEdit("accept")}>Aceitar</button>
                             }
                             {
                                 modalType === "rejected" && 
-                                <button onClick={() => handleReject()}>Recusar</button>
+                                <button onClick={() => handleEdit("rejected")}>Recusar</button>
                             }
                             <button onClick={() => setModalType('')}>Cancelar</button>
                         </div>
