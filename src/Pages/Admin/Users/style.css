@@ -113,13 +113,8 @@
 .users-admin-container .statistic .statistic-description{
     font-weight: 400;
 }
-.users-admin-container .statistic div:nth-child(2){
-    display: flex;
-    flex-direction: column;
-}
 .users-admin-container .statistic ion-icon{
     font-size: 5rem;
-    margin-bottom: 25px;
     align-self: flex-end;
 }
 .users-admin-container .statistic:last-child{
