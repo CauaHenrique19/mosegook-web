@@ -10,6 +10,7 @@ const Genders = () => {
     const [genders, setGenders] = useState([])
     const [loading, setLoading] = useState(true)
     const [viewModal, setViewModal] = useState(false)
+    const [statistics, setStatistics] = useState()
 
     const [idGender, setIdGender] = useState(0)
     const [nameGender, setNameGender] = useState('')
@@ -23,6 +24,12 @@ const Genders = () => {
                 setLoading(false)
             })
             .catch(error => console.error(error.message))
+
+        api.get('/genders/statistics')
+            .then(res => setStatistics(res.data))
+            .catch(error => console.error(error.message))
+
+        console.log(statistics)
     }, [])
 
     function handleSearch(search){
@@ -71,8 +78,13 @@ const Genders = () => {
                 <div className="statistics-genders-main-container">
                     <div className="statistic">
                         <div>
-                            <h1 className="number-statisc">10</h1>
-                            <h2 className="statistic-description">Gêneros</h2>
+                            {
+                                statistics != null && 
+                                <>
+                                    <h1 className="number-statisc">{statistics.amount_genders}</h1>
+                                    <h2 className="statistic-description">Gêneros</h2>
+                                </>
+                            }
                         </div>
                         <div>
                             <ion-icon name="bookmark-outline"></ion-icon>
@@ -80,17 +92,13 @@ const Genders = () => {
                     </div>
                     <div className="statistic">
                         <div>
-                            <h1 className="number-statisc">10</h1>
-                            <h2 className="statistic-description">sla</h2>
-                        </div>
-                        <div>
-                            <ion-icon name="chatbox-outline"></ion-icon>
-                        </div>
-                    </div>
-                    <div className="statistic">
-                        <div>
-                            <h1 className="number-statisc">Ação</h1>
-                            <h2 className="statistic-description">Gênero Preferido</h2>
+                            {
+                                statistics != null && 
+                                <>
+                                    <h1 className="number-statisc">{statistics.gender_most_popular.name}</h1>
+                                    <h2 className="statistic-description">Gênero Preferido</h2>
+                                </>
+                            }
                         </div>
                         <div>
                             <ion-icon name="heart-outline"></ion-icon>
@@ -98,8 +106,13 @@ const Genders = () => {
                     </div>
                     <div className="statistic">
                         <div>
-                            <h1 className="number-statisc"></h1>
-                            <h2 className="statistic-description"></h2>
+                            {
+                                statistics != null && 
+                                <>
+                                    <h1 className="number-statisc">{statistics.gender_most_utilized.name}</h1>
+                                    <h2 className="statistic-description">Gênero mais utilizado</h2>
+                                </>
+                            }
                         </div>
                         <div>
                             <ion-icon name="star-outline"></ion-icon>
