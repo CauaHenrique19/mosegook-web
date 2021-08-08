@@ -1,0 +1,57 @@
+.suggestions-admin-container{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+.suggestions-admin-container .main-suggestions-container{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.suggestions-admin-container .main-suggestions-container::-webkit-scrollbar{
+    width: 10px;
+    background-color: #252525;
+}
+.suggestions-admin-container .main-suggestions-container::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 5px;
+}
+.suggestions-admin-container .statistics-suggestions-main-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+}
+.suggestions-admin-container .statistic{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 160, 223);
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 0px 35px;
+}
+.suggestions-admin-container .statistic .number-statisc{
+    font-size: 2.5rem;
+}
+.suggestions-admin-container .statistic .statistic-description{
+    font-weight: 400;
+}
+.suggestions-admin-container .statistic ion-icon{
+    font-size: 5rem;
+    align-self: flex-end;
+}
+.suggestions-admin-container .statistic:last-child{
+    margin-right: 0;
+}
+.suggestions-admin-container .statistic:nth-child(2){
+    background-color: rgb(0, 128, 79);
+}
+.suggestions-admin-container .statistic:nth-child(3){
+    background-color: rgb(212, 50, 83);
+}
+.suggestions-admin-container .statistic:nth-child(4){
+    background-color: rgb(221, 133, 0)
+}

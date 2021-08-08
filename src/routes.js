@@ -18,6 +18,7 @@ import User from './Pages/User'
 import Catalog from './Pages/Catalog'
 import AvaliationDetailed from './Pages/AvaliationDetailed'
 import Users from './Pages/Admin/Users'
+import Suggestions from './Pages/Admin/Suggestions'
 
 const Routes = () => {
     return(
@@ -36,6 +37,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/books" component={Books} />
                 <AdminRoute path="/admin/games" component={Games} />
                 <AdminRoute path="/admin/users" component={Users} />
+                <AdminRoute path="/admin/suggestions" component={Suggestions} />
                 <Route path="/avaliation/:id" component={AvaliationDetailed} />
             </Switch>
         </HashRouter>
