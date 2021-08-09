@@ -1,21 +1,35 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { Context } from '../../../context/context'
+import React, { useEffect, useState, useRef } from 'react'
 import MenuAdmin from '../../../Components/MenuAdmin'
-import ModalForm from '../../../Components/ModalForm'
 import Loading from '../../../Components/Loading'
 import api from '../../../services/api'
 import './medias.css'
 
 const Medias = ({ category_id, page, texts, pageName }) => {
 
-    const { viewModalForm, setViewModalForm } = useContext(Context)
     const [filteredMedias, setFilteredMedias] = useState([])
     const [medias, setMedias] = useState([])
     const [loading, setLoading] = useState(true)
     const [amountAvaliations, setAmountAvaliations] = useState([])
     const [mostRated, setMostRated] = useState([])
     const [mostGoodRated, setMostGoodRated] = useState([])
-    const [data, setData] = useState({})
+    
+    const [viewModal, setViewModal] = useState(false)
+
+    const [categories, setCategories] = useState([])
+    const [genders, setGenders] = useState([])
+
+    const [id, setId] = useState(0)
+    const [name, setName] = useState('')
+    const [synopsis, setSynopsis] = useState('')
+    const [avaliation, setAvaliation] = useState('')
+    const [categoryId, setCategoryId] = useState('')
+    const [gendersMedia, setGendersMedia] = useState([])
+
+    const [poster, setPoster] = useState(null)
+    const [posterTimeline, setPosterTimeline] = useState(null)
+
+    const fileInputPoster = useRef(null)
+    const fileInputPosterTimeline = useRef(null)
 
     useEffect(() => {
         api(`/medias/${category_id}`)
@@ -33,6 +47,14 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                 setMostGoodRated(res.data.mostGoodRated)
             })
             .catch(error => console.error(error.message))
+
+        api('/categories')
+            .then(res => setCategories(res.data))
+            .catch(error => console.error(error.message))
+
+        api('/genders')
+            .then(res => setGenders(res.data))
+            .catch(error => console.error(error.message))
     }, [category_id])
 
     function handleSearch(search){
@@ -40,10 +62,166 @@ const Medias = ({ category_id, page, texts, pageName }) => {
         setFilteredMedias(mediasSearched)
     }
 
+    function handleRemoveGender(e){
+        const gender = gendersMedia.findIndex(gender => gender.id === e.id)
+        gendersMedia.splice(gender, 1)
+        setGendersMedia([...gendersMedia])
+    }
+
+    function handleSelectGender(e){
+        const gender = genders.find(gender => gender.id === parseInt(e.target.value))
+        const hasGender = gendersMedia.map(gender => gender.id).includes(gender.id)
+        !hasGender && setGendersMedia([...gendersMedia, gender]) 
+    }
+
+    function handleSubmit(){
+        const mediaFormData = new FormData()
+        mediaFormData.append('name', name)
+        mediaFormData.append('synopsis', synopsis)
+        mediaFormData.append('avaliation', avaliation)
+        mediaFormData.append('category_id', categoryId)
+        mediaFormData.append('poster', poster)
+        mediaFormData.append('poster_timeline', posterTimeline)
+        mediaFormData.append('genders', JSON.stringify(gendersMedia))
+
+        if(id != 0){
+            setLoading(true)
+            api.put(`/medias/${id}`, mediaFormData)
+                .then(res => {
+                    const mediaRemove = medias.find(media => media.id === res.data[0].id)
+                    res.data[0].url_poster = `${res.data[0].url_poster}?${Date.now()}`
+                    res.data[0].url_poster_timeline = `${res.data[0].url_poster_timeline}?${Date.now()}`
+                    medias.splice(medias.indexOf(mediaRemove), 1)
+                    medias.push(res.data[0])
+                    setMedias([...medias])
+                    setFilteredMedias([...medias])
+                    setViewModal(false)
+                    setLoading(false)
+                })
+                .catch(error => console.error(error.message))
+        }
+        else{
+            api.post('/medias', mediaFormData)
+                .then(res => {
+                    const media = res.data[0]
+                    setMedias([...medias, media])
+                    setFilteredMedias([...medias, media])
+                    setViewModal(false)
+                })
+                .catch(error => console.error(error.message))
+        }
+    }
+
+    useEffect(() => {
+        const media = { 
+            name, 
+            synopsis, 
+            avaliation, 
+            categoryId, 
+            poster: poster, 
+            posterTimeline: posterTimeline,
+            genders: gendersMedia
+        }
+        console.log(media)
+    }, [name, synopsis, avaliation, categoryId, poster, posterTimeline, gendersMedia])
+
     return (
         <div className="medias-admin-container">
             { loading && <Loading /> }
-            { viewModalForm && <ModalForm type="form-media" page={texts} data={data} /> }
+            {
+                viewModal &&
+                <div className="modal">
+                    <div className="modal-content">
+                        <div className="header-modal">
+                            <h1>{ id != 0 ? ' Edição de Mídia' : 'Nova mídia' }</h1>
+                            <button onClick={() => setViewModal(false)} ><ion-icon name="close-outline"></ion-icon></button>
+                        </div>
+                        <div className="form-content">
+                            <div className="row-form">
+                                <div className="input-container">
+                                    <label htmlFor="name">Nome</label>
+                                    <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Nome" id="name" />
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="category">Categoria</label>
+                                    <select name="category" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} id="category">
+                                        <option value="">Selecione um gênero</option>
+                                        {categories && categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
+                                    </select>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="avaliation">Avaliação</label>
+                                    <input type="number" value={avaliation} onChange={(e) => setAvaliation(e.target.value)} placeholder="Avaliação" id="avaliation" />
+                                </div>
+                            </div>
+                            <div className="row-form">
+                                <div className="poster-container">
+                                    <label htmlFor="poster">Poster</label>
+                                    <img src={poster.name ? URL.createObjectURL(poster) : `${poster}?${Date.now()}`} alt="Poster" id="poster" />
+                                    <div className="button-container">
+                                        <button onClick={() => fileInputPoster.current && fileInputPoster.current.click() }>
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </button>
+                                        {poster && <button onClick={() => setPoster(null)}><ion-icon name="close-outline"></ion-icon></button>}
+                                    </div>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="synopsis">Sinopse</label>
+                                    <textarea name="synopsis" value={synopsis} onChange={(e) => setSynopsis(e.target.value)} id="synopsis" cols="30" rows="10" placeholder="Sinopse"></textarea>
+                                </div>
+                            </div>
+                            <div className="row-form">
+                                <div className="poster-timeline-container">
+                                    <label htmlFor="poster">Poster Timeline</label>
+                                    <img src={posterTimeline.name ? URL.createObjectURL(posterTimeline) : `${posterTimeline}?${Date.now()}`} alt="Poster Timeline" id="poster" />
+                                    <div className="button-container">
+                                        <button onClick={() => fileInputPosterTimeline.current && fileInputPosterTimeline.current.click() }>
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </button>
+                                        {posterTimeline && <button onClick={() => setPosterTimeline(null)}><ion-icon name="close-outline"></ion-icon></button>}
+                                    </div>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="genders">Gêneros</label>
+                                    <select name="genders" id="genders" value={genders.id} onChange={(e) => handleSelectGender(e)}>
+                                        <option value="">Selecione um gênero</option>
+                                        {genders && genders.map(gender => <option key={gender.color} value={gender.id}>{gender.name}</option>)} 
+                                    </select>
+                                    <div className="genders-input-container">
+                                        {
+                                            gendersMedia.length > 0 && gendersMedia.map(gender => (
+                                                <div style={{ backgroundColor: gender.color }} key={gender.name} className="gender-input-container">
+                                                    <p>{gender.name}</p>
+                                                    <button onClick={() => handleRemoveGender(gender)}><ion-icon name="close-outline"></ion-icon></button>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <input 
+                                    type="file" 
+                                    name="poster" 
+                                    id="poster" 
+                                    hidden={true} 
+                                    onChange={e => setPoster(e.target.files[0])} 
+                                    ref={fileInputPoster} 
+                                />
+                                <input 
+                                    type="file" 
+                                    name="poster_timeline" 
+                                    id="poster_timeline" 
+                                    hidden={true} 
+                                    onChange={e => setPosterTimeline(e.target.files[0])}
+                                    ref={fileInputPosterTimeline}
+                                />
+                            </div>
+                            <div className="row-form">
+                                <button onClick={() => handleSubmit()}>Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
             <MenuAdmin page={page} />
             <div className="main-medias-container">
                 <div className="statistics-medias-main-container">
@@ -120,13 +298,20 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                         <div className="buttons-media-info-container">
                                             <button 
                                                 onClick={() => {
-                                                    setViewModalForm(!viewModalForm)
-                                                    setData(media)
+                                                    setViewModal(true)
+                                                    setId(media.id)
+                                                    setName(media.name)
+                                                    setSynopsis(media.synopsis)
+                                                    setAvaliation(media.avaliation)
+                                                    setCategoryId(media.category_id)
+                                                    setGendersMedia(media.genders)
+                                                    setPoster(media.url_poster)
+                                                    setPosterTimeline(media.url_poster_timeline)
                                                 }}
                                             >
                                                 <ion-icon name="create-outline"></ion-icon>
                                             </button>
-                                            <button onClick={() => setViewModalForm(!viewModalForm)}><ion-icon name="trash-outline"></ion-icon></button>
+                                            <button><ion-icon name="trash-outline"></ion-icon></button>
                                         </div>
                                     </div>
                                 </div>

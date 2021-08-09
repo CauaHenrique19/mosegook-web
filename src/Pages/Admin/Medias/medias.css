@@ -9,6 +9,199 @@
     height: 100%;
     overflow: auto;
 }
+.medias-admin-container .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.medias-admin-container .modal .modal-content{
+    width: fit-content;
+    height: fit-content;
+    background-color: #0f0f0f;
+    padding: 15px;
+    border-radius: 5px;
+}
+.medias-admin-container .modal .modal-content .header-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.medias-admin-container .modal .modal-content .header-modal button{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(201, 201, 201, 0.219);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.medias-admin-container .modal .modal-content .header-modal-form button:hover{
+    background-color: rgba(201, 201, 201, 0.452);
+}
+.medias-admin-container .modal .modal-content .header-modal-form button ion-icon{
+    font-size: 1.5rem;
+}
+.medias-admin-container .modal .modal-content .main-modal-form{
+    display: flex;
+}
+.medias-admin-container .modal .row-form{
+    width: 100%;
+    display: flex;
+}
+.medias-admin-container .modal .row-form > button{
+    width: 100%;
+    height: 45px;
+    border: none;
+    background-color: blueviolet;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.3rem;
+    transition: background-color 0.3s;
+}
+.medias-admin-container .modal .row-form > button:hover{
+    background-color: rgb(98, 0, 190);
+}
+.medias-admin-container .modal .input-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 15px;
+    margin-bottom: 20px;
+}
+.medias-admin-container .modal .input-container label{
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+.medias-admin-container .modal .input-container input{
+    height: 40px;
+    background-color: initial;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid rgba(216, 216, 216, 0.171);
+    font-size: 1.3rem;
+    padding: 0px 10px;
+}
+.medias-admin-container .modal .input-container select{
+    width: 250px;
+    height: 40px;
+    background-color: initial;
+    border-radius: 3px;
+    border: 1px solid rgba(216, 216, 216, 0.171);
+    padding: 0px 10px;
+    font-size: 1rem;
+    outline: none;
+}
+.medias-admin-container .modal .input-container select option{
+    color: black;
+}
+.medias-admin-container .modal .input-container textarea{
+    background-color: initial;
+    border: 1px solid rgba(216, 216, 216, 0.171);
+    height: 350px;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
+}
+.medias-admin-container .modal .poster-container,
+.medias-admin-container .modal .poster-timeline-container{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.medias-admin-container .modal .poster-container img{
+    width: 250px;
+    height: 350px;
+    border-radius: 3px;
+}
+.medias-admin-container .modal .poster-timeline-container img{
+    width: 350px;
+}
+.medias-admin-container .modal .poster-container label,
+.medias-admin-container .modal .poster-timeline-container label{
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+.medias-admin-container .modal .poster-container .button-container,
+.medias-admin-container .modal .poster-timeline-container .button-container{
+    width: 100%;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    display: none;
+    background-color: initial;
+    transition: background-color 0.3s;
+    background-color: rgba(0, 0, 0, 0);
+    bottom: 0px;
+}
+.medias-admin-container .modal .poster-container .button-container{
+    height: 350px;
+    width: 250px;
+}
+.medias-admin-container .modal .poster-container:hover .button-container, 
+.medias-admin-container .modal .poster-timeline-container:hover .button-container{
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.61);
+}
+.medias-admin-container .modal .button-container button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    background-color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.medias-admin-container .modal .input-container .genders-input-container{
+    display: flex;
+    margin-top: 10px;
+}
+.medias-admin-container .modal .input-container .genders-input-container .gender-input-container{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.medias-admin-container .modal .input-container .genders-input-container .gender-input-container p{
+    margin-right: 5px;
+}
+.medias-admin-container .modal .input-container .genders-input-container .gender-input-container button{
+    display: flex;
+    align-items: center;
+    background-color: initial;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50px;
+}
+.medias-admin-container .modal .input-container .genders-input-container .gender-input-container button:hover{
+    background-color: rgba(0, 0, 0, 0.39);
+}
 .medias-admin-container .main-medias-container::-webkit-scrollbar{
     width: 10px;
     background-color: #252525;

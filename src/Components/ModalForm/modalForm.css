@@ -122,13 +122,6 @@
     font-size: 1.3rem;
     padding: 0px 10px;
 }
-/* .modal-form-container .input-container input[type="color"]{
-    width: 150px;
-    height: 40px;
-    border: none;
-    padding: 0;
-    border-radius: 50px;
-} */
 .modal-form-container .input-container input[type="color"]::-webkit-color-swatch {
     border: 1px solid rgba(216, 216, 216, 0.171);
     height: 37px;
