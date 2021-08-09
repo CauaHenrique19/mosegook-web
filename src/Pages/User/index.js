@@ -23,7 +23,7 @@ const User = (props) => {
         async function getDatas(){
             setLoading(true)
 
-            const { data: dataUser } = await api.get(`/users/${props.match.params.user}`)
+            const { data: dataUser } = await api.get(`/users/user/${props.match.params.user}`)
             const { data: dataAvaliations } = await api.get(`/avaliations/${props.match.params.user}`)
             const { data: dataComents } = await api.get(`/coments/${props.match.params.user}`)
 
