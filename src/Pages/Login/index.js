@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Context } from '../../context/context'
+import Message from '../../Components/Message'
 import api from '../../services/api'
 import './login.css'
 
@@ -13,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const [viewPassword, setViewPassword] = useState(false)
+    const [message, setMessage] = useState('')
 
     function handleLogin(){
         const login = { email, password }
@@ -27,10 +29,10 @@ const Login = () => {
                     history.push('/timeline')
                 }
                 else{
-                    console.log(res.data.message)
+                    setMessage(res.data.message)
                 }
             })
-            .catch(error => console.error(error.message))
+            .catch(error => setMessage(error.message))
     }
     
     return (
@@ -41,6 +43,7 @@ const Login = () => {
                 </header>
                 <div className="form">
                     <h1>Bem Vindo!</h1>
+                    { message && <Message message={message} /> }
                     <label htmlFor="input-container">Email</label>
                     <div className="input-container">
                         <ion-icon name="mail-outline"></ion-icon>
@@ -61,18 +64,15 @@ const Login = () => {
             <div className="social-media-container">
                 <h1>Visite Nossas Redes Sociais</h1>
                 <div className="buttons-social-media">
-                    <Link to="">
+                    <a href="https://www.facebook.com/profile.php?id=100066384981305" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-facebook"></ion-icon>
-                    </Link>
-                    <Link to="">
+                    </a>
+                    <a href="https://twitter.com/mosegook" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-twitter"></ion-icon>
-                    </Link>
-                    <Link to="">
+                    </a>
+                    <a href="https://www.instagram.com/mosegook/" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-instagram"></ion-icon>
-                    </Link>
-                    <Link to="">
-                        <ion-icon name="logo-whatsapp"></ion-icon>
-                    </Link>
+                    </a>
                 </div>
             </div>
         </div>

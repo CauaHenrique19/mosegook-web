@@ -20,6 +20,15 @@
 .container-login .form-container .form{
     width: fit-content;
     padding: 0px 150px;
+    position: relative;
+}
+.container-login .form-container .form .message{
+    width: 430px;
+    height: fit-content;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    position: inherit;
 }
 .container-login .form-container .form h1{
     font-size: 3rem;
@@ -113,9 +122,6 @@
     margin-right: 0;
 }
 .container-login .social-media-container a:hover{
-    background-image: url('../../assets/bg-avaliations150.png');
-}
-.container-login .social-media-container a:hover ion-icon{
-    transition: color 0.5s;
-    color: #0f0f0f;
+    background-image: url('../../assets/DarkGradient07.png');
+    background-size: 100% 100%;
 }
