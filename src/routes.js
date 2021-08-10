@@ -21,6 +21,7 @@ import Users from './Pages/Admin/Users'
 import Suggestions from './Pages/Admin/Suggestions'
 import Genders from './Pages/Admin/Genders'
 import Categories from './Pages/Admin/Categories'
+import Opinion from './Pages/Opinion'
 
 const Routes = () => {
     return(
@@ -43,6 +44,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/genders" component={Genders} />
                 <AdminRoute path="/admin/categories" component={Categories} />
                 <Route path="/avaliation/:id" component={AvaliationDetailed} />
+                <PrivateRoute path="/opinion" component={Opinion} />
             </Switch>
         </HashRouter>
     )
