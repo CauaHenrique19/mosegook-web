@@ -173,6 +173,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 5px;
+}
+.medias-admin-container .modal .button-container button ion-icon{
+    font-size: 1.3rem;
 }
 .medias-admin-container .modal .input-container .genders-input-container{
     display: flex;
@@ -203,12 +207,15 @@
     background-color: rgba(0, 0, 0, 0.39);
 }
 .medias-admin-container .main-medias-container::-webkit-scrollbar{
-    width: 10px;
-    background-color: #252525;
+    width: 7px;
 }
 .medias-admin-container .main-medias-container::-webkit-scrollbar-thumb{
-    background-color: black;
-    border-radius: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .medias-admin-container .statistics-medias-main-container{
     height: 15vh;
@@ -342,6 +349,7 @@
     display: grid;
     grid-template-columns: repeat(5, 300px);
     grid-gap: 10px;
+    padding-bottom: 20px;
 }
 .medias-admin-container .medias-main-container .media{
     width: 300px;
