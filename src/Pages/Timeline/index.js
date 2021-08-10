@@ -123,9 +123,7 @@ const Timeline = () => {
     function handleSearchUsers(e){
         if(e.key === 'Enter'){
             api.get(`/users/search/${searchUsers}`)
-                .then(res => {
-                    setUsersData(res.data)
-                })
+                .then(res => setUsersData(res.data))
                 .catch(error => console.log(error))
         }
     }
@@ -161,10 +159,8 @@ const Timeline = () => {
                     amountLikes: 0
                 }
                 setAvaliations([updatedAvaliation, ...avaliations])
-                console.log(updatedAvaliation)
             })
             .catch(error => console.error(error.message))
-
     }
 
     return (
@@ -229,6 +225,7 @@ const Timeline = () => {
                         <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
                         <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
                         {user.admin && <li><Link to="/admin/movies"><ion-icon name="settings-outline"></ion-icon>Administrador</Link></li>}
+                        <li><Link to='/opinion'><ion-icon name="happy-outline"></ion-icon>Avalie a gente</Link></li>
                         <li><Link to={`/user/${user.user}`}><ion-icon name="person-outline"></ion-icon>Perfil</Link></li>
                         <li><Link to="/" onClick={e => handleLogout(e)}><ion-icon name="log-out-outline"></ion-icon>Sair</Link></li>
                     </ul>
