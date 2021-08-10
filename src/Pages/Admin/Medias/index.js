@@ -25,8 +25,8 @@ const Medias = ({ category_id, page, texts, pageName }) => {
     const [categoryId, setCategoryId] = useState('')
     const [gendersMedia, setGendersMedia] = useState([])
 
-    const [poster, setPoster] = useState(null)
-    const [posterTimeline, setPosterTimeline] = useState(null)
+    const [poster, setPoster] = useState({})
+    const [posterTimeline, setPosterTimeline] = useState({})
 
     const fileInputPoster = useRef(null)
     const fileInputPosterTimeline = useRef(null)
@@ -75,19 +75,22 @@ const Medias = ({ category_id, page, texts, pageName }) => {
     }
 
     function handleSubmit(){
+
+        const gendersId = gendersMedia.map(gender => gender.gender_id ? gender.gender_id : gender.id)
         const mediaFormData = new FormData()
+
         mediaFormData.append('name', name)
         mediaFormData.append('synopsis', synopsis)
         mediaFormData.append('avaliation', avaliation)
         mediaFormData.append('category_id', categoryId)
         mediaFormData.append('poster', poster)
         mediaFormData.append('poster_timeline', posterTimeline)
-        mediaFormData.append('genders', JSON.stringify(gendersMedia))
+        mediaFormData.append('genders', JSON.stringify(gendersId))
 
         if(id != 0){
-            setLoading(true)
             api.put(`/medias/${id}`, mediaFormData)
                 .then(res => {
+                    console.log(res.data)
                     const mediaRemove = medias.find(media => media.id === res.data[0].id)
                     res.data[0].url_poster = `${res.data[0].url_poster}?${Date.now()}`
                     res.data[0].url_poster_timeline = `${res.data[0].url_poster_timeline}?${Date.now()}`
@@ -96,13 +99,13 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                     setMedias([...medias])
                     setFilteredMedias([...medias])
                     setViewModal(false)
-                    setLoading(false)
                 })
                 .catch(error => console.error(error.message))
         }
         else{
             api.post('/medias', mediaFormData)
                 .then(res => {
+                    console.log(res.data)
                     const media = res.data[0]
                     setMedias([...medias, media])
                     setFilteredMedias([...medias, media])
@@ -112,18 +115,20 @@ const Medias = ({ category_id, page, texts, pageName }) => {
         }
     }
 
-    useEffect(() => {
-        const media = { 
-            name, 
-            synopsis, 
-            avaliation, 
-            categoryId, 
-            poster: poster, 
-            posterTimeline: posterTimeline,
-            genders: gendersMedia
-        }
-        console.log(media)
-    }, [name, synopsis, avaliation, categoryId, poster, posterTimeline, gendersMedia])
+    function handleDelete(id){
+        api.delete(`/medias/${id}`)
+            .then(res => {
+                if(res.data.error){
+
+                }
+                else{
+                    const mediaRemove = medias.find(media => media.id === id)
+                    medias.splice(medias.indexOf(mediaRemove), 1)
+                    setMedias([...medias])
+                    setFilteredMedias([...medias])
+                }
+            })
+    }
 
     return (
         <div className="medias-admin-container">
@@ -162,7 +167,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                         <button onClick={() => fileInputPoster.current && fileInputPoster.current.click() }>
                                             <ion-icon name="create-outline"></ion-icon>
                                         </button>
-                                        {poster && <button onClick={() => setPoster(null)}><ion-icon name="close-outline"></ion-icon></button>}
+                                        {poster && <button onClick={() => setPoster({})}><ion-icon name="close-outline"></ion-icon></button>}
                                     </div>
                                 </div>
                                 <div className="input-container">
@@ -178,7 +183,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                         <button onClick={() => fileInputPosterTimeline.current && fileInputPosterTimeline.current.click() }>
                                             <ion-icon name="create-outline"></ion-icon>
                                         </button>
-                                        {posterTimeline && <button onClick={() => setPosterTimeline(null)}><ion-icon name="close-outline"></ion-icon></button>}
+                                        {posterTimeline && <button onClick={() => setPosterTimeline({})}><ion-icon name="close-outline"></ion-icon></button>}
                                     </div>
                                 </div>
                                 <div className="input-container">
@@ -273,7 +278,16 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                 <input onChange={e => handleSearch(e.target.value)} type="text" placeholder="Pesquisar" />
                                 <ion-icon name="search-outline"></ion-icon>
                             </div>
-                            <button>
+                            <button onClick={() => { 
+                                setViewModal(true)
+                                setName('')
+                                setSynopsis('')
+                                setAvaliation(0)
+                                setCategoryId(0)
+                                setGendersMedia([])
+                                setPoster({})
+                                setPosterTimeline({})
+                            }}>
                                 <ion-icon name="add-outline"></ion-icon>
                                 {pageName === "série" ? 'Nova série' : 'Novo ' + pageName}
                             </button>
@@ -311,7 +325,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                             >
                                                 <ion-icon name="create-outline"></ion-icon>
                                             </button>
-                                            <button><ion-icon name="trash-outline"></ion-icon></button>
+                                            <button onClick={() => handleDelete(media.id)}><ion-icon name="trash-outline"></ion-icon></button>
                                         </div>
                                     </div>
                                 </div>
