@@ -4,7 +4,7 @@ import './style.css'
 const Opinion = () => {
     return (
         <div className="opinion-container">
-            <header className="opinion-container">
+            <header className="opinion-header-container">
                 <h1>Mosegook</h1>
             </header>
             <div className="main-opinion-container">
