@@ -354,15 +354,15 @@ const Home = () => {
             <div className="social-media">
                 <h1>Visite Nossas Redes Sociais</h1>
                 <div className="buttons-social-media">
-                    <Link to="/">
+                    <a href="https://www.facebook.com/profile.php?id=100066384981305" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-facebook"></ion-icon>
-                    </Link>
-                    <Link to="/">
+                    </a>
+                    <a href="https://twitter.com/mosegook" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-twitter"></ion-icon>
-                    </Link>
-                    <Link to="/">
+                    </a>
+                    <a href="https://www.instagram.com/mosegook/" rel="noreferrer" target="_blank">
                         <ion-icon name="logo-instagram"></ion-icon>
-                    </Link>
+                    </a>
                 </div>
             </div>
             <footer className="footer">
