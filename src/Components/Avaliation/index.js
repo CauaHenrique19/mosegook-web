@@ -98,7 +98,7 @@ const Avaliation = ({ avaliation }) => {
                 <button onClick={() => handleLike()}>
                     <ion-icon style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} name={liked ? 'heart' : 'heart-outline'}></ion-icon>
                 </button>
-                <Link to={`avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
+                <Link to={`/avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>
     )
