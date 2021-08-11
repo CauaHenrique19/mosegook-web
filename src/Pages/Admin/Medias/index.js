@@ -14,9 +14,12 @@ const Medias = ({ category_id, page, texts, pageName }) => {
     const [mostGoodRated, setMostGoodRated] = useState([])
     
     const [viewModal, setViewModal] = useState(false)
+    const [viewModalUpload, setViewModalUpload] = useState(false)
 
     const [categories, setCategories] = useState([])
     const [genders, setGenders] = useState([])
+
+    const [percentualUpload, setPercentualUpload] = useState(0)
 
     const [id, setId] = useState(0)
     const [name, setName] = useState('')
@@ -88,9 +91,8 @@ const Medias = ({ category_id, page, texts, pageName }) => {
         mediaFormData.append('genders', JSON.stringify(gendersId))
 
         if(id != 0){
-            api.put(`/medias/${id}`, mediaFormData)
+            api.put(`/medias/${id}`, mediaFormData, { onUploadProgress: (e) => handleProgressUpload(e) })
                 .then(res => {
-                    console.log(res.data)
                     const mediaRemove = medias.find(media => media.id === res.data[0].id)
                     res.data[0].url_poster = `${res.data[0].url_poster}?${Date.now()}`
                     res.data[0].url_poster_timeline = `${res.data[0].url_poster_timeline}?${Date.now()}`
@@ -98,25 +100,28 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                     medias.push(res.data[0])
                     setMedias([...medias])
                     setFilteredMedias([...medias])
-                    setViewModal(false)
                 })
                 .catch(error => console.error(error.message))
         }
         else{
-            api.post('/medias', mediaFormData)
+            api.post('/medias', mediaFormData, { onUploadProgress: (e) => handleProgressUpload(e) })
                 .then(res => {
-                    console.log(res.data)
                     const media = res.data[0]
                     setMedias([...medias, media])
                     setFilteredMedias([...medias, media])
-                    setViewModal(false)
                 })
                 .catch(error => console.error(error.message))
         }
     }
 
+    function handleProgressUpload(e){
+        setViewModalUpload(true)
+        setViewModal(false)
+        setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
+    }
+
     function handleDelete(id){
-        api.delete(`/medias/${id}`)
+        api.delete(`/medias/${id}`, { onUploadProgress: (e) => handleProgressUpload(e) })
             .then(res => {
                 if(res.data.error){
 
@@ -224,6 +229,38 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                                 <button onClick={() => handleSubmit()}>Salvar</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            }
+            {
+                viewModalUpload && 
+                <div className="modal">
+                    <div className="modal-content upload">
+                        {
+                            percentualUpload !== 100 ? 
+                            <ion-icon className="rotate" name="hourglass-outline"></ion-icon>
+                            :
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        }
+                        {
+                            percentualUpload !== 100 ? 
+                            <h1>Enviando...</h1> :
+                            <h1>Enviado com sucesso!</h1>
+                        }
+                        {
+                            percentualUpload != 100 ? 
+                            <div className="progress">
+                                <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
+                            </div> 
+                            :
+                            <button 
+                                onClick={() => {
+                                    setViewModal(false)
+                                    setViewModalUpload(false)
+                                }}>
+                                Fechar
+                            </button>
+                        }
                     </div>
                 </div>
             }
