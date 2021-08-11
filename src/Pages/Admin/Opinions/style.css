@@ -1,0 +1,154 @@
+.opinions-admin-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.opinions-admin-container .main-opinions-container{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.opinions-admin-container .main-opinions-container::-webkit-scrollbar{
+    width: 7px;
+}
+.opinions-admin-container .main-opinions-container::-webkit-scrollbar-thumb{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.opinions-admin-container .statistics-opinions-main-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px;
+}
+.opinions-admin-container .statistic{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 160, 223);
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 0px 35px;
+}
+.opinions-admin-container .statistic .number-statisc{
+    font-size: 2.5rem;
+}
+.opinions-admin-container .statistic .statistic-description{
+    font-weight: 400;
+}
+.opinions-admin-container .statistic ion-icon{
+    font-size: 5rem;
+    align-self: flex-end;
+}
+.opinions-admin-container .statistic:last-child{
+    margin-right: 0;
+}
+.opinions-admin-container .statistic:nth-child(2){
+    background-color: rgb(212, 50, 83);
+}
+.opinions-main-container{
+    height: calc(100% - 15vh - 60px);
+    margin: 0 20px 20px 20px;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container h1{
+    font-size: 3rem;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container .input-container{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 50px;
+    width: 350px;
+    margin-right: 20px;
+    border: 1px solid gray;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container .input-container input{
+    width: 300px;
+    height: 50px;
+    background: initial;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 0px 25px;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container .input-container input::placeholder{
+    color: gray;
+}
+.opinions-admin-container .opinions-main-container .header-opinions-main-container .input-container ion-icon{
+    font-size: 1.7rem;
+    color: gray;
+}
+.opinions-admin-container .opinions-main-container .opinions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}
+.opinions-admin-container .opinions-main-container .opinions .nothing-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+}
+.opinions-admin-container .opinions-main-container .opinions .nothing-container h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.opinions-admin-container .opinions-main-container .opinions .nothing-container p{
+    font-size: 1.7rem;
+    width: 650px;
+    text-align: center;
+    font-weight: 300;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0px 15px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+    transition: background-color 0.3s;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion:hover{
+    background-color: rgba(0, 0, 0, 0.336);
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion:last-child{
+    border-bottom: none;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion .image-container{
+    margin-right: 15px;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion .opinion-info{
+    width: 250px;
+    display: flex;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion .opinion-info h2{
+    font-weight: 300;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion .opinion-email{
+    width: 450px;
+}
+.opinions-admin-container .opinions-main-container .opinions .opinion .opinion-admin{
+    width: 200px;
+}
