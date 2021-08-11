@@ -6,6 +6,46 @@
     justify-content: space-between;
     align-items: center;
 }
+.opinion-container .modal-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.596);
+}
+.opinion-container .modal-container .modal-content{
+    width: 450px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f0f0f;
+    border-radius: 35px;
+}
+.opinion-container .modal-container .modal-content ion-icon{
+    font-size: 6rem;
+    margin-bottom: 10px;
+    color: rgb(0, 128, 79);
+}
+.opinion-container .modal-container .modal-content h1{
+    margin-bottom: 20px;
+}
+.opinion-container .modal-container .modal-content a{
+    width: 250px;
+    height: 40px;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+}
+.opinion-container .modal-container .modal-content a:hover{
+    background-color: rgb(96, 0, 185);
+}
 .opinion-container header{
     width: 50%;
     height: fit-content;
