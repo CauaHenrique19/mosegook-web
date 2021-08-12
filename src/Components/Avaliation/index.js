@@ -22,8 +22,8 @@ const Avaliation = ({ avaliation }) => {
                 }
             })
             .catch(error => console.error(error))
-    }, [])
-    
+    }, [avaliation])
+
     function handleLike(){
         if(liked){
             api.delete(`/likes/avaliations/${like.id}`)
@@ -44,7 +44,6 @@ const Avaliation = ({ avaliation }) => {
                 })
                 .catch(error => console.error(error))
         }
-
     }
 
     return (

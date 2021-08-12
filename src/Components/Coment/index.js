@@ -13,6 +13,7 @@ const Coment = ({ coment }) => {
     useEffect(() => {
         api.get(`/likes/coments/user/${user.id}/${coment.id}`)
             .then(res => {
+                console.log(res.data)
                 if(res.data.id){
                     setLike(res.data)
                     setLiked(true)
@@ -22,7 +23,7 @@ const Coment = ({ coment }) => {
                 }
             })
             .catch(error => console.error(error))
-    }, [])
+    }, [coment])
 
     function handleLike(){
         if(liked){

@@ -1,6 +1,5 @@
 .coment{
     width: 405px;
-    max-height: 350px;
     height: fit-content;
     display: flex;
     flex-direction: column;
