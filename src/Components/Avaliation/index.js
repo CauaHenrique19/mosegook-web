@@ -28,7 +28,7 @@ const Avaliation = ({ avaliation }) => {
         if(liked){
             api.delete(`/likes/avaliations/${like.id}`)
                 .then(_ => {
-                    avaliation.amountLikes = parseInt(avaliation.amountLikes - 1)
+                    avaliation.amountLikes = parseInt(avaliation.amountLikes) - 1 
                     setLiked(false)
                 })
                 .catch(error => console.error(error))
@@ -39,7 +39,7 @@ const Avaliation = ({ avaliation }) => {
             api.post('/likes/avaliations', like)
                 .then(res => { 
                     setLike(res.data[0])
-                    avaliation.amountLikes = parseInt(avaliation.amountLikes + 1)
+                    avaliation.amountLikes = parseInt(avaliation.amountLikes) + 1
                     setLiked(true)
                 })
                 .catch(error => console.error(error))

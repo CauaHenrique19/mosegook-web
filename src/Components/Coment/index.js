@@ -29,7 +29,7 @@ const Coment = ({ coment }) => {
         if(liked){
             api.delete(`/likes/coments/${like.id}`)
                 .then(_ => {
-                    coment.amountLikes = parseInt(coment.amountLikes - 1)
+                    coment.amountLikes = parseInt(coment.amountLikes) - 1
                     setLiked(false)
                 })
                 .catch(error => console.error(error))
@@ -39,7 +39,7 @@ const Coment = ({ coment }) => {
             api.post('/likes/coments', like)
                 .then(res => { 
                     setLike(res.data[0])
-                    coment.amountLikes = parseInt(coment.amountLikes + 1)
+                    coment.amountLikes = parseInt(coment.amountLikes) + 1
                     setLiked(true)
                 })
                 .catch(error => console.error(error))
