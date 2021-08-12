@@ -17,6 +17,7 @@ const User = (props) => {
     const [avaliations, setAvaliations] = useState([])
     const [coments, setComents] = useState([])
     const [following, setFollowing] = useState(false)
+    const [followMe, setFollowMe] = useState(false)
     const [amountFollowers, setAmountFollowers] = useState(0)
     const [onEdit, setOnEdit] = useState(false)
 
@@ -65,7 +66,9 @@ const User = (props) => {
     useEffect(async () => {
         if(user != undefined){
             const { data: followUser } = await api.get(`/follow-user/${userContext.id}/${user.user.id}`)
+            const { data: userFollow } = await api.get(`/user-follow/${userContext.id}/${user.user.id}`)
             setFollowing(followUser.follow)
+            setFollowMe(userFollow.follow)
         }
     }, [user, userContext])
 
@@ -173,7 +176,13 @@ const User = (props) => {
                         </div>
                         <div className="user-info">
                             {
-                                !onEdit && <h1>{name}</h1>
+                                !onEdit && 
+                                <div className="name-container">
+                                    <h1>{name}</h1>
+                                    {
+                                        followMe && <div className="follow-tag">Segue você</div>
+                                    }
+                                </div>
                             }
                             {
                                 onEdit && <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Seu nome" />

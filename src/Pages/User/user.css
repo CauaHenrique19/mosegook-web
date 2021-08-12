@@ -124,6 +124,20 @@
     margin-top: 150px;
     margin-bottom: 10px;
 }
+.profile-info-container .user-info-container .name-container{
+    display: flex;
+    align-items: center;
+}
+.profile-info-container .user-info-container .name-container h1{
+    margin-right: 15px;
+}
+.profile-info-container .user-info-container .name-container .follow-tag{
+    width: fit-content;
+    background-color: rgba(128, 128, 128, 0.274);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
 .profile-info-container .user-info-container button{
     width: fit-content;
     background-color: initial;
