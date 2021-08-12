@@ -79,7 +79,7 @@ const User = (props) => {
             api.delete(`/follow/${userContext.id}/${user.user.id}`, follow)
                 .then(res => {
                     setFollowing(false)
-                    setAmountFollowers(parseInt(user.followers_count.amount -= 1))
+                    setAmountFollowers(parseInt(amountFollowers) - 1)
                 })
                 .catch(error => console.error(error.message))
         }
@@ -87,7 +87,7 @@ const User = (props) => {
             api.post('/follow', follow)
                 .then(res => {
                     setFollowing(true)
-                    setAmountFollowers(parseInt(user.followers_count.amount += 1))
+                    setAmountFollowers(parseInt(amountFollowers) + 1)
                 })
                 .catch(error => console.error(error.message))
         }
