@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Context } from '../../context/context'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
@@ -18,6 +18,16 @@ const User = (props) => {
     const [coments, setComents] = useState([])
     const [following, setFollowing] = useState(false)
     const [amountFollowers, setAmountFollowers] = useState(0)
+    const [onEdit, setOnEdit] = useState(false)
+
+    const [image, setImage] = useState({})
+    const [name, setName] = useState('')
+    const [biography, setBiography] = useState('')
+
+    const [viewModal, setViewModal] = useState(false)
+    const [percentualUpload, setPercentualUpload] = useState(0)
+
+    const inputImage = useRef(null)
 
     useEffect(() => {
         async function getDatas(){
@@ -32,6 +42,9 @@ const User = (props) => {
                 setLoading(false)
                 setUserNotExists(false)
                 setAmountFollowers(parseInt(dataUser.followers_count.amount))
+                setName(dataUser.user.name)
+                setBiography(dataUser.user.biography)
+                setImage(dataUser.user.url_image)
             }
             else if(dataUser.message){
                 setUserNotExists(true)
@@ -77,6 +90,31 @@ const User = (props) => {
         }
     }
 
+    function handleEdit(){
+
+        const formdata = new FormData()
+        formdata.append('name', name)
+        formdata.append('biography', biography)
+        formdata.append('image', image)
+
+        api.put(`/users/${userContext.id}`, formdata, { onUploadProgress: (e) => handleProgress(e) })
+            .then(res => {
+                if(res.data.message){
+                    console.log(res.data)
+                }
+                else{
+                    console.log(res.data)
+                    setOnEdit(false)
+                }
+            })
+            .catch(error => console.error(error.message))
+    }
+
+    function handleProgress(e){
+        setViewModal(true)
+        setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
+    }
+
     return (
         <div className="profile-container">
             {
@@ -87,18 +125,64 @@ const User = (props) => {
                 </div> 
             }
             {loading && <Loading />}
+            {
+                viewModal && 
+                <div className="modal">
+                    <div className="modal-content upload">
+                        {
+                            percentualUpload !== 100 ? 
+                            <ion-icon className="rotate" name="hourglass-outline"></ion-icon>
+                            :
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        }
+                        {
+                            percentualUpload !== 100 ? 
+                            <h1>Enviando...</h1> :
+                            <h1>Atualizado com sucesso!</h1>
+                        }
+                        {
+                            percentualUpload != 100 ? 
+                            <div className="progress">
+                                <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
+                            </div> 
+                            :
+                            <button 
+                                onClick={() => {
+                                    setViewModal(false)
+                                }}>
+                                Fechar
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
             <div className="profile-info-container">
                 {
                     user &&
                     <div className="user-info-container">
-                        <img src={user.user.url_image} alt="" />
+                        <div className="image-user-container">
+                            <img src={image.name ? URL.createObjectURL(image) : `${user.user.url_image}?${Date.now()}`} alt={user.user.user} />
+                            {
+                                onEdit && 
+                                <div className="button-container">
+                                    <button onClick={() => inputImage.current && inputImage.current.click()} >
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </button>
+                                </div>
+                            }
+                        </div>
                         <div className="user-info">
-                            <h1>{user.user.name}</h1>
+                            {
+                                !onEdit && <h1>{name}</h1>
+                            }
+                            {
+                                onEdit && <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Seu nome" />
+                            }
                             <h1>@{user.user.user}</h1>
                             <div className="follow-container">
                                 <p>{user.following_count.amount} Seguindo</p>
                                 <p>{amountFollowers} Seguidores</p>
-                                { userContext.user === user.user.user && <button>Editar Perfil</button> }
+                                { userContext.user === user.user.user && <button onClick={() => setOnEdit(!onEdit)}>Editar Perfil</button> }
                                 { userContext.user !== user.user.user && 
                                     <button 
                                         className={following && 'selected'} 
@@ -107,15 +191,33 @@ const User = (props) => {
                                     </button>
                                 }
                             </div>
-                            <p className="biography">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                                the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                                type
-                                and scrambled it to make a type specimen book. It has survived not only five centuries, but also
-                                the
-                                leap into electronic typesetting, remaining essentially unchanged.
-                            </p>
+                            {
+                                !onEdit && 
+                                <p className="biography">
+                                    { biography ? biography : "Sem Biografia" }
+                                </p>
+                            }
+                            {
+                                onEdit && 
+                                <textarea 
+                                    value={biography} 
+                                    onChange={e => setBiography(e.target.value)} 
+                                    placeholder="Sua biografia" cols="30" rows="10"
+                                >
+                                </textarea>
+                            }
+                            {
+                                onEdit &&
+                                <div className="buttons-container">
+                                    <button className="submit-edit" onClick={() => handleEdit()} >Salvar</button>
+                                    <button className="cancel-edit" onClick={() => {
+                                        setOnEdit(false)
+                                        setImage(user.user.url_image)
+                                        inputImage.current.value = ''
+                                    }}>Cancelar</button>
+                                </div>
+                            }
+                            <input ref={inputImage} type="file" hidden={true} onChange={e => setImage(e.target.files[0])} />
                         </div>
                     </div>
                 }

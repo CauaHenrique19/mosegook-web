@@ -16,6 +16,74 @@
     position: absolute;
     z-index: 10;
 }
+.profile-container .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.profile-container .modal .modal-content.upload{
+    width: 450px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f0f0f;
+    border-radius: 35px;
+}
+.profile-container .modal .modal-content.upload ion-icon{
+    font-size: 6rem;
+    margin-bottom: 10px;
+    color: rgb(0, 128, 79);
+}
+.profile-container .modal .modal-content.upload ion-icon[name="hourglass-outline"]{
+    animation: rotate 3s infinite 1s;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.profile-container .modal .modal-content.upload h1{
+    margin-bottom: 20px;
+}
+.profile-container .modal .modal-content.upload .progress{
+    width: 200px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50px;
+}
+.profile-container .modal .modal-content.upload .progress .progress-content{
+    width: 0%;
+    height: 100%;
+    background-color: rgb(0, 128, 79);
+    border-radius: 50px;
+    transition: width 0.3s;
+}
+.profile-container .modal .modal-content.upload button{
+    width: 250px;
+    height: 40px;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+.profile-container .modal .modal-content.upload button:hover{
+    background-color: rgb(96, 0, 185);
+}
 .profile-container .container-user-not-exists h1{
     width: 300px;
     font-size: 3rem;
@@ -73,13 +141,51 @@
 .profile-info-container .user-info-container button:hover{
     background-color: blueviolet;
 }
-.profile-info-container .user-info-container > img{
+.profile-info-container .user-info-container .image-user-container{
     width: 230px;
     height: 230px;
-    border-radius: 3px;
     position: absolute;
     top: -100px;
     left: 50px;
+}
+.profile-info-container .user-info-container .image-user-container img{
+    width: 230px;
+    height: 230px;
+    border-radius: 100%;
+}
+.profile-info-container .user-info-container input{
+    width: 100%;
+    height: 50px;
+    background-color: initial;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 3px;
+    padding: 0 15px;
+    font-size: 1.5rem;
+    outline: none;
+    margin-bottom: 10px;
+}
+.profile-info-container .user-info-container .image-user-container .button-container{
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.459);
+    position: absolute;
+    top: 0;
+    border-radius: 100%;
+}
+.profile-info-container .user-info-container .image-user-container .button-container button{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border: none;
+}
+.profile-info-container .user-info-container .image-user-container .button-container button ion-icon{
+    font-size: 1.7rem;
 }
 .profile-info-container .user-info-container .user-info{
     padding: 150px 35px 35px 35px;
@@ -108,6 +214,35 @@
     width: 400px;
     margin-top: 20px;
     font-size: 1.1rem;
+}
+.profile-info-container .user-info-container .user-info textarea{
+    width: 100%;
+    margin-top: 20px;
+    background-color: inherit;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 3px;
+    font-size: 1.5rem;
+    outline: none;
+    padding: 15px;
+    resize: vertical;
+}
+.profile-info-container .user-info-container .user-info .buttons-container button{
+    width: 50%;
+    height: 40px;
+    margin: 10px 0 0 0;
+    background-color: blueviolet;
+    transition: filter 0.3s;
+}
+.profile-info-container .user-info-container .user-info .buttons-container button:hover{
+    filter: brightness(0.7);
+}
+.profile-info-container .user-info-container .user-info .buttons-container .submit-edit{
+    width: calc(50% - 5px);
+    margin-right: 5px;
+}
+.profile-info-container .user-info-container .user-info .buttons-container .cancel-edit{
+    background-color: rgb(212, 50, 83);
+    border: none;
 }
 .profile-info-container .user-medias-preferences{
     height: fit-content;
