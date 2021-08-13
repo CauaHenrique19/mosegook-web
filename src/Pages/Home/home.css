@@ -231,7 +231,6 @@
     }
 }
 .most-rated{
-    background-color: #282a36;
     background-color: #0f0f0f;
     height: 100vh;
     padding: 50px 0 0 0;
@@ -271,7 +270,6 @@
     backdrop-filter: blur( 20px );
     -webkit-backdrop-filter: blur( 20px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    /* background-color: rgb(184, 184, 184); */
 }
 .most-rateds-content{
     display: flex;
@@ -306,7 +304,7 @@
     right: 43px;
 }
 .most-rateds-content .previous-button-slider{
-    left: 60px;
+    left: 30px;
     display: none;
 }
 .media-slider{
@@ -554,6 +552,189 @@
     font-weight: 700;
     color: rgb(0, 160, 223);
 }
+@media(max-width: 1700px){
+    .our-advantages{
+        padding: 100px 150px 0 150px;
+    }
+    .newsletter{
+        padding: 0px 200px;
+    }
+    .people-avaliations{
+        width: 400px;
+    }
+    .people-avaliations:nth-child(3n+1):hover{
+        width: 460px;
+        transform: none;
+    }
+}
+@media(max-width: 1620px){
+    .people-avaliations{
+        width: 380px;
+    }
+    .people-avaliations:nth-child(3n+1):hover{
+        width: 460px;
+        transform: none;
+    }
+    .social-media{
+        padding: 0px 150px;
+    }
+    .footer{
+        padding: 100px 150px;
+    }
+}
+@media(max-width: 1600px){
+    .container{
+        background-color: #0F0F0F;
+        background-size: cover;
+        background-position: center;
+    }
+    .newsletter{
+        padding: 0px 170px;
+    }
+}
+@media(max-width: 1550px){
+    .people-avaliations{
+        width: 350px;
+    }
+    .people-avaliations:nth-child(3n+1):hover{
+        width: 460px;
+        transform: none;
+    }
+}
+@media(max-width: 1400px){
+    .our-advantages{
+        padding: 100px 100px 0 100px;
+    }
+}
+@media(max-width: 1350px){
+    .header{
+        padding: 0px 100px;
+    }
+    .our-advantages{
+        flex-direction: column;
+        align-items: center;
+        justify-content: inherit;
+        padding: 50px 0 0 0;
+    }
+    .our-advantages .advantages-description{
+        margin-bottom: 20px;
+    }
+    .our-advantages .advantages-description h1{
+        max-width: 900px;
+        font-size: 3rem;
+    }
+    .our-advantages .advantages-description p{
+        max-width: 900px;
+        font-size: 1.2rem;
+    }
+    .button-next-page{
+        display: none;
+        /* align-self: flex-end; */
+    }
+    .our-advantages .advantages-itens{
+        width: 900px;
+        grid-template-columns: 450px 450px;
+    }
+    .our-advantages .advantage p{
+        max-width: 600px;
+    }
+    .newsletter{
+        padding: 0px 60px;
+    }
+    .newsletter img{
+        width: 650px;
+        top: -320px;
+    }
+    .we-peoples-about-us > h1{
+        margin-left: 50px;
+    }
+    .people-avaliations{
+        width: 300px;
+    }
+    .people-avaliations:nth-child(3n+1):hover{
+        width: 380px;
+        transform: none;
+    }
+    .social-media{
+        padding: 0 50px;
+    }
+    .social-media h1{
+        font-size: 3.7rem;
+        max-width: 450px;
+    }
+    .social-media a{
+        width: 125px;
+        height: 125px;
+    }
+    .footer{
+        padding: 100px 50px;
+    }
+}
+
+@media(max-width: 1024px){
+    :root{
+        font-size: 12px;
+    }
+    body{
+        width: 100vw;
+        height: auto;
+    }
+    .container-home{
+        height: auto;
+    }
+    .header{
+        padding: 50px;
+    }
+    .main{
+        padding: 50px;
+    }
+    .main .button-next-page{
+        display: flex;
+    }
+    .container-home .main .info-container h1{
+        font-size: 5rem;
+        max-width: 850px;
+    }
+    .most-rated{
+        display: none;
+    }
+    .advantages-description{
+        margin-left: 50px;
+    }
+    .our-advantages{
+        height: auto;
+    }
+    .our-advantages .advantages-itens{
+        grid-template-columns: 1fr 1fr;
+        width: auto;
+        padding: 50px;
+    }
+    .our-advantages .advantage p{
+        width: auto;
+    }
+    .newsletter .input-container{
+        width: 100%;
+    }
+    .newsletter .input-container input{
+        width: 90%;
+    }
+    .newsletter img{
+        display: none;
+    }
+    .we-peoples-about-us{
+        height: auto;
+    }
+    .people-avaliations{
+        width: 450px;
+    }
+    .we-peoples-about-us .row .people-avaliations:nth-child(1),
+    .we-peoples-about-us .row .people-avaliations:nth-child(4){
+        display: none;
+    }
+    .footer{
+        height: auto;
+    }
+}
 @media( max-width: 500px){
     :root{
         font-size: 10px;
@@ -562,30 +743,35 @@
         width: 100vw;
         height: auto;
     }
-
-    .container-home{
-        background-size: cover;
-        background-position: center;
+    .container{
         background-color: #0F0F0F;
+        background: none;
     }
-    .container-home .header{
-        padding: 30px;
-    } 
-    .container-home .main{
+    .header{
         padding: 30px;
     }
-    .container-home .main .info-container h1{
-        max-width: 650px;
+    .header .center-wrapper{
+        margin-left: auto;
     }
-    .container-home .main .button-next-page{
+    .header .center-wrapper > i{
+        font-size: 20px;
+        display: block;
+    }
+    .header .menu{
+        display: none;
+    }    
+    .header .right-wrapper button{
+        display: none;
+    }
+    .main{
+        padding: 30px;
+    }
+    .main .button-next-page{
         display: flex;
     }
     .our-advantages{
         padding: 0 30px;
-        flex-direction: column;
-    }
-    .our-advantages .button-next-page{
-        display: none;
+        height: auto;
     }
     .our-advantages .advantages-itens{
         width: 100%;
@@ -605,9 +791,6 @@
     .most-rated{
         display: none;
     }
-    .newsletter{
-        padding: 0 30px;
-    }
     .newsletter img{
         display: none;
     }
@@ -622,11 +805,6 @@
     }
     .we-peoples-about-us{
         height: auto;
-        padding: 0;
-    }
-    .we-peoples-about-us > h1{
-        max-width: 450px;
-        margin: 20px 0 20px 30px;
     }
     .we-peoples-about-us .row{
         margin: auto;
@@ -644,20 +822,9 @@
         gap: 20px;
         justify-content: center;
     }
-    .social-media h1{
-        width: 700px;
-    }
     .social-media .buttons-social-media {
-        width: 450px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
-    }
-    .footer{
-        height: 30vh;
-        padding: 30px;
-    }
-    .footer .right-container h2:nth-child(2){
-        width: 205px;
     }
 }
