@@ -240,7 +240,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="newsletter">
-                <h1>Não Encontrou uma mídia de seu gosto? Sugestione aqui.</h1>
+                <h1>Não Encontrou uma mídia de seu gosto? Sugira aqui.</h1>
                 <div className="newsletter-main">
                     <div className="input-container">
                         <input value={mediaName} onChange={e => setMediaName(e.target.value)} type="text" placeholder="Título da mídia" />
