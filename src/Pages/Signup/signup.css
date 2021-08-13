@@ -3,6 +3,74 @@
     display: flex;
     background-color: #0f0f0f;
 }
+.container-signup .modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 10;
+}
+.container-signup .modal .modal-content.upload{
+    width: 450px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f0f0f;
+    border-radius: 35px;
+}
+.container-signup .modal .modal-content.upload ion-icon{
+    font-size: 6rem;
+    margin-bottom: 10px;
+    color: rgb(0, 128, 79);
+}
+.container-signup .modal .modal-content.upload ion-icon[name="hourglass-outline"]{
+    animation: rotate 3s infinite 1s;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.container-signup .modal .modal-content.upload h1{
+    margin-bottom: 20px;
+}
+.container-signup .modal .modal-content.upload .progress{
+    width: 200px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50px;
+}
+.container-signup .modal .modal-content.upload .progress .progress-content{
+    width: 0%;
+    height: 100%;
+    background-color: rgb(0, 128, 79);
+    border-radius: 50px;
+    transition: width 0.3s;
+}
+.container-signup .modal .modal-content.upload button{
+    width: 250px;
+    height: 40px;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+.container-signup .modal .modal-content.upload button:hover{
+    background-color: rgb(96, 0, 185);
+}
 .container-signup .form-container{
     width: 50vw;
 }
@@ -24,7 +92,14 @@
 .container-signup .form-container .form h1{
     font-size: 3rem;
     max-width: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+.container-signup .form-container .form .message{
+    width: 100%;
+    position: inherit;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 .container-signup .form-container label{
     font-weight: 400;

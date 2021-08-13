@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Context } from '../../context/context'
+import Message from '../../Components/Message'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
 import './signup.css'
@@ -18,15 +19,16 @@ const Signup = () => {
     const [gender, setGender] = useState('')
     const [imageSelected, setImageSelected] = useState(null)
 
+    const [message, setMessage] = useState('')
+
     const [viewPassword, setViewPassword] = useState(false)
     const [viewConfirmPassword, setViewConfirmPassword] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [viewModal, setViewModal] = useState(false)
+    const [percentualUpload, setPercentualUpload] = useState(0)
 
     const fileInput = useRef(null)
 
-    function handleSignup(){
-        console.log({ name, user, email, password, confirmPassword, gender, imageSelected })
-
+    function handleSignup() {
         const userSignupFormData = new FormData()
         userSignupFormData.append('name', name)
         userSignupFormData.append('user', user)
@@ -36,31 +38,69 @@ const Signup = () => {
         userSignupFormData.append('gender', gender)
         userSignupFormData.append('file', imageSelected)
 
-        setLoading(true)
+        if(!name) return setMessage("Informe o nome!")
+        if(!user) return setMessage("Informe o user!")
+        if(!email) return setMessage("Informe o email!")
+        if(!password) return setMessage("Informe a senha!")
+        if(!confirmPassword) return setMessage("Confirme a senha!")
+        if(!gender) return setMessage("Informe o seu sexo!")
+        if(!imageSelected) return setMessage("Escolha uma imagem de perfil!")
 
-        api.post('/signup', userSignupFormData)
+        api.post('/signup', userSignupFormData, { onUploadProgress: (e) => handleProgress(e)})
             .then(res => {
-                setLoading(false)
-                if(res.data.auth){
+                if (res.data.auth) {
                     localStorage.setItem('mosegook_user', JSON.stringify(res.data.userDb[0]))
                     localStorage.setItem('mosegook_token', res.data.token)
                     setUser(res.data.userDb[0])
                     setToken(res.data.token)
-                    setLoading(false)
-                    history.push('/select-genders')
                 }
-                else{
+                else {
                     console.log(res.data)
-                    setLoading(false)
+                    setMessage(res.data.message)
                 }
-                
             })
             .catch(error => console.error(error.message))
     }
 
+    function handleProgress(e){
+        setViewModal(true)
+        setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
+    }
+
     return (
         <div className="container-signup">
-            { loading && <Loading /> }
+            {
+                viewModal && 
+                <div className="modal">
+                    <div className="modal-content upload">
+                        {
+                            percentualUpload !== 100 ?
+                            <ion-icon className="rotate" name="hourglass-outline"></ion-icon>
+                                :
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        }
+                        {
+                            percentualUpload !== 100 ?
+                            <h1>Criando perfil...</h1> :
+                            <h1>Primeira etapa concluída!</h1>
+                        }
+                        {
+                            percentualUpload != 100 ?
+                            <div className="progress">
+                                <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
+                            </div>
+                            :
+                            <button
+                                onClick={() => {
+                                    setViewModal(false)
+                                    history.push('/select-genders')
+                                }}>
+                                Próxima etapa
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
             <div className="form-container">
                 <header>
                     <h1>Mosegook</h1>
@@ -68,6 +108,7 @@ const Signup = () => {
                 <div className="form">
                     <div className="inputs-form">
                         <h1>Você está muito perto de começar!</h1>
+                        {message && <Message message={message} />}
                         <div className="form-row">
                             <div>
                                 <label htmlFor="input-container">Nome</label>
@@ -131,9 +172,9 @@ const Signup = () => {
                     <div className="image-input">
                         <h1>Foto de Perfil</h1>
                         <div className="image-form" onClick={() => fileInput.current && fileInput.current.click()}>
-                            { !imageSelected && <ion-icon name="image-outline"></ion-icon> }
-                            { !imageSelected && <h1>Clique para selecionar uma imagem de perfil</h1> }
-                            { imageSelected && <img src={URL.createObjectURL(imageSelected)} alt="ImageUser" /> }
+                            {!imageSelected && <ion-icon name="image-outline"></ion-icon>}
+                            {!imageSelected && <h1>Clique para selecionar uma imagem de perfil</h1>}
+                            {imageSelected && <img src={URL.createObjectURL(imageSelected)} alt="ImageUser" />}
                         </div>
                         <input ref={fileInput} onChange={(e) => setImageSelected(e.target.files[0])} type="file" hidden={true} />
                     </div>
