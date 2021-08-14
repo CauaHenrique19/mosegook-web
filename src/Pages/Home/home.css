@@ -586,7 +586,6 @@
     }
     .our-advantages .advantages-description h1{
         max-width: 900px;
-        font-size: 3rem;
     }
     .our-advantages .advantages-description p{
         max-width: 900px;
@@ -594,7 +593,6 @@
     }
     .button-next-page{
         display: none;
-        /* align-self: flex-end; */
     }
     .our-advantages .advantages-itens{
         width: 900px;
@@ -624,7 +622,6 @@
         padding: 0 50px;
     }
     .social-media h1{
-        font-size: 3.7rem;
         max-width: 450px;
     }
     .social-media a{
@@ -650,25 +647,8 @@
     .container-home .header{
         padding: 50px;
     }
-    .container-home .header a{
-        font-size: 2.3rem;
-        border: 2px solid white;
-    }
-    .container-home .header h1{
-        font-size: 5rem;
-    }
     .container-home .main{
         padding: 50px;
-    }
-    .container-home .main .info-container h1{
-        font-size: 6rem;
-        width: calc(100vw - 50px);
-        max-width: 100vw;
-    }
-    .container-home .main .info-container p{
-        font-size: 3rem;
-        width: calc(90vw - 50px);
-        max-width: 90vw;
     }
     .container-home .main .button-next-page{
         display: flex;
@@ -679,15 +659,6 @@
     .most-rated{
         display: none;
     }
-    .advantages-description{
-        margin-left: 50px;
-    }
-    .our-advantages .advantages-description h1{
-        font-size: 5rem;
-    }
-    .our-advantages .advantages-description p{
-        font-size: 2.5rem;
-    }
     .our-advantages{
         height: auto;
     }
@@ -697,44 +668,20 @@
         padding: 50px 20px;
     }
     .our-advantages .advantages-itens .advantage{
-        height: 450px;
+        height: fit-content;
         position: inherit;
-    }
-    .our-advantages .advantages-itens .advantage h2{
-        max-width: 500px;
-        font-size: 4rem;
-    }
-    .our-advantages .advantages-itens .advantage p{
-        font-size: 2.5rem;
-        max-width: 800px;
-    }
-    .our-advantages .advantages-itens .advantage .circle-icon{
-        width: 120px;
-        height: 120px;
-    }
-    .our-advantages .advantages-itens .advantage .circle-icon ion-icon{
-        font-size: 5rem;
-    }
-    .our-advantages .advantages-itens .advantage .circle-animation{
-        width: 120px;
-        height: 120px;
+        margin-bottom: 50px;
     }
     .newsletter{
         height: auto;
         padding: 100px 50px;
-    }
-    .newsletter h1{
-        font-size: 4rem;
     }
     .newsletter .input-container{
         width: 100%;
     }
     .newsletter .input-container input{
         width: 90%;
-        font-size: 2.5rem;
-    }
-    .newsletter .input-container button{
-        font-size: 2.5rem;
+        
     }
     .newsletter img{
         display: none;
@@ -752,9 +699,6 @@
     .we-peoples-about-us .row .people-avaliations:nth-child(4){
         display: none;
     }
-    .social-media{
-        height: 30vh;
-    }
     .footer{
         height: auto;
     }
@@ -766,6 +710,10 @@
     body{
         width: 100vw;
         height: auto;
+    }
+    .container-home .header a{
+        padding: 7px 25px;
+        font-size: 1.3rem;
     }
     .main{
         padding: 30px;
@@ -825,10 +773,5 @@
         flex-direction: column;
         gap: 20px;
         justify-content: center;
-    }
-    .social-media .buttons-social-media {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
     }
 }
