@@ -103,6 +103,10 @@ const Avaliation = ({ avaliation, handleDelete }) => {
                         <ion-icon name="trash-outline"></ion-icon>
                     </button>
                 }
+                {
+                    user.id != avaliation.user_id &&
+                    <Link to={`/user/${avaliation.user_user}`}><ion-icon name="person-outline"></ion-icon></Link>
+                }
                 <Link to={`/avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>
