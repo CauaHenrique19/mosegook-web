@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import api from '../../services/api'
 import './coment.css'
 
-const Coment = ({ coment }) => {
+const Coment = ({ coment, handleDelete }) => {
 
     const { user } = useContext(Context)
     const [liked, setLiked] = useState(false)
@@ -13,7 +13,6 @@ const Coment = ({ coment }) => {
     useEffect(() => {
         api.get(`/likes/coments/user/${user.id}/${coment.id}`)
             .then(res => {
-                console.log(res.data)
                 if(res.data.id){
                     setLike(res.data)
                     setLiked(true)
@@ -92,6 +91,12 @@ const Coment = ({ coment }) => {
                             name={liked ? 'heart' : 'heart-outline'}>
                         </ion-icon>
                 </button>
+                {
+                    user.id == coment.user_id && 
+                    <button onClick={() => handleDelete(coment)}>
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                }
                 <Link to="/"><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>

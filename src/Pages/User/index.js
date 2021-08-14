@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Context } from '../../context/context'
-import api from '../../services/api'
+
+import handleDeleteComent from '../../utils/handleDeleteComent'
 import Loading from '../../Components/Loading'
 import Avaliation from '../../Components/Avaliation'
 import Coment from '../../Components/Coment'
 
+import api from '../../services/api'
 import './user.css'
 
 const User = (props) => {
@@ -298,7 +300,7 @@ const User = (props) => {
                     {
                         user && coments.length > 0 
                         ? 
-                            coments.map(coment => <Coment key={coment.id} coment={coment} />)
+                            coments.map(coment => <Coment key={coment.id} coment={coment} handleDelete={() => handleDeleteComent(coment, coments, setComents)} />)
                         : 
                         <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>

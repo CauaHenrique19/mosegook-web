@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
-import api from '../../services/api'
+
+import handleDeleteComent from '../../utils/handleDeleteComent'
 import Loading from '../../Components/Loading'
 import Avaliation from '../../Components/Avaliation'
 import Coment from '../../Components/Coment'
+
+import api from '../../services/api'
 import './timeline.css'
 
 const Timeline = () => {
@@ -351,7 +354,7 @@ const Timeline = () => {
                                 {avaliations.length > 0 && avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />)}
                             </div>
                             <div className="column-coments">
-                                {coments.length > 0 && coments.map(coment => <Coment key={coment.id} coment={coment} />)}
+                                {coments.length > 0 && coments.map(coment => <Coment key={coment.id} coment={coment} handleDelete={() => handleDeleteComent(coment, coments, setComents)} />)}
                             </div>
                         </div>
                     </div>

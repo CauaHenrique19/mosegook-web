@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/context'
+
+import handleDeleteComent from '../../utils/handleDeleteComent'
 import Loading from '../../Components/Loading'
 import Coment from '../../Components/Coment'
 import api from '../../services/api'
+
 import './avaliationDetailed.css'
 
 const AvaliationDetailed = (props) => {
@@ -180,7 +183,7 @@ const AvaliationDetailed = (props) => {
                     <div className="coments">
                         {
                             coments.length > 0 && coments.map(coment => (
-                                <Coment key={coment.id} coment={coment} />
+                                <Coment key={coment.id} coment={coment} handleDelete={() => handleDeleteComent(coment, coments, setComents)} />
                             ))
                         }
                     </div>
