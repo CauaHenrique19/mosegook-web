@@ -162,6 +162,11 @@ const Timeline = () => {
                     amountLikes: 0
                 }
                 setAvaliations([updatedAvaliation, ...avaliations])
+                setContentAvaliation('')
+                setMentionedMedia(null)
+                setStars(0)
+                setSearchMediaMention('')
+                setViewInputSearchMediaMention(false)
             })
             .catch(error => console.error(error.message))
     }

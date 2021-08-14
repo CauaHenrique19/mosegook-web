@@ -82,7 +82,7 @@
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders .timeline-genders-content{
     display: flex;
     flex-wrap: wrap;
-    max-width: 250px;
+    max-width: 300px;
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders .timeline-gender{
     width: fit-content;
