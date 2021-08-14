@@ -127,7 +127,7 @@ const Home = () => {
                         </p>
                         {!token && <Link to="/signup">Começar a avaliar</Link>}
                     </div>
-                    <div className="button-next-page" onClick={() => window.scrollTo({ top: 937, behavior: 'smooth' })} >
+                    <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 1, behavior: 'smooth' })} >
                         <ion-icon name="chevron-down-outline"></ion-icon>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                         <ion-icon name="chevron-down-outline"></ion-icon>
@@ -142,7 +142,7 @@ const Home = () => {
                             discussão
                             sobre filmes, jogos, séries e livros.</p>
                     </div>
-                    <div className="button-next-page" onClick={() => window.scrollTo({ top: 1873, behavior: 'smooth' })}>
+                    <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2, behavior: 'smooth' })}>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                         <ion-icon name="chevron-down-outline"></ion-icon>
@@ -233,7 +233,7 @@ const Home = () => {
                         }
                     </div>
                 </div>
-                <div className="button-next-page" onClick={() => window.scrollTo({ top: 2650, behavior: 'smooth' })} >
+                <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2.7, behavior: 'smooth' })} >
                     <ion-icon name="chevron-down-outline"></ion-icon>
                     <ion-icon name="chevron-down-outline"></ion-icon>
                     <ion-icon name="chevron-down-outline"></ion-icon>
