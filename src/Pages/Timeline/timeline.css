@@ -81,6 +81,8 @@
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders .timeline-genders-content{
     display: flex;
+    flex-wrap: wrap;
+    max-width: 250px;
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .timeline-genders .timeline-gender{
     width: fit-content;
@@ -94,6 +96,9 @@
     font-size: 0.8rem;
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-right: 10px;
     padding-right: 10px;
     border-right: 1px solid rgba(255, 255, 255, 0.377);
@@ -144,9 +149,7 @@
 .timeline-container .most-rated-by-friends-container button{
     width: 50px;
     height: 50px;
-    background-color: rgba(0, 0, 0, 0.527);
     position: absolute;
-    border: none;
     border-radius: 50px;
     z-index: 1;
     cursor: pointer;
@@ -155,6 +158,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.timeline-container .most-rated-by-friends-container button:hover{
+    background-image: url('../../assets/DarkGradient07.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 .timeline-container .most-rated-by-friends-container > button.next-button{
     right: 30px;
@@ -435,6 +452,18 @@
     justify-content: center;
     margin-right: 5px;
     font-size: 0.9rem;
+}
+.timeline-content-container .main-timeline .columns .nothing-container{
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+.timeline-content-container .main-timeline .columns .nothing-container h1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.timeline-content-container .main-timeline .columns .nothing-container p{
+    text-align: center;
 }
 .timeline-content-container .main-timeline .columns-container{
     display: flex;

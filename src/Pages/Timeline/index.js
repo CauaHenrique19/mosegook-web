@@ -351,10 +351,31 @@ const Timeline = () => {
                         </div>
                         <div className="columns">
                             <div className="column-avaliations">
-                                {avaliations.length > 0 && avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />)}
+                                {   
+                                    avaliations.length > 0 ?
+                                    avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />) :
+                                    <div className="nothing-container">
+                                        <h1>Nenhuma avaliação encontrada</h1>
+                                        <p>Assim que alguém avaliar algo do seu gosto ou algum seguidor avaliar alguma coisa mostraremos aqui.</p>
+                                    </div>
+                                }
                             </div>
                             <div className="column-coments">
-                                {coments.length > 0 && coments.map(coment => <Coment key={coment.id} coment={coment} handleDelete={() => handleDeleteComent(coment, coments, setComents)} />)}
+                                {
+                                    coments.length > 0 ? 
+                                    coments.map(coment => 
+                                        <Coment 
+                                            key={coment.id} 
+                                            coment={coment} 
+                                            handleDelete={() => handleDeleteComent(coment, coments, setComents)} 
+                                        />
+                                    )
+                                    :
+                                    <div className="nothing-container">
+                                        <h1>Nenhum comentário encontrado</h1>
+                                        <p>Assim que alguém comentar algo do seu gosto ou algum seguidor comentar alguma coisa mostraremos aqui.</p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
