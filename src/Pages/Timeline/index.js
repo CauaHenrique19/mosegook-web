@@ -225,20 +225,23 @@ const Timeline = () => {
                 </div>
             </div>
             <div className="timeline-content-container">
-                <div className="menu-timeline-container">
-                    <div className="header-menu">
-                        <h1>Mosegook</h1>
+                {
+                    !loading &&
+                    <div className="menu-timeline-container">
+                        <div className="header-menu">
+                            <h1>Mosegook</h1>
+                        </div>
+                        <ul className="content-menu">
+                            <li className="selected"><Link to="/timeline"><ion-icon name="home-outline"></ion-icon>Timeline</Link></li>
+                            <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
+                            <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
+                            {user.admin && <li><Link to="/admin/movies"><ion-icon name="settings-outline"></ion-icon>Administrador</Link></li>}
+                            <li><Link to='/opinion'><ion-icon name="happy-outline"></ion-icon>Avalie a gente</Link></li>
+                            <li><Link to={`/user/${user.user}`}><ion-icon name="person-outline"></ion-icon>Perfil</Link></li>
+                            <li><Link to="/" onClick={e => handleLogout(e)}><ion-icon name="log-out-outline"></ion-icon>Sair</Link></li>
+                        </ul>
                     </div>
-                    <ul className="content-menu">
-                        <li className="selected"><Link to="/timeline"><ion-icon name="home-outline"></ion-icon>Timeline</Link></li>
-                        <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
-                        <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
-                        {user.admin && <li><Link to="/admin/movies"><ion-icon name="settings-outline"></ion-icon>Administrador</Link></li>}
-                        <li><Link to='/opinion'><ion-icon name="happy-outline"></ion-icon>Avalie a gente</Link></li>
-                        <li><Link to={`/user/${user.user}`}><ion-icon name="person-outline"></ion-icon>Perfil</Link></li>
-                        <li><Link to="/" onClick={e => handleLogout(e)}><ion-icon name="log-out-outline"></ion-icon>Sair</Link></li>
-                    </ul>
-                </div>
+                }
                 <div className="main-timeline">
                     <div className="columns-container">
                         <div className="container-new-avaliation">
@@ -358,7 +361,7 @@ const Timeline = () => {
                         <div className="columns">
                             <div className="column-avaliations">
                                 {   
-                                    avaliations.length > 0 ?
+                                    !loading && avaliations.length > 0 ?
                                     avaliations.map(avaliation => 
                                         <Avaliation 
                                             key={avaliation.id} 
@@ -374,7 +377,7 @@ const Timeline = () => {
                             </div>
                             <div className="column-coments">
                                 {
-                                    coments.length > 0 ? 
+                                    !loading && coments.length > 0 ? 
                                     coments.map(coment => 
                                         <Coment 
                                             key={coment.id} 
@@ -400,7 +403,7 @@ const Timeline = () => {
                                 <button onClick={() => setViewInputSearchUser(!viewInputSearchUser)}><ion-icon name="search-outline"></ion-icon></button>
                             </div>
                             {
-                                usersData.length > 0 ? usersData.map(user => (
+                                !loading && usersData.length > 0 ? usersData.map(user => (
                                     <div key={user.user} className="content-who-follow">
                                         <div className="user-to-follow">
                                             <div>
@@ -427,7 +430,7 @@ const Timeline = () => {
                             </div>
                             <div className="main-discover-medias">
                                 {
-                                    mediasToDiscover && mediasToDiscover.map(media => (
+                                    !loading && mediasToDiscover && mediasToDiscover.map(media => (
                                         <div key={media.name} className="media-to-discover">
                                             <div className="img-media-to-discover-container">
                                                 <img src={media.url_poster_timeline} alt="" />
