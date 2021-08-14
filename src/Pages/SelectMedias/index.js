@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api'
 import Loading from '../../Components/Loading'
 import './selectMedias.css'
+import Media from '../../Components/Media'
 
 const SelectMedias = () => {
 
@@ -23,6 +24,10 @@ const SelectMedias = () => {
             .catch(error => console.error(error.message))
     }, [])
 
+    useEffect(() => {
+        console.log(selectedMedias)
+    }, [selectedMedias])
+
     function handleSendPreferences(){
         const mediasPreferences = {
             user_id: user.id,
@@ -34,6 +39,11 @@ const SelectMedias = () => {
                 history.push('/timeline')
             })
             .catch(error => console.error(error.message))   
+    }
+
+    function removeSelectedMedia(selectedMedia){
+        selectedMedias.splice(selectedMedias.indexOf(selectedMedia), 1)
+        setSelectedMedias([...selectedMedias])
     }
 
     return (
@@ -57,18 +67,12 @@ const SelectMedias = () => {
                         {
                             selectedMedias &&
                             selectedMedias.map(selectedMedia => (
-                                <div key={selectedMedia.id} className="media">
-                                    <div className="media-image-container">
-                                        <img src={selectedMedia.url_poster} alt="" />
-                                    </div>
-                                    <div className="media-info-container">
-                                        <h3>{selectedMedia.name}</h3>
-                                    </div>
-                                    <button onClick={() => {
-                                        selectedMedias.splice(selectedMedias.indexOf(selectedMedia), 1)
-                                        setSelectedMedias([...selectedMedias])
-                                    }}><ion-icon name="close-outline"></ion-icon></button>
-                                </div>
+                                <Media 
+                                    selectMedia={() => {}} 
+                                    media={selectedMedia} 
+                                    selected 
+                                    removeMedia={() => removeSelectedMedia(selectedMedia)} 
+                                />
                             ))
                         }
                     </div>
@@ -76,15 +80,10 @@ const SelectMedias = () => {
                 <div className="medias">
                     {
                         medias && medias.map(media => (
-                            <div onClick={() => setSelectedMedias([...selectedMedias, media])} key={media.id} className="media">
-                                <div className="media-image-container">
-                                    <img src={media.url_poster} alt={media.name} />
-                                </div>
-                                <div className="media-info-container">
-                                    <h2>{media.name}</h2>
-                                    <button disabled={selectedMedias.includes(media)} onClick={() => setSelectedMedias([...selectedMedias, media])}>Selecionar</button>
-                                </div>
-                            </div>
+                            <Media 
+                                selectMedia={() => setSelectedMedias([...selectedMedias, media])} 
+                                media={media} 
+                            />
                         ))
                     }
                 </div>

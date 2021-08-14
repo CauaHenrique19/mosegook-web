@@ -312,44 +312,6 @@
     transition: transform 0.7s;
     margin: 0px 50px;
 }
-.media{
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.4s;
-    margin-right: 2px;
-}
-.media:last-child{
-    margin-right: 0;
-}
-.media:hover{
-    box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
-    transform: scale(1.1);
-}
-.media-image-container{
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-}
-.media-image-container img{
-    width: 300px;
-    height: 450px;
-    border-radius: 3px;
-}
-.media-info-container{
-    height: 100px;
-    display: flex;
-    align-items: center;
-    background-color: black;
-    padding: 15px;
-}
-.media-info-container h2:nth-child(2){
-    font-size: 1.2rem;
-}
 .newsletter{
     height: 50vh;
     background-color: #21222C;

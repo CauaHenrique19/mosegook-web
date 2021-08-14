@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import api from '../../services/api'
+
+import Media from '../../Components/Media'
 import Loading from '../../Components/Loading'
+
+import api from '../../services/api'
 import './catalog.css'
 
 const Catalog = () => {
@@ -82,21 +85,14 @@ const Catalog = () => {
                 {
                     filteredMedias.length === 0 && !loading &&
                     <div className="not-result-container">
-                        <ion-icon name="alert-circle"></ion-icon>
                         <h1>Nenhum Resultado para "{searchString}"</h1>
+                        <p>Digite outro nome, talvez você encontre o que procura.</p>
                     </div>
                 }
                 <div className="medias-main-catalog-container">
                     {
                         filteredMedias.length > 0 && filteredMedias.map(media => (
-                            <div key={media.id} className="media">
-                                <div className="media-image-container">
-                                    <img src={media.url_poster} alt="" />
-                                </div>
-                                <div className="media-info-container">
-                                    <h2>{media.name}</h2>
-                                </div>
-                            </div>
+                            <Media selectMedia={() => {}} media={media} />
                         ))
                     }
                 </div>

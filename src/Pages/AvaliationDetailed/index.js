@@ -2,11 +2,12 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/context'
 
-import handleDeleteComent from '../../utils/handleDeleteComent'
+import Media from '../../Components/Media'
 import Loading from '../../Components/Loading'
 import Coment from '../../Components/Coment'
 import api from '../../services/api'
 
+import handleDeleteComent from '../../utils/handleDeleteComent'
 import './avaliationDetailed.css'
 
 const AvaliationDetailed = (props) => {
@@ -193,14 +194,7 @@ const AvaliationDetailed = (props) => {
                 <h1>Mídia Avaliada</h1>
                 {
                     avaliationDetailed.avaliation && 
-                    <div className="media">
-                        <div className="media-image-container">
-                            <img src={avaliationDetailed.avaliation.url_poster} alt={avaliationDetailed.avaliation.media_name} />
-                        </div>
-                        <div className="media-info-container">
-                            <h2>{avaliationDetailed.avaliation.media_name}</h2>
-                        </div>
-                    </div>
+                    <Media selectMedia={() => {}} media={avaliationDetailed.avaliation} />
                 }
                 <h1>Gêneros</h1>
                 <div className="genders-avaliation-container">

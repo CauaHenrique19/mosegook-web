@@ -8,6 +8,7 @@ import Coment from '../../Components/Coment'
 
 import api from '../../services/api'
 import './user.css'
+import Media from '../../Components/Media'
 
 const User = (props) => {
 
@@ -242,14 +243,7 @@ const User = (props) => {
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
-                                        <div key={media.key_poster} className="user-media-preference">
-                                            <div className="user-media-preference-img-container">
-                                                <img src={media.url_poster} alt="" />
-                                            </div>
-                                            <div className="user-media-preference-media-info-container">
-                                                <h2>{media.name}</h2>
-                                            </div>
-                                        </div>
+                                        <Media selectMedia={() => {}} miniature media={media} />
                                     ))
                                 }
                             </div>

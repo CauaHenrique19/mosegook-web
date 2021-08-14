@@ -291,34 +291,6 @@
     grid-template-columns: 150px 150px 150px;
     grid-gap: 10px;
 }
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference{
-    width: 150px;
-    height: 270px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference:hover{
-    transform: scale(1.1);
-    box-shadow: 0px 10px 16px 4px rgba(0, 0, 0, 0.233);
-}
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-img-container{
-    height: 200px;
-}
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-img-container img{
-    width: 150px;
-    height: 200px;
-    border-radius: 3px;
-}
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-media-info-container{
-    height: 70px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background-color: black;
-}
-.profile-info-container .user-medias-preferences .user-medias-preferences-container .user-media-preference .user-media-preference-media-info-container h2{
-    font-size: 1.1rem;
-}
 .profile-info-container .user-genders-preferences > h1{
     margin-bottom: 10px;
 }

@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
+
+import Media from '../../Components/Media'
 import Loading from '../../Components/Loading'
 import Message from '../../Components/Message'
+
 import api from '../../services/api'
 import './home.css'
 
@@ -219,18 +222,7 @@ const Home = () => {
                         <ion-icon name="chevron-forward-outline"></ion-icon>
                     </button>
                     <div className="media-slider">
-                        {
-                            medias && medias.map(media => (
-                                <div key={media.url_poster} className="media">
-                                    <div className="media-image-container">
-                                        <img src={media.url_poster} alt="" />
-                                    </div>
-                                    <div className="media-info-container">
-                                        <h2>{media.name}</h2>
-                                    </div>
-                                </div>
-                            ))
-                        }
+                        {medias && medias.map(media => ( <Media media={media} />))}
                     </div>
                 </div>
                 <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2.7, behavior: 'smooth' })} >

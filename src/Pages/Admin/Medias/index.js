@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
+
+import Media from '../../../Components/Media'
 import MenuAdmin from '../../../Components/MenuAdmin'
 import Loading from '../../../Components/Loading'
+
 import api from '../../../services/api'
 import './medias.css'
 
@@ -340,32 +343,23 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                     <div className="medias">
                         {
                             filteredMedias.length > 0 && filteredMedias.map(media => (
-                                <div key={media.id} className="media">
-                                    <div className="media-image-container">
-                                        <img src={media.url_poster} alt="" />
-                                    </div>
-                                    <div className="media-info-container">
-                                        <h2>{media.name}</h2>
-                                        <div className="buttons-media-info-container">
-                                            <button 
-                                                onClick={() => {
-                                                    setViewModal(true)
-                                                    setId(media.id)
-                                                    setName(media.name)
-                                                    setSynopsis(media.synopsis)
-                                                    setAvaliation(media.avaliation)
-                                                    setCategoryId(media.category_id)
-                                                    setGendersMedia(media.genders)
-                                                    setPoster(media.url_poster)
-                                                    setPosterTimeline(media.url_poster_timeline)
-                                                }}
-                                            >
-                                                <ion-icon name="create-outline"></ion-icon>
-                                            </button>
-                                            <button onClick={() => handleDelete(media.id)}><ion-icon name="trash-outline"></ion-icon></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Media 
+                                    media={media} 
+                                    onEdit={() => {
+                                        setViewModal(true)
+                                        setId(media.id)
+                                        setName(media.name)
+                                        setSynopsis(media.synopsis)
+                                        setAvaliation(media.avaliation)
+                                        setCategoryId(media.category_id)
+                                        setGendersMedia(media.genders)
+                                        setPoster(media.url_poster)
+                                        setPosterTimeline(media.url_poster_timeline)
+                                    }}
+                                    onDelete={() => handleDelete(media.id)}
+                                    selectMedia={() => {}} 
+                                    admin 
+                                />
                             )) 
                         }
                     </div>
