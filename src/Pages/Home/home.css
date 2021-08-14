@@ -312,6 +312,9 @@
     transition: transform 0.7s;
     margin: 0px 50px;
 }
+.media-slider .media{
+    margin-right: 2px;
+}
 .newsletter{
     height: 50vh;
     background-color: #21222C;

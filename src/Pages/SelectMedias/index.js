@@ -24,10 +24,6 @@ const SelectMedias = () => {
             .catch(error => console.error(error.message))
     }, [])
 
-    useEffect(() => {
-        console.log(selectedMedias)
-    }, [selectedMedias])
-
     function handleSendPreferences(){
         const mediasPreferences = {
             user_id: user.id,
@@ -67,7 +63,8 @@ const SelectMedias = () => {
                         {
                             selectedMedias &&
                             selectedMedias.map(selectedMedia => (
-                                <Media 
+                                <Media
+                                    key={selectedMedia.name}
                                     selectMedia={() => {}} 
                                     media={selectedMedia} 
                                     selected 
@@ -80,7 +77,8 @@ const SelectMedias = () => {
                 <div className="medias">
                     {
                         medias && medias.map(media => (
-                            <Media 
+                            <Media
+                                key={media.id}
                                 selectMedia={() => setSelectedMedias([...selectedMedias, media])} 
                                 media={media} 
                             />

@@ -344,6 +344,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                         {
                             filteredMedias.length > 0 && filteredMedias.map(media => (
                                 <Media 
+                                    key={media.id}
                                     media={media} 
                                     onEdit={() => {
                                         setViewModal(true)
