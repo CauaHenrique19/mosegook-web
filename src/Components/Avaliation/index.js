@@ -4,7 +4,7 @@ import { Context } from '../../context/context'
 import api from '../../services/api'
 import './avaliation.css'
 
-const Avaliation = ({ avaliation }) => {
+const Avaliation = ({ avaliation, handleDelete }) => {
 
     const { user } = useContext(Context)
     const [liked, setLiked] = useState(false)
@@ -97,6 +97,12 @@ const Avaliation = ({ avaliation }) => {
                 <button onClick={() => handleLike()}>
                     <ion-icon style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} name={liked ? 'heart' : 'heart-outline'}></ion-icon>
                 </button>
+                {
+                    user.id == avaliation.user_id &&
+                    <button onClick={handleDelete}>
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </button>
+                }
                 <Link to={`/avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>
             </div>
         </div>

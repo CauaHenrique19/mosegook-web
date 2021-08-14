@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 import { Link } from 'react-router-dom'
 
+import handleDeleteAvaliation from '../../utils/handleDeleteAvaliation'
 import handleDeleteComent from '../../utils/handleDeleteComent'
 import Loading from '../../Components/Loading'
 import Avaliation from '../../Components/Avaliation'
@@ -358,7 +359,13 @@ const Timeline = () => {
                             <div className="column-avaliations">
                                 {   
                                     avaliations.length > 0 ?
-                                    avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />) :
+                                    avaliations.map(avaliation => 
+                                        <Avaliation 
+                                            key={avaliation.id} 
+                                            avaliation={avaliation} 
+                                            handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)} 
+                                        />
+                                    ) :
                                     <div className="nothing-container">
                                         <h1>Nenhuma avaliação encontrada</h1>
                                         <p>Assim que alguém avaliar algo do seu gosto ou algum seguidor avaliar alguma coisa mostraremos aqui.</p>

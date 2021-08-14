@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Context } from '../../context/context'
 
+import handleDeleteAvaliation from '../../utils/handleDeleteAvaliation'
 import handleDeleteComent from '../../utils/handleDeleteComent'
 import Loading from '../../Components/Loading'
 import Avaliation from '../../Components/Avaliation'
@@ -282,7 +283,13 @@ const User = (props) => {
                     {
                         user && avaliations.length > 0 
                         ?
-                            avaliations.map(avaliation => <Avaliation key={avaliation.id} avaliation={avaliation} />) 
+                            avaliations.map(avaliation => 
+                                <Avaliation 
+                                    key={avaliation.id} 
+                                    avaliation={avaliation} 
+                                    handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)} 
+                                />
+                            ) 
                         :
                         <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>
@@ -294,7 +301,13 @@ const User = (props) => {
                     {
                         user && coments.length > 0 
                         ? 
-                            coments.map(coment => <Coment key={coment.id} coment={coment} handleDelete={() => handleDeleteComent(coment, coments, setComents)} />)
+                            coments.map(coment => 
+                                <Coment 
+                                    key={coment.id} 
+                                    coment={coment} 
+                                    handleDelete={() => handleDeleteComent(coment, coments, setComents)} 
+                                />
+                            )
                         : 
                         <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>
