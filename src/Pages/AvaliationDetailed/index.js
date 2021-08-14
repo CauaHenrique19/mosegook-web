@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { Context } from '../../context/context'
 import Loading from '../../Components/Loading'
 import Coment from '../../Components/Coment'
@@ -13,6 +14,8 @@ const AvaliationDetailed = (props) => {
     const [avaliationDetailed, setAvaliationDetailed] = useState({})
     const [contentComent, setContentComent] = useState('')
     const [coments, setComents] = useState([])
+    const [like, setLike] = useState([])
+    const [liked, setLiked] = useState(false)
 
     useEffect(() => {
         setLoading(true)
@@ -30,8 +33,43 @@ const AvaliationDetailed = (props) => {
                 }
             })
             .catch(error => console.error(error.message))
+
+            api.get(`/likes/avaliations/user/${user.id}/${avaliationId}`)
+                .then(res => {
+                    if(res.data.id){
+                        setLike(res.data)
+                        setLiked(true)
+                    }
+                    else{
+                        //setLiked(false)
+                    }
+                })
+                .catch(error => console.error(error))
         }
     }, [avaliationId])
+
+    function handleLike(){
+        if(liked){
+            api.delete(`/likes/avaliations/${like.id}`)
+                .then(_ => {
+                    avaliationDetailed.avaliation.amountLikes = parseInt(avaliationDetailed.avaliation.amountLikes) - 1 
+                    setLiked(false)
+                })
+                .catch(error => console.error(error))
+        }
+        else{
+            const like = { user_id: user.id, avaliation_id: avaliationId }
+
+            api.post('/likes/avaliations', like)
+                .then(res => {
+                    setLike(res.data[0])
+                    avaliationDetailed.avaliation.amountLikes = parseInt(avaliationDetailed.avaliation.amountLikes) + 1
+                    setAvaliationDetailed(avaliationDetailed)
+                    setLiked(true)
+                })
+                .catch(error => console.error(error))
+        }
+    }
 
     function handleComent(){
         const coment = { user_id: user.id, avaliation_id: avaliationId, content: contentComent }
@@ -49,15 +87,21 @@ const AvaliationDetailed = (props) => {
                     amountLikes: 0
                 }
                 setComents([updatedComent, ...coments])
+                setContentComent('')
             })
             .catch(error => console.error(error.message))
-        
     }
 
     return (
         <div className="avaliation-detail-container">
             { loading && <Loading /> }
             <div className="avaliation-container">
+                <div className="avaliation-container-header">
+                    <Link to="/timeline">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                        Timeline
+                    </Link>
+                </div>
                 {
                     avaliationDetailed.avaliation && 
                     <div className="avaliation">
@@ -92,17 +136,17 @@ const AvaliationDetailed = (props) => {
                             <div className="info-avaliation">
                                 <div style={{ backgroundColor: avaliationDetailed.avaliation.category_color }} className="amount-coments">
                                     <ion-icon name="chatbubble"></ion-icon>
-                                    <p>0</p>
+                                    <p>{avaliationDetailed.avaliation.amountComents}</p>
                                 </div>
                                 <div style={{ backgroundColor: avaliationDetailed.avaliation.category_color }} className="amount-likes">
                                     <ion-icon name="heart"></ion-icon>
-                                    <p>0</p>
+                                    <p>{avaliationDetailed.avaliation.amountLikes}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="links-coment-container">
-                            <button>
-                                <ion-icon name="heart-outline"></ion-icon>
+                            <button onClick={() => handleLike()}>
+                                <ion-icon style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} name={liked ? 'heart' : 'heart-outline'}></ion-icon>
                             </button>
                         </div>
                     </div>
@@ -129,8 +173,8 @@ const AvaliationDetailed = (props) => {
                     {
                         coments.length === 0 &&
                         <div className="nothing-container">
-                            <ion-icon name="alert-circle-outline"></ion-icon>
-                            <h1>Nenhum comentário!</h1>
+                            <h1>Nenhum comentário encontrado</h1>
+                            <p>Assim que alguém comentar mostraremos aqui pra você.</p>
                         </div>
                     }
                     <div className="coments">
