@@ -22,7 +22,7 @@ const Avaliation = ({ avaliation, handleDelete }) => {
                 }
             })
             .catch(error => console.error(error))
-    }, [avaliation])
+    }, [avaliation, user.id])
 
     function handleLike(){
         if(liked){
@@ -98,13 +98,13 @@ const Avaliation = ({ avaliation, handleDelete }) => {
                     <ion-icon style={ liked ? { animation: 'heart 0.5s' } : { animation: 'none' }} name={liked ? 'heart' : 'heart-outline'}></ion-icon>
                 </button>
                 {
-                    user.id == avaliation.user_id &&
+                    user.id === avaliation.user_id &&
                     <button onClick={handleDelete}>
                         <ion-icon name="trash-outline"></ion-icon>
                     </button>
                 }
                 {
-                    user.id != avaliation.user_id &&
+                    user.id !== avaliation.user_id &&
                     <Link to={`/user/${avaliation.user_user}`}><ion-icon name="person-outline"></ion-icon></Link>
                 }
                 <Link to={`/avaliation/${avaliation.id}`}><ion-icon name="add-outline"></ion-icon></Link>

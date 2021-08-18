@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom'
 import { Context } from '../../context/context'
 import Message from '../../Components/Message'
 import api from '../../services/api'
-import Loading from '../../Components/Loading'
 import './signup.css'
 
 const Signup = () => {
@@ -85,7 +84,7 @@ const Signup = () => {
                             <h1>Primeira etapa concluída!</h1>
                         }
                         {
-                            percentualUpload != 100 ?
+                            percentualUpload !== 100 ?
                             <div className="progress">
                                 <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
                             </div>

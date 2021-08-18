@@ -67,13 +67,17 @@ const User = (props) => {
         
     }, [props])
 
-    useEffect(async () => {
-        if(user != undefined){
-            const { data: followUser } = await api.get(`/follow-user/${userContext.id}/${user.user.id}`)
-            const { data: userFollow } = await api.get(`/user-follow/${userContext.id}/${user.user.id}`)
-            setFollowing(followUser.follow)
-            setFollowMe(userFollow.follow)
+    useEffect(() => {
+        async function getFollowInfo(){
+            if(user !== undefined){
+                const { data: followUser } = await api.get(`/follow-user/${userContext.id}/${user.user.id}`)
+                const { data: userFollow } = await api.get(`/user-follow/${userContext.id}/${user.user.id}`)
+                setFollowing(followUser.follow)
+                setFollowMe(userFollow.follow)
+            }
         }
+
+        getFollowInfo()
     }, [user, userContext])
 
     function handleFollow(){
@@ -148,7 +152,7 @@ const User = (props) => {
                             <h1>Atualizado com sucesso!</h1>
                         }
                         {
-                            percentualUpload != 100 ? 
+                            percentualUpload !== 100 ? 
                             <div className="progress">
                                 <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
                             </div> 

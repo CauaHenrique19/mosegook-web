@@ -50,7 +50,7 @@ const AvaliationDetailed = (props) => {
                 })
                 .catch(error => console.error(error))
         }
-    }, [avaliationId])
+    }, [avaliationId, user.id])
 
     function handleLike(){
         if(liked){

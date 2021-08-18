@@ -28,8 +28,6 @@ const Genders = () => {
         api.get('/genders/statistics')
             .then(res => setStatistics(res.data))
             .catch(error => console.error(error.message))
-
-        console.log(statistics)
     }, [])
 
     function handleSearch(search){
@@ -40,7 +38,7 @@ const Genders = () => {
     function handleSubmit(){
         const gender = { name: nameGender, color: colorGender }
 
-        if(idGender != 0){
+        if(idGender !== 0){
             api.put(`/genders/${idGender}`, gender)
                 .then(res => {
                     const genderRemove = genders.find(gender => gender.id === res.data[0].id)
@@ -101,7 +99,7 @@ const Genders = () => {
                     <div className="statistic">
                         <div>
                             {
-                                statistics != null && 
+                                statistics !== undefined && 
                                 <>
                                     <h1 className="number-statisc">{statistics.amount_genders}</h1>
                                     <h2 className="statistic-description">Gêneros</h2>
@@ -115,7 +113,7 @@ const Genders = () => {
                     <div className="statistic">
                         <div>
                             {
-                                statistics != null && 
+                                statistics !== undefined && 
                                 <>
                                     <h1 className="number-statisc">{statistics.gender_most_popular.name}</h1>
                                     <h2 className="statistic-description">Gênero Preferido</h2>
@@ -129,7 +127,7 @@ const Genders = () => {
                     <div className="statistic">
                         <div>
                             {
-                                statistics != null && 
+                                statistics !== undefined && 
                                 <>
                                     <h1 className="number-statisc">{statistics.gender_most_utilized.name}</h1>
                                     <h2 className="statistic-description">Gênero mais utilizado</h2>

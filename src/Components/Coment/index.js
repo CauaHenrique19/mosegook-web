@@ -22,7 +22,7 @@ const Coment = ({ coment, handleDelete }) => {
                 }
             })
             .catch(error => console.error(error))
-    }, [coment])
+    }, [coment, user.id])
 
     function handleLike(){
         if(liked){
@@ -92,13 +92,13 @@ const Coment = ({ coment, handleDelete }) => {
                         </ion-icon>
                 </button>
                 {
-                    user.id == coment.user_id && 
+                    user.id === coment.user_id && 
                     <button onClick={() => handleDelete(coment)}>
                         <ion-icon name="trash-outline"></ion-icon>
                     </button>
                 }
                 {
-                    user.id != coment.user_id &&
+                    user.id !== coment.user_id &&
                     <Link to={`/user/${coment.user_user}`}><ion-icon name="person-outline"></ion-icon></Link>
                 }
                 <Link to="/"><ion-icon name="add-outline"></ion-icon></Link>

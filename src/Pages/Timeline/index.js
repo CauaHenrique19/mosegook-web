@@ -70,13 +70,13 @@ const Timeline = () => {
     const el = document.querySelector('.most-rated-by-friends-slider')
 
     useEffect(() => {
-        maxCount = mediasRated.length
-        setMaxCount(maxCount)
+        let count = mediasRated.length
+        setMaxCount(count)
     }, [mediasRated])
 
     useEffect(() => {
-        selectedMedia = mediasRated[count - 1]
-        setSelectedMedia(selectedMedia)
+        let sMedia =  mediasRated[count - 1]
+        setSelectedMedia(sMedia)
     }, [count, mediasRated])
 
     function previous() {

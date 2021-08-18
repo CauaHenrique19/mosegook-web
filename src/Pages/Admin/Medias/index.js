@@ -93,7 +93,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
         mediaFormData.append('poster_timeline', posterTimeline)
         mediaFormData.append('genders', JSON.stringify(gendersId))
 
-        if(id != 0){
+        if(id !== 0){
             api.put(`/medias/${id}`, mediaFormData, { onUploadProgress: (e) => handleProgressUpload(e) })
                 .then(res => {
                     const mediaRemove = medias.find(media => media.id === res.data[0].id)
@@ -146,7 +146,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                 <div className="modal">
                     <div className="modal-content">
                         <div className="header-modal">
-                            <h1>{ id != 0 ? ' Edição de Mídia' : 'Nova mídia' }</h1>
+                            <h1>{ id !== 0 ? ' Edição de Mídia' : 'Nova mídia' }</h1>
                             <button onClick={() => setViewModal(false)} ><ion-icon name="close-outline"></ion-icon></button>
                         </div>
                         <div className="form-content">
@@ -251,7 +251,7 @@ const Medias = ({ category_id, page, texts, pageName }) => {
                             <h1>Enviado com sucesso!</h1>
                         }
                         {
-                            percentualUpload != 100 ? 
+                            percentualUpload !== 100 ? 
                             <div className="progress">
                                 <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
                             </div> 

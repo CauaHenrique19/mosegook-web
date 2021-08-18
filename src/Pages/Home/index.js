@@ -10,7 +10,6 @@ import api from '../../services/api'
 import './home.css'
 
 import imageNewsletter from '../../assets/Saly-19.png'
-//import imageNewsletter from '../../assets/Senhor_das_Estrelas_render.png'
 import userImage from '../../assets/user-image.png'
 
 const Home = () => {
@@ -25,6 +24,7 @@ const Home = () => {
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-1812)
     let [actualValueSlider, setActualValueSlider] = useState(0)
+    let [maxCount, setMaxCount] = useState()
 
     useEffect(() => {
         api.get('/medias/most-rated')
@@ -35,17 +35,15 @@ const Home = () => {
             .catch(err => console.error(err.message))
     }, [])
 
-    let [maxCount, setMaxCount] = useState()
-
     useEffect(() => {
-        maxCount = Math.ceil(medias.length / 6)
-        setMaxCount(maxCount)
+        let count = Math.ceil(medias.length / 6)
+        setMaxCount(count)
 
-        for (let i = 0; i < maxCount; i++) {
+        for (let i = 0; i < count; i++) {
             numberVisualizers.push(i)
             setNumberVisualizers(numberVisualizers)
         }
-    }, [medias])
+    }, [medias, numberVisualizers])
 
     const buttonPreviousEL = document.querySelector('.previous-button-slider')
     const buttonNextEL = document.querySelector('.next-button-slider')
@@ -90,7 +88,6 @@ const Home = () => {
             const suggestion = { user_id: user.id, media_name: mediaName }
             api.post('/suggestions', suggestion)
                 .then(res => {
-                    console.log(res.data)
                     if(res.data.length > 0){
                         setMessage("Sugestão enviada com sucesso!")
                         setTimeout(() => {
