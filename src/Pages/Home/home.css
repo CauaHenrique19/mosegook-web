@@ -316,13 +316,14 @@
     margin-right: 2px;
 }
 .newsletter{
-    height: 50vh;
-    background-color: #21222C;
+    height: 40vh;
     background: linear-gradient(to right, rgb(0, 160, 223), rgb(0, 89, 124));
+    background: linear-gradient(to left, blueviolet, rgba(137, 43, 226, 0));
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 0px 250px;
+    position: relative;
 }
 .newsletter h1{
     font-size: 2.5rem;
@@ -332,7 +333,6 @@
 .newsletter .newsletter-main{
     display: flex;
     align-items: center;
-    position: relative;
 }
 .newsletter .input-container{
     display: flex;
@@ -368,10 +368,10 @@
     box-shadow: 0px 0px 30px 6px rgba(0, 0, 0, 0.233);
 }
 .newsletter img{
-    width: 700px;
+    width: 600px;
     position: absolute;
-    right: -150px;
-    top: -387px;
+    right: 10%;
+    bottom: 0px;
     z-index: 10;
 }
 .newsletter .message{
@@ -605,8 +605,8 @@
         padding: 0px 60px;
     }
     .newsletter img{
-        width: 650px;
-        top: -320px;
+        width: 550px;
+        right: 0%;
     }
     .we-peoples-about-us > h1{
         margin-left: 50px;
@@ -615,7 +615,7 @@
         width: 300px;
     }
     .people-avaliations:nth-child(3n+1):hover{
-        width: 380px;
+        width: 300px;
         transform: none;
     }
     .social-media{

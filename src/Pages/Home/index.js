@@ -9,7 +9,8 @@ import Message from '../../Components/Message'
 import api from '../../services/api'
 import './home.css'
 
-import imageNewsletter from '../../assets/Senhor_das_Estrelas_render.png'
+import imageNewsletter from '../../assets/Saly-19.png'
+//import imageNewsletter from '../../assets/Senhor_das_Estrelas_render.png'
 import userImage from '../../assets/user-image.png'
 
 const Home = () => {
@@ -222,7 +223,7 @@ const Home = () => {
                         <ion-icon name="chevron-forward-outline"></ion-icon>
                     </button>
                     <div className="media-slider">
-                        {medias && medias.map(media => <Media media={media} key={media.id} />)}
+                        {medias && medias.map(media => <Media media={media} selectMedia={() => {}} key={media.id} />)}
                     </div>
                 </div>
                 <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2.7, behavior: 'smooth' })} >
@@ -238,9 +239,9 @@ const Home = () => {
                         <input value={mediaName} onChange={e => setMediaName(e.target.value)} type="text" placeholder="Título da mídia" />
                         <button onClick={() => handleSuggestion()}>Sugerir</button>
                     </div>
-                    <img src={imageNewsletter} alt="" />
                     { message && <Message message={message} /> }
                 </div>
+                <img src={imageNewsletter} alt="" />
             </div>
             <div className="we-peoples-about-us">
                 <h1>O que as pessoas acham da gente</h1>
