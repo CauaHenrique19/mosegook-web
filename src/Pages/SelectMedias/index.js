@@ -84,6 +84,7 @@ const SelectMedias = () => {
                             />
                         ))
                     }
+                    <div className="fixed-medias-gradient"></div>
                 </div>
             </div>
         </div>

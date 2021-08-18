@@ -82,6 +82,14 @@
     padding: 15px;
     margin-bottom: 20px;
 }
+ .select-medias-container .medias .fixed-medias-gradient{
+    width: 930px;
+    height: 35%;
+    background: linear-gradient(to top, black, transparent);
+    position: fixed;
+    bottom: 20px;
+    right: 75px;
+}
 .select-medias-container .medias::-webkit-scrollbar{
     width: 7px;
 }
