@@ -117,6 +117,9 @@
     font-size: 1.7rem;
     transition: background-color 0.3s;
 }
+.coment .links-coment-container a svg{
+    width: 35px;
+}
 .coment .links-coment-container button:hover,
 .coment .links-coment-container a:hover{
     background-color: white;
@@ -126,6 +129,9 @@
 }
 .coment .links-coment-container a:hover ion-icon{
     color: black;
+}
+.coment .links-coment-container a:hover svg{
+    fill: black;
 }
 @keyframes heart{
     0%{
