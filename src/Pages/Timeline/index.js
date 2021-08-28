@@ -152,7 +152,7 @@ const Timeline = () => {
         api.post('/avaliations', avaliation)
             .then(res => {
                 const updatedAvaliation = { 
-                    ...res.data[0], 
+                    ...res.data.avaliation, 
                     user_name: user.name, 
                     user_id: user.id, 
                     user_user: user.user,
