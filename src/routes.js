@@ -23,6 +23,7 @@ import Genders from './Pages/Admin/Genders'
 import Categories from './Pages/Admin/Categories'
 import Opinion from './Pages/Opinion'
 import Opinions from './Pages/Admin/Opinions'
+import Ranking from './Pages/Ranking'
 
 const Routes = () => {
     return(
@@ -47,6 +48,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/opinions" component={Opinions} />
                 <Route path="/avaliation/:id" component={AvaliationDetailed} />
                 <PrivateRoute path="/opinion" component={Opinion} />
+                <PrivateRoute path="/ranking" component={Ranking} />
             </Switch>
         </HashRouter>
     )

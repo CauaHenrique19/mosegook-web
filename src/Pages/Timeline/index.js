@@ -233,7 +233,7 @@ const Timeline = () => {
                         </div>
                         <ul className="content-menu">
                             <li className="selected"><Link to="/timeline"><ion-icon name="home-outline"></ion-icon>Timeline</Link></li>
-                            <li><Link to=""><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
+                            <li><Link to="/ranking"><ion-icon name="stats-chart-outline"></ion-icon>Ranking</Link></li>
                             <li><Link to="/catalog"><ion-icon name="apps-outline"></ion-icon>Catálogo</Link></li>
                             {user.admin && <li><Link to="/admin/movies"><ion-icon name="settings-outline"></ion-icon>Administrador</Link></li>}
                             <li><Link to='/opinion'><ion-icon name="happy-outline"></ion-icon>Avalie a gente</Link></li>
