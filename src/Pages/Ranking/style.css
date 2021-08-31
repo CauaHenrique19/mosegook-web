@@ -1,0 +1,95 @@
+.ranking-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ranking-content-container{
+    width: 1000px;
+    height: fit-content;
+    margin-bottom: 20px;
+}
+.ranking-content-container h1{
+    font-size: 3rem;
+    margin: 50px 0 15px 0;
+}
+.ranking-content-container .ranking-upload{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.ranking-content-container .ranking-upload .ranking-upload-progress{
+    width: 100%;
+    height: 25px;
+    background-color: #000000;
+    border-radius: 50px;
+}
+.ranking-content-container .ranking-upload .ranking-upload-progress .upload-progress{
+    width: 31%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: blueviolet;
+}
+.ranking-content-container .ranking-upload .ranks{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+}
+.ranking-content-container .ranking-upload .ranks .rank{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ranking-content-container .ranking-upload .ranks .rank .rank-circle{
+    width: 75px;
+    height: 75px;
+    border-radius: 50px;
+    background-color: black;
+    margin-bottom: 20px;
+    border: 2px solid #fafafa;
+}
+.ranking-content-container .ranking-upload .ranks .rank h3{
+    font-weight: 400;
+}
+.ranking-top-container{
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.ranking-top-container .top{
+    width: 33%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(250, 250, 250, 0.137);
+    margin-right: 15px;
+    border-radius: 25px;
+    align-self: flex-end;
+    position: relative;
+}
+.ranking-top-container .top img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    position: absolute;
+    top: -100px;
+}
+.ranking-top-container .top:last-child{
+    margin-right: 0;
+}
+.ranking-top-container .top.second{
+    height: 65%;
+}
+.ranking-top-container .top.third{
+    height: 55%;
+}
