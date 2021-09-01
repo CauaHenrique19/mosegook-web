@@ -10,7 +10,6 @@ import api from '../../services/api'
 import './home.css'
 
 import imageNewsletter from '../../assets/Saly-19.png'
-import userImage from '../../assets/user-image.png'
 
 const Home = () => {
 
@@ -18,6 +17,7 @@ const Home = () => {
     const [loading, setLoading] = useState(true)
     const [medias, setMedias] = useState([])
     const [numberVisualizers, setNumberVisualizers] = useState([])
+    const [opinions, setOpinions] = useState({})
     const [mediaName, setMediaName] = useState('')
     const [message, setMessage] = useState('')
 
@@ -28,8 +28,13 @@ const Home = () => {
 
     useEffect(() => {
         api.get('/medias/most-rated')
+            .then(res => setMedias(res.data.medias))
+            .catch(err => console.error(err.message))
+
+        api.get('/opinions-home')
             .then(res => {
-                setMedias(res.data.medias)
+                console.log(res.data)
+                setOpinions(res.data)
                 setLoading(false)
             })
             .catch(err => console.error(err.message))
@@ -88,13 +93,13 @@ const Home = () => {
             const suggestion = { user_id: user.id, media_name: mediaName }
             api.post('/suggestions', suggestion)
                 .then(res => {
-                    if(res.data.length > 0){
+                    if (res.data.length > 0) {
                         setMessage("Sugestão enviada com sucesso!")
                         setTimeout(() => {
                             setMessage('')
                         }, 3000)
                     }
-                    else{
+                    else {
                         setMessage(res.data.message)
                         setTimeout(() => {
                             setMessage('')
@@ -220,7 +225,7 @@ const Home = () => {
                         <ion-icon name="chevron-forward-outline"></ion-icon>
                     </button>
                     <div className="media-slider">
-                        {medias && medias.map(media => <Media media={media} selectMedia={() => {}} key={media.id} />)}
+                        {medias && medias.map(media => <Media media={media} selectMedia={() => { }} key={media.id} />)}
                     </div>
                 </div>
                 <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2.7, behavior: 'smooth' })} >
@@ -236,109 +241,55 @@ const Home = () => {
                         <input value={mediaName} onChange={e => setMediaName(e.target.value)} type="text" placeholder="Título da mídia" />
                         <button onClick={() => handleSuggestion()}>Sugerir</button>
                     </div>
-                    { message && <Message message={message} /> }
+                    {message && <Message message={message} />}
                 </div>
                 <img src={imageNewsletter} alt="" />
             </div>
             <div className="we-peoples-about-us">
                 <h1>O que as pessoas acham da gente</h1>
                 <div className="row">
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(212, 50, 83)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(0, 128, 79)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(221, 133, 0)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(0, 160, 223)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
+                    {
+                        opinions.first_row !== undefined &&
+                        opinions.first_row.map(opinion => (
+                            <div key={opinion.id} className="people-avaliations">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="blueviolet">
+                                        <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
+                                    </svg>
+                                    <p>{opinion.content}</p>
+                                </div>
+                                <div className="info-people">
+                                    <img className="people-img" src={opinion.url_image} alt="" />
+                                    <div>
+                                        <p>{opinion.name}</p>
+                                        <p>{opinion.user}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
                 <div className="row">
-                    <div className="people-avaliations">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(0, 160, 223)">
-                            <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                        </svg>
-                        <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(221, 133, 0)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(0, 128, 79)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
-                    <div className="people-avaliations">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="rgb(212, 50, 83)">
-                                <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
-                            </svg>
-                            <p>Gostei muito da plataforma, há vários tipos de filtros de conteúdos e um alto nível de simpatia</p>
-                        </div>
-                        <div className="info-people">
-                            <img className="people-img" src={userImage} alt="" />
-                            <p>Nome da Pessoa</p>
-                        </div>
-                    </div>
+                    {
+                        opinions.second_row !== undefined &&
+                        opinions.second_row.map(opinion => (
+                            <div key={opinion.id} className="people-avaliations">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="40" viewBox="0 0 51 40" fill="blueviolet">
+                                        <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
+                                    </svg>
+                                    <p>{opinion.content}</p>
+                                </div>
+                                <div className="info-people">
+                                    <img className="people-img" src={opinion.url_image} alt="" />
+                                    <div>
+                                        <p>{opinion.name}</p>
+                                        <p>{opinion.user}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
             <div className="social-media">
