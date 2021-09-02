@@ -137,11 +137,17 @@ const Timeline = () => {
     }
 
     function handleSearchMediasMention(e){
-        if(e.key === 'Enter'){
-            api.get(`/medias/search/${searchMediaMention}`)
+        setSearchMediaMention(e.target.value)
+
+        if(!e.target.value){
+            setMediasToMention([])
+        }
+        else{
+            api.get(`/medias/search/${e.target.value}`)
                 .then(res => setMediasToMention(res.data.medias))
                 .catch(error => console.error(error.data))
         }
+        
     }
 
     function handleAvaliate(){
@@ -291,8 +297,7 @@ const Timeline = () => {
                                         <div className="input-container">
                                             <input 
                                                 value={searchMediaMention}
-                                                onChange={e => setSearchMediaMention(e.target.value)}
-                                                onKeyPress={e => handleSearchMediasMention(e)} 
+                                                onChange={e => handleSearchMediasMention(e)}
                                                 type="text" 
                                                 placeholder="Nome da mídia" 
                                             />
