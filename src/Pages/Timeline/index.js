@@ -115,19 +115,17 @@ const Timeline = () => {
         setToken('')
     }
 
-    function setStateUserSearch(e){
-        if(e){
-            setSearchUsers(e)
+    function handleSearchUsers(e){
+        setSearchUsers(e.target.value)
+
+        if(!e.target.value){
+            setUsersData(usersToFollow)
         }
         else{
-            clearSearch()
-        }
-    }
-
-    function handleSearchUsers(e){
-        if(e.key === 'Enter'){
-            api.get(`/users/search/${searchUsers}`)
-                .then(res => setUsersData(res.data))
+            api.get(`/users/search/${e.target.value}`)
+                .then(res => {
+                    setUsersData(res.data)
+                })
                 .catch(error => console.log(error))
         }
     }
@@ -398,7 +396,7 @@ const Timeline = () => {
                         <div className="who-follow">
                             <div className="header-who-follow">
                                 { !viewInputSearchUser && <h1>Quem Seguir</h1> }
-                                { viewInputSearchUser && <input type="text" placeholder="Pesquisar" value={searchUsers} onChange={e => setStateUserSearch(e.target.value)} onKeyPress={e => handleSearchUsers(e)} /> }
+                                { viewInputSearchUser && <input type="text" placeholder="Pesquisar" value={searchUsers} onChange={e => handleSearchUsers(e)} /> }
                                 { searchUsers && viewInputSearchUser && <button onClick={() => clearSearch()}><ion-icon name="close-outline"></ion-icon></button> }
                                 <button onClick={() => setViewInputSearchUser(!viewInputSearchUser)}><ion-icon name="search-outline"></ion-icon></button>
                             </div>
