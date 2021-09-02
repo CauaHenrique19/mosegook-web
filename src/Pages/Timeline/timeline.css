@@ -100,8 +100,6 @@
     flex-direction: column;
     justify-content: center;
     margin-right: 10px;
-    padding-right: 10px;
-    border-right: 1px solid rgba(255, 255, 255, 0.377);
 }
 .timeline-container .most-rated-by-friends-container .info-media-most-rated .info-media-content-most-rated .most-rated-avaliation .avaliation-content{
     display: flex;
@@ -114,34 +112,6 @@
     color: rgb(255, 187, 0);
     margin-right: 5px;
     font-size: 1.3rem;
-}
-.timeline-container .most-rated-by-friends-container .input-container{
-    width: 250px;
-    display: flex;
-    align-items: center;
-}
-.timeline-container .most-rated-by-friends-container .input-container input{
-    width: 205px;
-    height: 100%;
-    border: none;
-    color: #fafafa;
-    outline: none;
-    font-size: 1.5rem;
-    margin-right: 10px;
-    background-color: initial;
-}
-.timeline-container .most-rated-by-friends-container .input-container input::placeholder{
-    color: #fafafa;
-}
-.timeline-container .most-rated-by-friends-container .input-container ion-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #fafafa;
-    background-color: #242424;
-    border-radius: 5px;
-    padding: 5px;
 }
 .timeline-container .most-rated-by-friends-container{
     overflow: hidden;

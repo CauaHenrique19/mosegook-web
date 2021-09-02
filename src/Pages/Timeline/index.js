@@ -212,10 +212,6 @@ const Timeline = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="input-container">
-                            <input type="text" placeholder="Procurar Mídias" />
-                            <ion-icon name="search-outline"></ion-icon>
-                        </div>
                     </div>
                 }
                 <div className="most-rated-by-friends-slider">
