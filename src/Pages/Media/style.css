@@ -1,0 +1,83 @@
+.media-view-container{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0 15%;
+    margin-bottom: 25px;
+}
+.media-view-info-container{
+    display: flex;
+    height: fit-content;
+    padding: 0 15%;
+    margin-bottom: 50px;
+}
+.media-view-info-container .poster-media-container{
+    margin-right: 25px;
+}
+.media-view-info-container .poster-media-container img{
+    height: 500px;
+}
+.media-view-info-container .media-info-content{
+    width: 100%;
+}
+.media-view-info-container .media-info-content .header-media-info-content{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.media-view-info-container .media-info-content .header-media-info-content h1{
+    font-size: 4rem;
+}
+.media-view-info-container .media-info-content .header-media-info-content .media-stars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 200;
+}
+.media-view-info-container .media-info-content .header-media-info-content .media-stars ion-icon{
+    color: rgb(255, 217, 0);
+    margin-right: 10px;
+}
+.media-view-info-container .media-info-content .biography{
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+.media-view-container .cover-media-container{
+    padding: 0 15%;
+    margin-bottom: 60px;
+}
+.media-view-container .cover-media-container img{
+    width: 100%;
+    border-radius: 10px;
+}
+.media-view-container .avaliations-most-likeds{
+    height: fit-content;
+    padding: 0 15%;
+    margin-bottom: 50px;
+}
+.media-view-container .avaliations-most-likeds h1{
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+.media-view-container .avaliations-most-likeds .row{
+    width: 100%;
+    display: flex;
+    margin-bottom: 5px;
+}
+.media-view-container .relationed-medias{
+    height: 100vh;
+    padding: 0 15%;
+}
+.media-view-container .relationed-medias h1{
+    font-size: 3rem;
+}
