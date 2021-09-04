@@ -23,6 +23,7 @@ import Genders from './Pages/Admin/Genders'
 import Categories from './Pages/Admin/Categories'
 import Opinion from './Pages/Opinion'
 import Opinions from './Pages/Admin/Opinions'
+import Media from './Pages/Media'
 import Ranking from './Pages/Ranking'
 
 const Routes = () => {
@@ -49,6 +50,7 @@ const Routes = () => {
                 <Route path="/avaliation/:id" component={AvaliationDetailed} />
                 <PrivateRoute path="/opinion" component={Opinion} />
                 <PrivateRoute path="/ranking" component={Ranking} />
+                <Route path="/media/:media" component={Media} />
             </Switch>
         </HashRouter>
     )
