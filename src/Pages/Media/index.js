@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import Loading from '../../Components/Loading'
 import Avaliation from '../../Components/Avaliation'
 import Media from '../../Components/Media'
 
@@ -11,6 +12,7 @@ const MediaPage = (props) => {
     const [media, setMedia] = useState({})
     const [avaliations, setAvaliations] = useState({})
     const [relationedMedias, setRelationedMedias] = useState([])
+    const [loading, setLoading] = useState(true)
 
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-1500)
@@ -23,6 +25,7 @@ const MediaPage = (props) => {
                 setMedia(res.data.media)
                 setAvaliations(res.data.avaliations)
                 setRelationedMedias(res.data.relationedMedias)
+                setLoading(false)
             })
             .catch(error => console.error(error))
     }, [props])
@@ -66,6 +69,7 @@ const MediaPage = (props) => {
 
     return (
         <div className="media-view-container">
+            { loading && <Loading /> }
             <header className="header">
                 <h1>Mosegook</h1>
             </header>
@@ -122,7 +126,7 @@ const MediaPage = (props) => {
                     <div className="relationed-medias-container">
                         {
                             relationedMedias.map(media => (
-                                <Media media={media} selectMedia={() => { }} />
+                                <Media redirect media={media} selectMedia={() => {}} />
                             ))
                         }
                     </div>
