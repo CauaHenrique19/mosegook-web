@@ -74,10 +74,66 @@
     display: flex;
     margin-bottom: 5px;
 }
+.media-view-container .avaliations-most-likeds .row .avaliation{
+    width: 450px;
+    margin-right: 5px;
+}
+.media-view-container .avaliations-most-likeds .row .avaliation:last-child{
+    margin-right: 0px;
+}
 .media-view-container .relationed-medias{
-    height: 100vh;
-    padding: 0 15%;
+    height: fit-content;
+    padding-left: 15%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 50px;
 }
 .media-view-container .relationed-medias h1{
     font-size: 3rem;
+    margin-bottom: 20px;
+}
+.media-view-container .relationed-medias .relationed-medias-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.media-view-container .relationed-medias .relationed-medias-container{
+    display: flex;
+    transition: transform 0.7s;
+}
+.media-view-container .relationed-medias .relationed-medias-container .media{
+    margin-right: 2px;
+}
+.media-view-container .relationed-medias button{
+    background: initial;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    transition: background-color 0.3s;
+}
+.media-view-container .relationed-medias button ion-icon{
+    font-size: 2rem;
+}
+.media-view-container .relationed-medias button:hover{
+    background-image: url('../../assets//DarkGradient07.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.media-view-container .relationed-medias .next-button-slider{
+    right: 80px;
+}
+.media-view-container .relationed-medias .previous-button-slider{
+    left: 260px;
+    display: none;
 }

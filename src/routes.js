@@ -50,7 +50,7 @@ const Routes = () => {
                 <Route path="/avaliation/:id" component={AvaliationDetailed} />
                 <PrivateRoute path="/opinion" component={Opinion} />
                 <PrivateRoute path="/ranking" component={Ranking} />
-                <Route path="/media/:media" component={Media} />
+                <Route path="/media/:id" component={Media} />
             </Switch>
         </HashRouter>
     )

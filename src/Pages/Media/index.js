@@ -1,11 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Avaliation from '../../Components/Avaliation'
 import Media from '../../Components/Media'
 
+import api from '../../services/api'
 import './style.css'
 
-const MediaPage = () => {
+const MediaPage = (props) => {
+
+    const [media, setMedia] = useState({})
+    const [avaliations, setAvaliations] = useState({})
+    const [relationedMedias, setRelationedMedias] = useState([])
+
+    let [count, setCount] = useState(1)
+    let [valueSlider] = useState(-1500)
+    let [actualValueSlider, setActualValueSlider] = useState(0)
+    let [maxCount, setMaxCount] = useState()
+
+    useEffect(() => {
+        api.get(`/media-detailed/${props.match.params.id}`)
+            .then(res => {
+                setMedia(res.data.media)
+                setAvaliations(res.data.avaliations)
+                setRelationedMedias(res.data.relationedMedias)
+            })
+            .catch(error => console.error(error))
+    }, [props])
+
+    const buttonPreviousEL = document.querySelector('.previous-button-slider')
+    const buttonNextEL = document.querySelector('.next-button-slider')
+    const el = document.querySelector('.relationed-medias-container')
+
+    useEffect(() => {
+        let count = Math.ceil(relationedMedias.length / 5)
+        setMaxCount(count)
+    }, [relationedMedias])
+
+    function previous() {
+        actualValueSlider === 0 ? actualValueSlider = 0 : actualValueSlider -= valueSlider
+        setActualValueSlider(actualValueSlider)
+
+        el.style.transform = `translate3d(${actualValueSlider}px, 0, 0)`
+
+        count -= 1
+        setCount(count)
+        verifyCount()
+    }
+
+    function next() {
+        actualValueSlider === 0 ? actualValueSlider = valueSlider : setActualValueSlider(1)
+        actualValueSlider = valueSlider * count
+        setActualValueSlider(actualValueSlider)
+
+        el.style.transform = `translate3d(${actualValueSlider}px, 0, 0)`
+
+        count += 1
+        setCount(count)
+        verifyCount()
+    }
+
+    function verifyCount() {
+        count === 1 ? buttonPreviousEL.style.display = 'none' : buttonPreviousEL.style.display = 'flex'
+        count === maxCount ? buttonNextEL.style.display = 'none' : buttonNextEL.style.display = 'flex'
+    }
+
     return (
         <div className="media-view-container">
             <header className="header">
@@ -13,46 +71,62 @@ const MediaPage = () => {
             </header>
             <div className="media-view-info-container">
                 <div className="poster-media-container">
-                    <img src="https://mosegook.s3.amazonaws.com/8ccdc51a2befcfedbfbdab5d8ad150f2-poster-cyberpunk-2077.jpg" alt="CyberPunk 2077" />
+                    <img src={media.url_poster} alt={media.name} />
                 </div>
                 <div className="media-info-content">
                     <div className="header-media-info-content">
-                        <h1>CyberPunk 2077</h1>
+                        <h1>{media.name}</h1>
                         <div className="media-stars">
                             <ion-icon name="star"></ion-icon>
-                            <p>4.5</p>
+                            <p>{media.avaliation}</p>
                         </div>
                     </div>
                     <p className="biography">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                        with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                        publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        {media.synopsis}
                     </p>
                 </div>
             </div>
             <div className="cover-media-container">
-                <img src="https://mosegook.s3.amazonaws.com/127ab83a9f2624944e607bf437ed5c28-poster-cyberpunk-timeline.png" alt="CyberPunk 2077" />
+                <img src={media.url_poster_timeline} alt={media.name} />
             </div>
             <div className="avaliations-most-likeds">
                 <h1>Avaliações mais curtidas</h1>
                 <div className="avaliations-most-likeds-container">
                     <div className="row">
                         {
-                            
+                            avaliations.first_row &&
+                            avaliations.first_row.map(avaliation => (
+                                <Avaliation avaliation={avaliation} key={avaliation.id} />
+                            ))
                         }
                     </div>
                     <div className="row">
                         {
-
+                            avaliations.second_row &&
+                            avaliations.second_row.map(avaliation => (
+                                <Avaliation avaliation={avaliation} key={avaliation.id} />
+                            ))
                         }
                     </div>
                 </div>
             </div>
             <div className="relationed-medias">
                 <h1>Mídias Relacionadas</h1>
+                <div className="relationed-medias-content">
+                    <button className="previous-button-slider" onClick={previous}>
+                        <ion-icon name="chevron-back-outline"></ion-icon>
+                    </button>
+                    <button className="next-button-slider" onClick={next} >
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </button>
+                    <div className="relationed-medias-container">
+                        {
+                            relationedMedias.map(media => (
+                                <Media media={media} selectMedia={() => { }} />
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )
