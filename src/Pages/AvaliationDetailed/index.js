@@ -193,8 +193,8 @@ const AvaliationDetailed = (props) => {
             <div className="media-avaliation-container">
                 <h1>Mídia Avaliada</h1>
                 {
-                    avaliationDetailed.avaliation && 
-                    <Media redirect selectMedia={() => {}} media={avaliationDetailed.avaliation} />
+                    avaliationDetailed.media && 
+                    <Media redirect selectMedia={() => {}} media={avaliationDetailed.media} />
                 }
                 <h1>Gêneros</h1>
                 <div className="genders-avaliation-container">
