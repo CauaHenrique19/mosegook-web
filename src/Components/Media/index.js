@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import './style.css'
 
-const Media = ({ media, selectMedia, selected, removeMedia, miniature, admin, onEdit, onDelete }) => {
+const Media = ({ media, redirect, selectMedia, selected, removeMedia, miniature, admin, onEdit, onDelete }) => {
     return (
-        <div onClick={() => selectMedia()} className={selected ? 'media selected' : (miniature ? 'media miniature' : 'media')}>
+        <Link to={ redirect && `/media/${media.id}`} onClick={() => selectMedia()} className={selected ? 'media selected' : (miniature ? 'media miniature' : 'media')}>
             <div className="media-image-container">
                 <img src={media.url_poster} alt={media.media_name || media.name} />
             </div>
@@ -25,7 +27,7 @@ const Media = ({ media, selectMedia, selected, removeMedia, miniature, admin, on
                     <ion-icon name="close-outline"></ion-icon>
                 </button>
             }
-        </div>
+        </Link>
     )
 }
 

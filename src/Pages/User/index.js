@@ -248,7 +248,7 @@ const User = (props) => {
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
-                                        <Media key={media.id} selectMedia={() => {}} miniature media={media} />
+                                        <Media redirect key={media.id} selectMedia={() => {}} miniature media={media} />
                                     ))
                                 }
                             </div>

@@ -92,7 +92,7 @@ const Catalog = () => {
                 <div className="medias-main-catalog-container">
                     {
                         filteredMedias.length > 0 && filteredMedias.map(media => (
-                            <Media key={media.id} selectMedia={() => {}} media={media} />
+                            <Media key={media.id} redirect selectMedia={() => {}} media={media} />
                         ))
                     }
                 </div>

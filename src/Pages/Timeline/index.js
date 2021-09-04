@@ -430,7 +430,7 @@ const Timeline = () => {
                             <div className="main-discover-medias">
                                 {
                                     !loading && mediasToDiscover && mediasToDiscover.map(media => (
-                                        <div key={media.name} className="media-to-discover">
+                                        <Link to={`/media/${media.id}`} key={media.name} className="media-to-discover">
                                             <div className="img-media-to-discover-container">
                                                 <img src={media.url_poster_timeline} alt="" />
                                             </div>
@@ -449,7 +449,7 @@ const Timeline = () => {
                                                     }
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))
                                 }
                             </div>

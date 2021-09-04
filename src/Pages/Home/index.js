@@ -224,7 +224,7 @@ const Home = () => {
                         <ion-icon name="chevron-forward-outline"></ion-icon>
                     </button>
                     <div className="media-slider">
-                        {medias && medias.map(media => <Media media={media} selectMedia={() => { }} key={media.url_poster} />)}
+                        {medias && medias.map(media => <Media media={media} redirect selectMedia={() => { }} key={media.url_poster} />)}
                     </div>
                 </div>
                 <div className="button-next-page" onClick={() => window.scrollTo({ top: window.innerHeight * 2.7, behavior: 'smooth' })} >
