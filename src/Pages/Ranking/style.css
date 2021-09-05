@@ -25,12 +25,11 @@
 }
 .ranking-content-container .ranking-upload .ranking-upload-progress{
     width: 100%;
-    height: 25px;
+    height: 20px;
     background-color: #000000;
     border-radius: 50px;
 }
 .ranking-content-container .ranking-upload .ranking-upload-progress .upload-progress{
-    width: 31%;
     height: 100%;
     border-radius: 50px;
     background-color: blueviolet;
@@ -53,7 +52,10 @@
     border-radius: 50px;
     background-color: black;
     margin-bottom: 20px;
-    border: 2px solid #fafafa;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .ranking-content-container .ranking-upload .ranks .rank h3{
     font-weight: 400;
@@ -87,9 +89,14 @@
 .ranking-top-container .top:last-child{
     margin-right: 0;
 }
+.ranking-top-container .top.first{
+    order: 2;
+}
 .ranking-top-container .top.second{
     height: 65%;
+    order: 1;
 }
 .ranking-top-container .top.third{
     height: 55%;
+    order: 3;
 }
