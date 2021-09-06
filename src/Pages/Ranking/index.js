@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Context } from '../../context/context'
 
-import api from '../../services/api'
+import Loading from '../../Components/Loading'
 
+import api from '../../services/api'
 import './style.css'
 
 const Ranking = () => {
@@ -12,6 +13,7 @@ const Ranking = () => {
     const [ranks, setRanks] = useState([])
     const [top, setTop] = useState([])
     const [rankStatus, setRankStatus] = useState({})
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         api.get('/ranks')
@@ -23,12 +25,16 @@ const Ranking = () => {
             .catch(error => console.error(error.message))
 
         api.get(`/users/rank/${user.id}`)
-            .then(res => setRankStatus(res.data))
+            .then(res => { 
+                setRankStatus(res.data)
+                setLoading(false) 
+            })
             .catch(error => console.error(error.message))
     }, [user])
 
     return (
         <div className="ranking-container">
+            { loading && <Loading /> }
             <div className="ranking-content-container">
                 <h1>Ranking</h1>
                 <div className="ranking-upload">
