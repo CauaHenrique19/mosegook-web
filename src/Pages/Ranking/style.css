@@ -72,7 +72,8 @@
     width: 33%;
     height: 80%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: rgba(250, 250, 250, 0.137);
     margin-right: 15px;
     border-radius: 25px;
@@ -85,6 +86,32 @@
     border-radius: 100%;
     position: absolute;
     top: -100px;
+}
+.ranking-top-container .top .top-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-top: 120px;
+    padding-bottom: 30px;
+}
+.ranking-top-container .top .top-info .user-top-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.ranking-top-container .top .top-info .user-top-info h2:last-child{
+    font-weight: 400;
+    color: rgb(143, 143, 143);
+}
+.ranking-top-container .top .top-info .points-top-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ranking-top-container .top .top-info .points-top-info h2:last-child{
+    font-weight: 300;
 }
 .ranking-top-container .top:last-child{
     margin-right: 0;

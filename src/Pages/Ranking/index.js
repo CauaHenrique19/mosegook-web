@@ -56,6 +56,16 @@ const Ranking = () => {
                     top.map(user => (
                         <div className={`top ${user.position}`}>
                             <img src={user.url_image} alt={user.user_name} />
+                            <div className="top-info">
+                                <div className="user-top-info">
+                                    <h1>{user.user_name}</h1>
+                                    <h2>@{user.user_user}</h2>
+                                </div>
+                                <div className="points-top-info">
+                                    <h1>{user.points}</h1>
+                                    <h2>Pontos</h2>
+                                </div>
+                            </div>
                         </div>
                     ))
                 }
