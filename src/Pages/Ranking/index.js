@@ -45,7 +45,7 @@ const Ranking = () => {
                         {
                             ranks &&
                             ranks.map((rank, index) => (
-                                <div className="rank" >
+                                <div key={rank.name} className="rank" >
                                     <div className="rank-circle" style={{ borderWidth: 2, borderStyle: 'solid', borderColor: rank.color }}>
                                         <h2>{index + 1}</h2>
                                     </div>
@@ -60,7 +60,7 @@ const Ranking = () => {
                 {
                     top &&
                     top.map(user => (
-                        <div className={`top ${user.position}`}>
+                        <div key={user.user_user} className={`top ${user.position}`}>
                             <img src={user.url_image} alt={user.user_name} />
                             <div className="top-info">
                                 <div className="user-top-info">
