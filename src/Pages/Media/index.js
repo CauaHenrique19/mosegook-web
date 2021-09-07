@@ -12,6 +12,7 @@ const MediaPage = (props) => {
     const [media, setMedia] = useState({})
     const [avaliations, setAvaliations] = useState({})
     const [relationedMedias, setRelationedMedias] = useState([])
+    const [genders, setGenders] = useState([])
     const [loading, setLoading] = useState(true)
 
     let [count, setCount] = useState(1)
@@ -25,6 +26,7 @@ const MediaPage = (props) => {
                 setMedia(res.data.media)
                 setAvaliations(res.data.avaliations)
                 setRelationedMedias(res.data.relationedMedias)
+                setGenders(res.data.genders)
                 setLoading(false)
             })
             .catch(error => console.error(error))
@@ -78,16 +80,34 @@ const MediaPage = (props) => {
                     <img src={media.url_poster} alt={media.name} />
                 </div>
                 <div className="media-info-content">
-                    <div className="header-media-info-content">
-                        <h1>{media.name}</h1>
-                        <div className="media-stars">
-                            <ion-icon name="star"></ion-icon>
-                            <p>{media.avaliation}</p>
+                    <div>
+                        <div className="header-media-info-content">
+                            <h1>{media.name}</h1>
+                            <div className="media-stars">
+                                <ion-icon name="star"></ion-icon>
+                                <p>{media.avaliation}</p>
+                            </div>
+                        </div>
+                        <p className="synopsis">
+                            {media.synopsis}
+                        </p>
+                    </div>
+                    <div className="footer-info-content">
+                        <h1>Gêneros</h1>
+                        <div className="genders">
+                            {
+                                genders &&
+                                genders.map(gender => (
+                                    <div
+                                        style={{ backgroundColor: gender.color }}
+                                        key={gender.color}
+                                        className="gender-media">
+                                        {gender.name}
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
-                    <p className="biography">
-                        {media.synopsis}
-                    </p>
                 </div>
             </div>
             <div className="cover-media-container">
@@ -140,7 +160,7 @@ const MediaPage = (props) => {
                         {
                             relationedMedias.length > 0 &&
                             relationedMedias.map(media => (
-                                <Media redirect media={media} selectMedia={() => { }} />
+                                <Media key={media.id} redirect media={media} selectMedia={() => { }} />
                             ))
                         }
                     </div>
