@@ -24,7 +24,7 @@ const MediaPage = (props) => {
             .then(res => {
                 setMedia(res.data.media)
                 setAvaliations(res.data.avaliations)
-                //setRelationedMedias(res.data.relationedMedias)
+                setRelationedMedias(res.data.relationedMedias)
                 setLoading(false)
             })
             .catch(error => console.error(error))
@@ -144,15 +144,15 @@ const MediaPage = (props) => {
                             ))
                         }
                     </div>
-                    {
-                        relationedMedias.length === 0 &&
-                        <div className="nothing-container">
-                            <h1>Nenhuma mídia relacionada!</h1>
-                            <p>Assim que houver alguma mídia relacionada nós iremos mostrar aqui!</p>
-                        </div>
-                    }
                 </div>
             </div>
+            {
+                relationedMedias.length === 0 &&
+                <div className="nothing-container-relationed-medias">
+                    <h1>Nenhuma mídia relacionada!</h1>
+                    <p>Assim que houver alguma mídia relacionada nós iremos mostrar aqui!</p>
+                </div>
+            }
         </div>
     )
 }
