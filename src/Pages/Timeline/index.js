@@ -26,7 +26,8 @@ const Timeline = () => {
     const [mediasToMention, setMediasToMention] = useState([])
     const [searchUsers, setSearchUsers] = useState('')
     const [usersData, setUsersData] = useState([])
-    
+    const [numberVisualizers, setNumberVisualizers] = useState([])
+
     const [contentAvaliation, setContentAvaliation] = useState('')
     const [stars, setStars] = useState(0)
     const [mentionedMedia, setMentionedMedia] = useState(null)
@@ -39,9 +40,9 @@ const Timeline = () => {
 
     useEffect(() => {
         api.get(`/users-to-follow/${user.id}`)
-            .then(res => { 
+            .then(res => {
                 setUsersData(res.data)
-                setUsersToFollow(res.data) 
+                setUsersToFollow(res.data)
             })
             .catch(error => console.error(error.message))
         api.get(`/medias/medias-to-discover/${user.id}`)
@@ -49,8 +50,8 @@ const Timeline = () => {
             .catch(error => console.error(error.message))
         api.get(`/avaliations-timeline/${user.id}`)
             .then(res => {
-                if(res.data.avaliations.length > 0){
-                    setAvaliations(res.data.avaliations) 
+                if (res.data.avaliations.length > 0) {
+                    setAvaliations(res.data.avaliations)
                 }
             })
             .catch(error => console.error(error.message))
@@ -72,10 +73,20 @@ const Timeline = () => {
     useEffect(() => {
         let count = mediasRated.length
         setMaxCount(count)
+
+        for (let i = 0; i < count; i++) {
+            numberVisualizers.push(i)
+            setNumberVisualizers(numberVisualizers)
+        }
+    }, [mediasRated, numberVisualizers])
+
+    useEffect(() => {
+        let count = mediasRated.length
+        setMaxCount(count)
     }, [mediasRated])
 
     useEffect(() => {
-        let sMedia =  mediasRated[count - 1]
+        let sMedia = mediasRated[count - 1]
         setSelectedMedia(sMedia)
     }, [count, mediasRated])
 
@@ -115,13 +126,13 @@ const Timeline = () => {
         setToken('')
     }
 
-    function handleSearchUsers(e){
+    function handleSearchUsers(e) {
         setSearchUsers(e.target.value)
 
-        if(!e.target.value){
+        if (!e.target.value) {
             setUsersData(usersToFollow)
         }
-        else{
+        else {
             api.get(`/users/search/${e.target.value}`)
                 .then(res => {
                     setUsersData(res.data)
@@ -130,35 +141,35 @@ const Timeline = () => {
         }
     }
 
-    function clearSearch(){
+    function clearSearch() {
         setUsersData(usersToFollow)
         setSearchUsers('')
         setViewInputSearchUser(!viewInputSearchUser)
     }
 
-    function handleSearchMediasMention(e){
+    function handleSearchMediasMention(e) {
         setSearchMediaMention(e.target.value)
 
-        if(!e.target.value){
+        if (!e.target.value) {
             setMediasToMention([])
         }
-        else{
+        else {
             api.get(`/medias/search/${e.target.value}`)
                 .then(res => setMediasToMention(res.data.medias))
                 .catch(error => console.error(error.data))
         }
-        
+
     }
 
-    function handleAvaliate(){
+    function handleAvaliate() {
         const avaliation = { user_id: user.id, media_id: mentionedMedia.id, content: contentAvaliation, stars }
 
         api.post('/avaliations', avaliation)
             .then(res => {
-                const updatedAvaliation = { 
-                    ...res.data.avaliation, 
-                    user_name: user.name, 
-                    user_id: user.id, 
+                const updatedAvaliation = {
+                    ...res.data.avaliation,
+                    user_name: user.name,
+                    user_id: user.id,
                     user_user: user.user,
                     media_name: mentionedMedia.name,
                     category_icon: mentionedMedia.icon,
@@ -212,6 +223,22 @@ const Timeline = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="page-count">
+                            {
+                                numberVisualizers.map(number => (
+                                    <div
+                                        key={number}
+                                        className={number === count - 1 ? 'page in-that' : 'page'}
+                                        onClick={() => {
+                                            count = number
+                                            setCount(count)
+                                            next()
+                                        }}
+                                    >
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
                 }
                 <div className="most-rated-by-friends-slider">
@@ -246,16 +273,16 @@ const Timeline = () => {
                     <div className="columns-container">
                         <div className="container-new-avaliation">
                             <h1>Avalie</h1>
-                            <textarea 
-                                value={contentAvaliation} 
-                                onChange={e => setContentAvaliation(e.target.value)} 
-                                placeholder="O que você acha?" 
-                                maxLength="360" 
-                                cols="30" 
+                            <textarea
+                                value={contentAvaliation}
+                                onChange={e => setContentAvaliation(e.target.value)}
+                                placeholder="O que você acha?"
+                                maxLength="360"
+                                cols="30"
                                 rows="5"
                             ></textarea>
                             {
-                                mentionedMedia && 
+                                mentionedMedia &&
                                 <div className="media-mentioned-container">
                                     <div className="media-mentioned">
                                         <div style={{ backgroundColor: mentionedMedia.color }} className="color-media-mentioned">
@@ -283,34 +310,34 @@ const Timeline = () => {
                             }
                             <div className="footer-container-new-avaliation">
                                 <div className="mention-media">
-                                    <button 
+                                    <button
                                         onClick={() => setViewInputSearchMediaMention(!viewInputSearchMediaMention)}>
                                         <ion-icon name="videocam-outline"></ion-icon>
                                         Mencionar Mídia
                                     </button>
                                     {
-                                        viewInputSearchMediaMention && 
+                                        viewInputSearchMediaMention &&
                                         <div className="input-container">
-                                            <input 
+                                            <input
                                                 value={searchMediaMention}
                                                 onChange={e => handleSearchMediasMention(e)}
-                                                type="text" 
-                                                placeholder="Nome da mídia" 
+                                                type="text"
+                                                placeholder="Nome da mídia"
                                             />
                                             {
-                                                searchMediaMention && 
-                                                <ion-icon 
-                                                    onClick={() => { 
+                                                searchMediaMention &&
+                                                <ion-icon
+                                                    onClick={() => {
                                                         setMediasToMention([])
                                                         setSearchMediaMention('')
-                                                    }} 
+                                                    }}
                                                     name="close-outline"></ion-icon>
                                             }
                                             <ion-icon name="search-outline"></ion-icon>
                                         </div>
                                     }
                                 </div>
-                                <button onClick={() => handleAvaliate()}> 
+                                <button onClick={() => handleAvaliate()}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 51 40"
                                         fill="#fafafa">
                                         <path d="M1.84167 23.1579L16.575 0H24.65L15.1583 20.0702C19.0306 22.0351 20.9667 25.1696 20.9667 29.4737C20.9667 32.2807 19.9278 34.7602 17.85 36.9123C15.7722 38.9708 13.3167 40 10.4833 40C7.46111 40 4.95833 38.9708 2.975 36.9123C0.991667 34.8538 0 32.3743 0 29.4737C0 27.1345 0.613889 25.0292 1.84167 23.1579ZM28.1917 23.1579L42.925 0H51L41.5083 20.0702C45.3806 22.0351 47.3167 25.1696 47.3167 29.4737C47.3167 32.2807 46.2778 34.7602 44.2 36.9123C42.1222 38.9708 39.6667 40 36.8333 40C33.8111 40 31.3083 38.9708 29.325 36.9123C27.3417 34.8538 26.35 32.3743 26.35 29.4737C26.35 27.1345 26.9639 25.0292 28.1917 23.1579Z"></path>
@@ -319,76 +346,76 @@ const Timeline = () => {
                                 </button>
                             </div>
                             {
-                                mediasToMention.length > 0 && 
-                                    <div className="medias-to-mention">
-                                        <div className="medias-to-mention-container">
-                                            {
-                                                mediasToMention.length > 0 && mediasToMention.map(media => (
-                                                    <div 
-                                                        onClick={() => { 
-                                                            setMentionedMedia(media)
-                                                            setMediasToMention([])
-                                                        }} 
-                                                        key={media.name} 
-                                                        className="media-to-mention"
-                                                    >
-                                                        <div className="img-media-to-mention-container">
-                                                            <img src={media.url_poster_timeline} alt="" />
-                                                        </div>
-                                                        <div className="info-media-to-mention-container">
-                                                            <h2>{media.name}</h2>
-                                                            <div className="genders-media-to-mention">
-                                                                {
-                                                                    media.genders.map(gender => (
-                                                                        <div
-                                                                            style={{ backgroundColor: gender.color }}
-                                                                            key={gender.color}
-                                                                            className="gender-media-to-mention">
-                                                                            {gender.name}
-                                                                        </div>
-                                                                    ))
-                                                                }
-                                                            </div>
+                                mediasToMention.length > 0 &&
+                                <div className="medias-to-mention">
+                                    <div className="medias-to-mention-container">
+                                        {
+                                            mediasToMention.length > 0 && mediasToMention.map(media => (
+                                                <div
+                                                    onClick={() => {
+                                                        setMentionedMedia(media)
+                                                        setMediasToMention([])
+                                                    }}
+                                                    key={media.name}
+                                                    className="media-to-mention"
+                                                >
+                                                    <div className="img-media-to-mention-container">
+                                                        <img src={media.url_poster_timeline} alt="" />
+                                                    </div>
+                                                    <div className="info-media-to-mention-container">
+                                                        <h2>{media.name}</h2>
+                                                        <div className="genders-media-to-mention">
+                                                            {
+                                                                media.genders.map(gender => (
+                                                                    <div
+                                                                        style={{ backgroundColor: gender.color }}
+                                                                        key={gender.color}
+                                                                        className="gender-media-to-mention">
+                                                                        {gender.name}
+                                                                    </div>
+                                                                ))
+                                                            }
                                                         </div>
                                                     </div>
-                                                ))
-                                            }
-                                        </div>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
+                                </div>
                             }
                         </div>
                         <div className="columns">
                             <div className="column-avaliations">
-                                {   
+                                {
                                     !loading && avaliations.length > 0 ?
-                                    avaliations.map(avaliation => 
-                                        <Avaliation 
-                                            key={avaliation.id} 
-                                            avaliation={avaliation} 
-                                            handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)} 
-                                        />
-                                    ) :
-                                    <div className="nothing-container">
-                                        <h1>Nenhuma avaliação encontrada</h1>
-                                        <p>Assim que alguém avaliar algo do seu gosto ou algum seguidor avaliar alguma coisa mostraremos aqui.</p>
-                                    </div>
+                                        avaliations.map(avaliation =>
+                                            <Avaliation
+                                                key={avaliation.id}
+                                                avaliation={avaliation}
+                                                handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)}
+                                            />
+                                        ) :
+                                        <div className="nothing-container">
+                                            <h1>Nenhuma avaliação encontrada</h1>
+                                            <p>Assim que alguém avaliar algo do seu gosto ou algum seguidor avaliar alguma coisa mostraremos aqui.</p>
+                                        </div>
                                 }
                             </div>
                             <div className="column-coments">
                                 {
-                                    !loading && coments.length > 0 ? 
-                                    coments.map(coment => 
-                                        <Coment 
-                                            key={coment.id} 
-                                            coment={coment} 
-                                            handleDelete={() => handleDeleteComent(coment, coments, setComents)} 
-                                        />
-                                    )
-                                    :
-                                    <div className="nothing-container">
-                                        <h1>Nenhum comentário encontrado</h1>
-                                        <p>Assim que alguém comentar algo do seu gosto ou algum seguidor comentar alguma coisa mostraremos aqui.</p>
-                                    </div>
+                                    !loading && coments.length > 0 ?
+                                        coments.map(coment =>
+                                            <Coment
+                                                key={coment.id}
+                                                coment={coment}
+                                                handleDelete={() => handleDeleteComent(coment, coments, setComents)}
+                                            />
+                                        )
+                                        :
+                                        <div className="nothing-container">
+                                            <h1>Nenhum comentário encontrado</h1>
+                                            <p>Assim que alguém comentar algo do seu gosto ou algum seguidor comentar alguma coisa mostraremos aqui.</p>
+                                        </div>
                                 }
                             </div>
                         </div>
@@ -396,9 +423,9 @@ const Timeline = () => {
                     <div className="column">
                         <div className="who-follow">
                             <div className="header-who-follow">
-                                { !viewInputSearchUser && <h1>Quem Seguir</h1> }
-                                { viewInputSearchUser && <input type="text" placeholder="Pesquisar" value={searchUsers} onChange={e => handleSearchUsers(e)} /> }
-                                { searchUsers && viewInputSearchUser && <button onClick={() => clearSearch()}><ion-icon name="close-outline"></ion-icon></button> }
+                                {!viewInputSearchUser && <h1>Quem Seguir</h1>}
+                                {viewInputSearchUser && <input type="text" placeholder="Pesquisar" value={searchUsers} onChange={e => handleSearchUsers(e)} />}
+                                {searchUsers && viewInputSearchUser && <button onClick={() => clearSearch()}><ion-icon name="close-outline"></ion-icon></button>}
                                 <button onClick={() => setViewInputSearchUser(!viewInputSearchUser)}><ion-icon name="search-outline"></ion-icon></button>
                             </div>
                             {
