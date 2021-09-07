@@ -580,7 +580,7 @@
     transition: transform 0.3s;
 }
 .timeline-container .main-timeline .discover-medias .main-discover-medias .media-to-discover:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0px 10px 30px 16px rgba(0, 0, 0, 0.233);
 }
 .timeline-container .main-timeline .discover-medias .main-discover-medias .media-to-discover .img-media-to-discover-container img{
