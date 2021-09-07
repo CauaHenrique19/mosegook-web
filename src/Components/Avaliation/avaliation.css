@@ -4,13 +4,13 @@
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.205);
-    transition: transform 0.5s, width 0.5s;
+    transition: transform 0.3s;
     margin-bottom: 5px;
     border-radius: 5px;
     position: relative;
 }
 .avaliation:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-image: url('../../assets/DarkGradient07.png');
     background-size: 100% 100%;
     background-origin: border-box;
