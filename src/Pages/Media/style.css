@@ -1,6 +1,22 @@
 .media-view-container{
     display: flex;
     flex-direction: column;
+    height: fit-content;
+}
+.media-view-container .container-media-not-exists{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f0f0f;
+    position: absolute;
+    z-index: 10;
+}
+.media-view-container .container-media-not-exists ion-icon{
+    font-size: 10rem;
+    color: rgba(128, 128, 128, 0.205);
 }
 .header{
     width: 100%;

@@ -15,6 +15,8 @@ const MediaPage = (props) => {
     const [genders, setGenders] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const [mediaNotExists, setMediaNotExists] = useState(false)
+
     let [count, setCount] = useState(1)
     let [valueSlider] = useState(-1500)
     let [actualValueSlider, setActualValueSlider] = useState(0)
@@ -23,11 +25,18 @@ const MediaPage = (props) => {
     useEffect(() => {
         api.get(`/media-detailed/${props.match.params.id}`)
             .then(res => {
-                setMedia(res.data.media)
-                setAvaliations(res.data.avaliations)
-                setRelationedMedias(res.data.relationedMedias)
-                setGenders(res.data.genders)
-                setLoading(false)
+                if(res.data.message){
+                    setMediaNotExists(true)
+                    setLoading(false)
+                }
+                else{
+                    setMedia(res.data.media)
+                    setAvaliations(res.data.avaliations)
+                    setRelationedMedias(res.data.relationedMedias)
+                    setGenders(res.data.genders)
+                    setMediaNotExists(false)
+                    setLoading(false)
+                }
             })
             .catch(error => console.error(error))
     }, [props])
@@ -71,101 +80,120 @@ const MediaPage = (props) => {
 
     return (
         <div className="media-view-container">
+            {
+                mediaNotExists &&
+                <div className="container-media-not-exists">
+                    <ion-icon name="alert-circle"></ion-icon>
+                    <h1>Mídia não encontrada!</h1>
+                </div> 
+            }
             {loading && <Loading />}
             <header className="header">
                 <h1>Mosegook</h1>
             </header>
-            <div className="media-view-info-container">
-                <div className="poster-media-container">
-                    <img src={media.url_poster} alt={media.name} />
-                </div>
-                <div className="media-info-content">
-                    <div>
-                        <div className="header-media-info-content">
-                            <h1>{media.name}</h1>
-                            <div className="media-stars">
-                                <ion-icon name="star"></ion-icon>
-                                <p>{media.avaliation}</p>
+            {
+                !mediaNotExists && 
+                <div className="media-view-info-container">
+                    <div className="poster-media-container">
+                        <img src={media.url_poster} alt={media.name} />
+                    </div>
+                    <div className="media-info-content">
+                        <div>
+                            <div className="header-media-info-content">
+                                <h1>{media.name}</h1>
+                                <div className="media-stars">
+                                    <ion-icon name="star"></ion-icon>
+                                    <p>{media.avaliation}</p>
+                                </div>
+                            </div>
+                            <p className="synopsis">
+                                {media.synopsis}
+                            </p>
+                        </div>
+                        <div className="footer-info-content">
+                            <h1>Gêneros</h1>
+                            <div className="genders">
+                                {
+                                    genders &&
+                                    genders.map(gender => (
+                                        <div
+                                            style={{ backgroundColor: gender.color }}
+                                            key={gender.color}
+                                            className="gender-media">
+                                            {gender.name}
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
-                        <p className="synopsis">
-                            {media.synopsis}
-                        </p>
                     </div>
-                    <div className="footer-info-content">
-                        <h1>Gêneros</h1>
-                        <div className="genders">
+                </div>
+            }
+            {
+                !mediaNotExists && 
+                <div className="cover-media-container">
+                    <img src={media.url_poster_timeline} alt={media.name} />
+                </div>
+            }
+            {
+                !mediaNotExists && 
+                <div className="avaliations-most-likeds">
+                    <h1>Avaliações mais curtidas</h1>
+                    <div className="avaliations-most-likeds-container">
+                        <div className="row">
                             {
-                                genders &&
-                                genders.map(gender => (
-                                    <div
-                                        style={{ backgroundColor: gender.color }}
-                                        key={gender.color}
-                                        className="gender-media">
-                                        {gender.name}
-                                    </div>
+                                avaliations.first_row &&
+                                avaliations.first_row.map(avaliation => (
+                                    <Avaliation avaliation={avaliation} key={avaliation.id} />
+                                ))
+                            }
+                        </div>
+                        <div className="row">
+                            {
+                                avaliations.second_row &&
+                                avaliations.second_row.map(avaliation => (
+                                    <Avaliation avaliation={avaliation} key={avaliation.id} />
+                                ))
+                            }
+                        </div>
+                        {
+                            avaliations.first_row && avaliations.second_row &&
+                            avaliations.first_row.length === 0 && avaliations.second_row.length === 0 &&
+                            <div className="nothing-container">
+                                <h1>Nenhuma avaliação encontrada!</h1>
+                                <p>Assim que alguma avaliação sobre essa mídia receber interações nós iremos mostrar aqui!</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            {
+                !mediaNotExists &&
+                <div className="relationed-medias">
+                    <h1>Mídias Relacionadas</h1>
+                    <div className="relationed-medias-content">
+                        {
+                            relationedMedias.length > 0 &&
+                            <>
+                                <button className="previous-button-slider" onClick={previous}>
+                                    <ion-icon name="chevron-back-outline"></ion-icon>
+                                </button>
+                                <button className="next-button-slider" onClick={next} >
+                                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                                </button>
+                            </>
+                        }
+                        <div className="relationed-medias-container">
+                            {
+                                relationedMedias.length > 0 &&
+                                relationedMedias.map(media => (
+                                    <Media key={media.id} redirect media={media} selectMedia={() => { }} />
                                 ))
                             }
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="cover-media-container">
-                <img src={media.url_poster_timeline} alt={media.name} />
-            </div>
-            <div className="avaliations-most-likeds">
-                <h1>Avaliações mais curtidas</h1>
-                <div className="avaliations-most-likeds-container">
-                    <div className="row">
-                        {
-                            avaliations.first_row &&
-                            avaliations.first_row.map(avaliation => (
-                                <Avaliation avaliation={avaliation} key={avaliation.id} />
-                            ))
-                        }
-                    </div>
-                    <div className="row">
-                        {
-                            avaliations.second_row &&
-                            avaliations.second_row.map(avaliation => (
-                                <Avaliation avaliation={avaliation} key={avaliation.id} />
-                            ))
-                        }
-                    </div>
-                    {
-                        avaliations.first_row && avaliations.second_row &&
-                        avaliations.first_row.length === 0 && avaliations.second_row.length === 0 &&
-                        <div className="nothing-container">
-                            <h1>Nenhuma avaliação encontrada!</h1>
-                            <p>Assim que alguma avaliação sobre essa mídia receber interações nós iremos mostrar aqui!</p>
-                        </div>
-                    }
-                </div>
-            </div>
-            <div className="relationed-medias">
-                <h1>Mídias Relacionadas</h1>
-                <div className="relationed-medias-content">
-                    {
-                        relationedMedias.length > 0 &&
-                        <>
-                            <button className="previous-button-slider" onClick={previous}>
-                                <ion-icon name="chevron-back-outline"></ion-icon>
-                            </button>
-                            <button className="next-button-slider" onClick={next} >
-                                <ion-icon name="chevron-forward-outline"></ion-icon>
-                            </button>
-                        </>
-                    }
-                    <div className="relationed-medias-container">
-                        {
-                            relationedMedias.length > 0 &&
-                            relationedMedias.map(media => (
-                                <Media key={media.id} redirect media={media} selectMedia={() => { }} />
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
+            }
             {
                 relationedMedias.length === 0 &&
                 <div className="nothing-container-relationed-medias">
