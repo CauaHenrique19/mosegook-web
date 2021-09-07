@@ -81,6 +81,25 @@
 .media-view-container .avaliations-most-likeds .row .avaliation:last-child{
     margin-right: 0px;
 }
+.media-view-container .nothing-container{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 5px;
+}
+.media-view-container .relationed-medias-content .nothing-container{
+    width: calc(100% - 15%);
+}
+.media-view-container .nothing-container h1{
+    margin: 0px;
+}
+.media-view-container .nothing-container p{
+    font-size: 1.2rem;
+}
 .media-view-container .relationed-medias{
     height: fit-content;
     padding-left: 15%;

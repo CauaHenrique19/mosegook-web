@@ -24,7 +24,7 @@ const MediaPage = (props) => {
             .then(res => {
                 setMedia(res.data.media)
                 setAvaliations(res.data.avaliations)
-                setRelationedMedias(res.data.relationedMedias)
+                //setRelationedMedias(res.data.relationedMedias)
                 setLoading(false)
             })
             .catch(error => console.error(error))
@@ -69,7 +69,7 @@ const MediaPage = (props) => {
 
     return (
         <div className="media-view-container">
-            { loading && <Loading /> }
+            {loading && <Loading />}
             <header className="header">
                 <h1>Mosegook</h1>
             </header>
@@ -112,24 +112,45 @@ const MediaPage = (props) => {
                             ))
                         }
                     </div>
+                    {
+                        avaliations.first_row && avaliations.second_row &&
+                        avaliations.first_row.length === 0 && avaliations.second_row.length === 0 &&
+                        <div className="nothing-container">
+                            <h1>Nenhuma avaliação encontrada!</h1>
+                            <p>Assim que alguma avaliação sobre essa mídia receber interações nós iremos mostrar aqui!</p>
+                        </div>
+                    }
                 </div>
             </div>
             <div className="relationed-medias">
                 <h1>Mídias Relacionadas</h1>
                 <div className="relationed-medias-content">
-                    <button className="previous-button-slider" onClick={previous}>
-                        <ion-icon name="chevron-back-outline"></ion-icon>
-                    </button>
-                    <button className="next-button-slider" onClick={next} >
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
+                    {
+                        relationedMedias.length > 0 &&
+                        <>
+                            <button className="previous-button-slider" onClick={previous}>
+                                <ion-icon name="chevron-back-outline"></ion-icon>
+                            </button>
+                            <button className="next-button-slider" onClick={next} >
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                            </button>
+                        </>
+                    }
                     <div className="relationed-medias-container">
                         {
+                            relationedMedias.length > 0 &&
                             relationedMedias.map(media => (
-                                <Media redirect media={media} selectMedia={() => {}} />
+                                <Media redirect media={media} selectMedia={() => { }} />
                             ))
                         }
                     </div>
+                    {
+                        relationedMedias.length === 0 &&
+                        <div className="nothing-container">
+                            <h1>Nenhuma mídia relacionada!</h1>
+                            <p>Assim que houver alguma mídia relacionada nós iremos mostrar aqui!</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
