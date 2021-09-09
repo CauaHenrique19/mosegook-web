@@ -35,14 +35,14 @@ const User = (props) => {
     const inputImage = useRef(null)
 
     useEffect(() => {
-        async function getDatas(){
+        async function getDatas() {
             setLoading(true)
 
             const { data: dataUser } = await api.get(`/users/user/${props.match.params.user}`)
             const { data: dataAvaliations } = await api.get(`/avaliations/${props.match.params.user}`)
             const { data: dataComents } = await api.get(`/coments/${props.match.params.user}`)
 
-            if(!dataUser.message){
+            if (!dataUser.message) {
                 setUser(dataUser)
                 setLoading(false)
                 setUserNotExists(false)
@@ -51,25 +51,25 @@ const User = (props) => {
                 setBiography(dataUser.user.biography)
                 setImage(dataUser.user.url_image)
             }
-            else if(dataUser.message){
+            else if (dataUser.message) {
                 setUserNotExists(true)
                 setLoading(false)
             }
-            if(dataAvaliations.avaliations.length > 0){
+            if (dataAvaliations.avaliations.length > 0) {
                 setAvaliations(dataAvaliations.avaliations)
             }
-            if(dataComents.coments.length > 0){
+            if (dataComents.coments.length > 0) {
                 setComents(dataComents.coments)
             }
         }
 
         getDatas()
-        
+
     }, [props])
 
     useEffect(() => {
-        async function getFollowInfo(){
-            if(user !== undefined){
+        async function getFollowInfo() {
+            if (user !== undefined) {
                 const { data: followUser } = await api.get(`/follow-user/${userContext.id}/${user.user.id}`)
                 const { data: userFollow } = await api.get(`/user-follow/${userContext.id}/${user.user.id}`)
                 setFollowing(followUser.follow)
@@ -80,10 +80,10 @@ const User = (props) => {
         getFollowInfo()
     }, [user, userContext])
 
-    function handleFollow(){
+    function handleFollow() {
         const follow = { user_id: userContext.id, following_user_id: user.user.id }
-        
-        if(following){
+
+        if (following) {
             api.delete(`/follow/${userContext.id}/${user.user.id}`, follow)
                 .then(res => {
                     setFollowing(false)
@@ -91,7 +91,7 @@ const User = (props) => {
                 })
                 .catch(error => console.error(error.message))
         }
-        else{
+        else {
             api.post('/follow', follow)
                 .then(res => {
                     setFollowing(true)
@@ -101,7 +101,7 @@ const User = (props) => {
         }
     }
 
-    function handleEdit(){
+    function handleEdit() {
 
         const formdata = new FormData()
         formdata.append('name', name)
@@ -110,10 +110,10 @@ const User = (props) => {
 
         api.put(`/users/${userContext.id}`, formdata, { onUploadProgress: (e) => handleProgress(e) })
             .then(res => {
-                if(res.data.message){
+                if (res.data.message) {
                     console.log(res.data)
                 }
-                else{
+                else {
                     console.log(res.data)
                     setOnEdit(false)
                 }
@@ -121,7 +121,7 @@ const User = (props) => {
             .catch(error => console.error(error.message))
     }
 
-    function handleProgress(e){
+    function handleProgress(e) {
         setViewModal(true)
         setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
     }
@@ -133,36 +133,36 @@ const User = (props) => {
                 <div className="container-user-not-exists">
                     <ion-icon name="alert-circle"></ion-icon>
                     <h1>Este usuário não existe!</h1>
-                </div> 
+                </div>
             }
             {loading && <Loading />}
             {
-                viewModal && 
+                viewModal &&
                 <div className="modal">
                     <div className="modal-content upload">
                         {
-                            percentualUpload !== 100 ? 
-                            <ion-icon className="rotate" name="hourglass-outline"></ion-icon>
-                            :
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            percentualUpload !== 100 ?
+                                <ion-icon className="rotate" name="hourglass-outline"></ion-icon>
+                                :
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
                         }
                         {
-                            percentualUpload !== 100 ? 
-                            <h1>Enviando...</h1> :
-                            <h1>Atualizado com sucesso!</h1>
+                            percentualUpload !== 100 ?
+                                <h1>Enviando...</h1> :
+                                <h1>Atualizado com sucesso!</h1>
                         }
                         {
-                            percentualUpload !== 100 ? 
-                            <div className="progress">
-                                <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
-                            </div> 
-                            :
-                            <button 
-                                onClick={() => {
-                                    setViewModal(false)
-                                }}>
-                                Fechar
-                            </button>
+                            percentualUpload !== 100 ?
+                                <div className="progress">
+                                    <div style={{ width: `${percentualUpload}%` }} className="progress-content"></div>
+                                </div>
+                                :
+                                <button
+                                    onClick={() => {
+                                        setViewModal(false)
+                                    }}>
+                                    Fechar
+                                </button>
                         }
                     </div>
                 </div>
@@ -174,7 +174,7 @@ const User = (props) => {
                         <div className="image-user-container">
                             <img src={image.name ? URL.createObjectURL(image) : `${user.user.url_image}?${Date.now()}`} alt={user.user.user} />
                             {
-                                onEdit && 
+                                onEdit &&
                                 <div className="button-container">
                                     <button onClick={() => inputImage.current && inputImage.current.click()} >
                                         <ion-icon name="create-outline"></ion-icon>
@@ -184,7 +184,7 @@ const User = (props) => {
                         </div>
                         <div className="user-info">
                             {
-                                !onEdit && 
+                                !onEdit &&
                                 <div className="name-container">
                                     <h1>{name}</h1>
                                     {
@@ -199,26 +199,26 @@ const User = (props) => {
                             <div className="follow-container">
                                 <p>{user.following_count.amount} Seguindo</p>
                                 <p>{amountFollowers} Seguidores</p>
-                                { userContext.user === user.user.user && <button onClick={() => setOnEdit(!onEdit)}>Editar Perfil</button> }
-                                { userContext.user !== user.user.user && 
-                                    <button 
-                                        className={following && 'selected'} 
+                                {userContext.user === user.user.user && <button onClick={() => setOnEdit(!onEdit)}>Editar Perfil</button>}
+                                {userContext.user !== user.user.user &&
+                                    <button
+                                        className={following && 'selected'}
                                         onClick={() => handleFollow()}>
                                         {following ? 'Deixar de seguir' : 'Seguir'}
                                     </button>
                                 }
                             </div>
                             {
-                                !onEdit && 
+                                !onEdit &&
                                 <p className="biography">
-                                    { biography ? biography : "Sem Biografia" }
+                                    {biography ? biography : "Sem Biografia"}
                                 </p>
                             }
                             {
-                                onEdit && 
-                                <textarea 
-                                    value={biography} 
-                                    onChange={e => setBiography(e.target.value)} 
+                                onEdit &&
+                                <textarea
+                                    value={biography}
+                                    onChange={e => setBiography(e.target.value)}
                                     placeholder="Sua biografia" cols="30" rows="10"
                                 >
                                 </textarea>
@@ -243,12 +243,12 @@ const User = (props) => {
                         <div className="user-medias-preferences">
                             <div className="header-medias-preferences">
                                 <h1>Mídias</h1>
-                                { user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button> }
+                                {user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button>}
                             </div>
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
-                                        <Media redirect key={media.id} selectMedia={() => {}} miniature media={media} />
+                                        <Media redirect key={media.id} selectMedia={() => { }} miniature media={media} />
                                     ))
                                 }
                             </div>
@@ -264,7 +264,7 @@ const User = (props) => {
                         <div className="user-genders-preferences">
                             <div className="header-genders-preferences">
                                 <h1>Gêneros</h1>
-                                { user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button> }
+                                {user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button>}
                             </div>
                             <div className="user-genders-preferences-container">
                                 {
@@ -285,15 +285,14 @@ const User = (props) => {
             <div className="profile-interations-container">
                 <div className="avaliations-column">
                     {
-                        user && avaliations.length > 0 
-                        ?
-                            avaliations.map(avaliation => 
-                                <Avaliation 
-                                    key={avaliation.id} 
-                                    avaliation={avaliation} 
-                                    handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)} 
-                                />
-                            ) 
+                        user && avaliations.length > 0?
+                        avaliations.map(avaliation =>
+                            <Avaliation
+                                key={avaliation.id}
+                                avaliation={avaliation}
+                                handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)}
+                            />
+                        )
                         :
                         <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>
@@ -303,16 +302,15 @@ const User = (props) => {
                 </div>
                 <div className="coment-column">
                     {
-                        user && coments.length > 0 
-                        ? 
-                            coments.map(coment => 
-                                <Coment 
-                                    key={coment.id} 
-                                    coment={coment} 
-                                    handleDelete={() => handleDeleteComent(coment, coments, setComents)} 
-                                />
-                            )
-                        : 
+                        user && coments.length > 0 ?
+                        coments.map(coment =>
+                            <Coment
+                                key={coment.id}
+                                coment={coment}
+                                handleDelete={() => handleDeleteComent(coment, coments, setComents)}
+                            />
+                        )
+                        :
                         <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>
                             <h1>Esse usuário não realizou comentários</h1>

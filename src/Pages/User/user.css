@@ -320,6 +320,9 @@
     justify-content: center;
     transition: background-color 0.3s;
 }
+.profile-info-container .user-genders-preferences .header-genders-preferences button:hover{
+    background-color: rgba(0, 0, 0, 0.384);
+}
 .profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference{
     display: flex;
     align-items: center;
