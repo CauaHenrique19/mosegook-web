@@ -32,6 +32,9 @@ const User = (props) => {
     const [viewModal, setViewModal] = useState(false)
     const [percentualUpload, setPercentualUpload] = useState(0)
 
+    const [viewInputSearchMedias, setViewInputSearchMedias] = useState(false)
+    const [viewInputSearchGenders, setViewInputSearchGenders] = useState(false)
+
     const inputImage = useRef(null)
 
     useEffect(() => {
@@ -124,6 +127,14 @@ const User = (props) => {
     function handleProgress(e) {
         setViewModal(true)
         setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
+    }
+
+    function handleSearchMedias(e){
+        console.log(e)
+    }
+
+    function handleSearchGenders(e){
+        console.log(e)
     }
 
     return (
@@ -242,8 +253,17 @@ const User = (props) => {
                     user && user.medias.length > 0 ?
                         <div className="user-medias-preferences">
                             <div className="header-medias-preferences">
-                                <h1>Mídias</h1>
-                                {user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button>}
+                                {
+                                    viewInputSearchMedias ? 
+                                    <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchMedias(e.target.value)} /> : 
+                                    <h1>Mídias</h1>
+                                }
+                                {
+                                    user.user.id === userContext.id && 
+                                    <button onClick={() => setViewInputSearchMedias(!viewInputSearchMedias)}>
+                                            <ion-icon name="add-outline"></ion-icon>
+                                    </button>
+                                }
                             </div>
                             <div className="user-medias-preferences-container">
                                 {
@@ -263,8 +283,22 @@ const User = (props) => {
                     user && user.genders.length > 0 ?
                         <div className="user-genders-preferences">
                             <div className="header-genders-preferences">
-                                <h1>Gêneros</h1>
-                                {user.user.id === userContext.id && <button><ion-icon name="add-outline"></ion-icon></button>}
+                                {
+                                    viewInputSearchGenders ? 
+                                    <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchGenders(e.target.value)} /> : 
+                                    <h1>Gêneros</h1>
+                                }
+                                
+                                { 
+                                    user.user.id === userContext.id && 
+                                    <button onClick={() => setViewInputSearchGenders(!viewInputSearchGenders)} >
+                                        {
+                                            viewInputSearchGenders ?
+                                            <ion-icon name="close-outline"></ion-icon> :
+                                            <ion-icon name="add-outline"></ion-icon>
+                                        }
+                                    </button> 
+                                }
                             </div>
                             <div className="user-genders-preferences-container">
                                 {

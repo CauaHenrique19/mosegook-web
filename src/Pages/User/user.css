@@ -297,7 +297,7 @@
 .profile-info-container .user-genders-preferences .user-genders-preferences-container{
     display: grid;
     grid-template-columns: repeat(4, 100px);
-    grid-gap: 15px;
+    grid-gap: 20px;
     margin-bottom: 20px;
 }
 .profile-info-container .user-genders-preferences .header-genders-preferences{
@@ -322,6 +322,19 @@
 }
 .profile-info-container .user-genders-preferences .header-genders-preferences button:hover{
     background-color: rgba(0, 0, 0, 0.384);
+}
+.profile-info-container .user-medias-preferences .header-medias-preferences input,
+.profile-info-container .user-genders-preferences .header-genders-preferences input{
+    width: 250px;
+    height: 35px;
+    border: none;
+    background-color: initial;
+    outline: none;
+    padding: 0 10px;
+    color: #fafafa;
+    font-size: 1.1rem;
+    border: 1px solid rgba(128, 128, 128, 0.205);
+    border-radius: 3px;
 }
 .profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference{
     display: flex;
