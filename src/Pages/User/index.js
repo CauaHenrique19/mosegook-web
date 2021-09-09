@@ -130,11 +130,19 @@ const User = (props) => {
     }
 
     function handleSearchMedias(e){
-        console.log(e)
+        api.get(`/medias/search/${e}`)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(error => console.error(error.message))
     }
 
     function handleSearchGenders(e){
-        console.log(e)
+        api.get(`/genders/${e}`)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(error => console.error(error.message))
     }
 
     return (
