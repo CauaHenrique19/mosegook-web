@@ -35,6 +35,9 @@ const User = (props) => {
     const [viewInputSearchMedias, setViewInputSearchMedias] = useState(false)
     const [viewInputSearchGenders, setViewInputSearchGenders] = useState(false)
 
+    const [mediasSearched, setMediasSearched] = useState([])
+    const [gendersSearched, setGendersSearched] = useState([])
+
     const inputImage = useRef(null)
 
     useEffect(() => {
@@ -129,19 +132,15 @@ const User = (props) => {
         setPercentualUpload(parseInt(Math.round(e.loaded * 100) / e.total))
     }
 
-    function handleSearchMedias(e){
+    function handleSearchMedias(e) {
         api.get(`/medias/search/${e}`)
-            .then(res => {
-                console.log(res.data)
-            })
+            .then(res => setMediasSearched(res.data.medias))
             .catch(error => console.error(error.message))
     }
 
-    function handleSearchGenders(e){
+    function handleSearchGenders(e) {
         api.get(`/genders/${e}`)
-            .then(res => {
-                console.log(res.data)
-            })
+            .then(res => setGendersSearched(res.data))
             .catch(error => console.error(error.message))
     }
 
@@ -262,17 +261,28 @@ const User = (props) => {
                         <div className="user-medias-preferences">
                             <div className="header-medias-preferences">
                                 {
-                                    viewInputSearchMedias ? 
-                                    <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchMedias(e.target.value)} /> : 
-                                    <h1>Mídias</h1>
+                                    viewInputSearchMedias ?
+                                        <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchMedias(e.target.value)} /> :
+                                        <h1>Mídias</h1>
                                 }
                                 {
-                                    user.user.id === userContext.id && 
+                                    user.user.id === userContext.id &&
                                     <button onClick={() => setViewInputSearchMedias(!viewInputSearchMedias)}>
-                                            <ion-icon name="add-outline"></ion-icon>
+                                        <ion-icon name="add-outline"></ion-icon>
                                     </button>
                                 }
                             </div>
+                            {
+                                mediasSearched &&
+                                mediasSearched.length > 0 &&
+                                <div className="modal-medias">
+                                    {
+                                        mediasSearched.map(media => (
+                                            <Media key={media.id} selectMedia={() => { }} miniature media={media} />
+                                        ))
+                                    }
+                                </div>
+                            }
                             <div className="user-medias-preferences-container">
                                 {
                                     user && user.medias.map(media => (
@@ -292,20 +302,20 @@ const User = (props) => {
                         <div className="user-genders-preferences">
                             <div className="header-genders-preferences">
                                 {
-                                    viewInputSearchGenders ? 
-                                    <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchGenders(e.target.value)} /> : 
-                                    <h1>Gêneros</h1>
+                                    viewInputSearchGenders ?
+                                        <input type="text" placeholder="Pesquisar..." onChange={(e) => handleSearchGenders(e.target.value)} /> :
+                                        <h1>Gêneros</h1>
                                 }
-                                
-                                { 
-                                    user.user.id === userContext.id && 
+
+                                {
+                                    user.user.id === userContext.id &&
                                     <button onClick={() => setViewInputSearchGenders(!viewInputSearchGenders)} >
                                         {
                                             viewInputSearchGenders ?
-                                            <ion-icon name="close-outline"></ion-icon> :
-                                            <ion-icon name="add-outline"></ion-icon>
+                                                <ion-icon name="close-outline"></ion-icon> :
+                                                <ion-icon name="add-outline"></ion-icon>
                                         }
-                                    </button> 
+                                    </button>
                                 }
                             </div>
                             <div className="user-genders-preferences-container">
@@ -327,36 +337,36 @@ const User = (props) => {
             <div className="profile-interations-container">
                 <div className="avaliations-column">
                     {
-                        user && avaliations.length > 0?
-                        avaliations.map(avaliation =>
-                            <Avaliation
-                                key={avaliation.id}
-                                avaliation={avaliation}
-                                handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)}
-                            />
-                        )
-                        :
-                        <div className="nothing-container">
-                            <ion-icon name="alert-circle"></ion-icon>
-                            <h1>Esse usuário não realizou avaliações</h1>
-                        </div>
+                        user && avaliations.length > 0 ?
+                            avaliations.map(avaliation =>
+                                <Avaliation
+                                    key={avaliation.id}
+                                    avaliation={avaliation}
+                                    handleDelete={() => handleDeleteAvaliation(avaliation, avaliations, setAvaliations)}
+                                />
+                            )
+                            :
+                            <div className="nothing-container">
+                                <ion-icon name="alert-circle"></ion-icon>
+                                <h1>Esse usuário não realizou avaliações</h1>
+                            </div>
                     }
                 </div>
                 <div className="coment-column">
                     {
                         user && coments.length > 0 ?
-                        coments.map(coment =>
-                            <Coment
-                                key={coment.id}
-                                coment={coment}
-                                handleDelete={() => handleDeleteComent(coment, coments, setComents)}
-                            />
-                        )
-                        :
-                        <div className="nothing-container">
-                            <ion-icon name="alert-circle"></ion-icon>
-                            <h1>Esse usuário não realizou comentários</h1>
-                        </div>
+                            coments.map(coment =>
+                                <Coment
+                                    key={coment.id}
+                                    coment={coment}
+                                    handleDelete={() => handleDeleteComent(coment, coments, setComents)}
+                                />
+                            )
+                            :
+                            <div className="nothing-container">
+                                <ion-icon name="alert-circle"></ion-icon>
+                                <h1>Esse usuário não realizou comentários</h1>
+                            </div>
                     }
                 </div>
             </div>
