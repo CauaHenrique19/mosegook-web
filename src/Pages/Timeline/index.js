@@ -155,7 +155,7 @@ const Timeline = () => {
         }
         else {
             api.get(`/medias/search/${e.target.value}`)
-                .then(res => setMediasToMention(res.data.medias))
+                .then(res => setMediasToMention(res.data))
                 .catch(error => console.error(error.data))
         }
 
