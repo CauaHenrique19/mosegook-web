@@ -35,6 +35,9 @@ const User = (props) => {
     const [viewInputSearchMedias, setViewInputSearchMedias] = useState(false)
     const [viewInputSearchGenders, setViewInputSearchGenders] = useState(false)
 
+    const [viewModalMedias, setViewModalMedias] = useState(false)
+    const [viewModalGenders, setViewModalGenders] = useState(false)
+
     const [mediasSearched, setMediasSearched] = useState([])
     const [gendersSearched, setGendersSearched] = useState([])
 
@@ -133,12 +136,14 @@ const User = (props) => {
     }
 
     function handleSearchMedias(e) {
+        setViewModalMedias(e !== "")
         api.get(`/medias/search/${e}`)
             .then(res => setMediasSearched(res.data.medias))
             .catch(error => console.error(error.message))
     }
 
     function handleSearchGenders(e) {
+        setViewModalGenders(e !== "")
         api.get(`/genders/${e}`)
             .then(res => setGendersSearched(res.data))
             .catch(error => console.error(error.message))
@@ -268,13 +273,18 @@ const User = (props) => {
                                 {
                                     user.user.id === userContext.id &&
                                     <button onClick={() => setViewInputSearchMedias(!viewInputSearchMedias)}>
-                                        <ion-icon name="add-outline"></ion-icon>
+                                        {
+                                            viewInputSearchMedias ?
+                                                <ion-icon name="close-outline"></ion-icon> :
+                                                <ion-icon name="add-outline"></ion-icon>
+                                        }
                                     </button>
                                 }
                             </div>
                             {
                                 mediasSearched &&
                                 mediasSearched.length > 0 &&
+                                viewModalMedias &&
                                 <div className="modal-medias">
                                     {
                                         mediasSearched.map(media => (
@@ -285,7 +295,7 @@ const User = (props) => {
                             }
                             <div className="user-medias-preferences-container">
                                 {
-                                    user && user.medias.map(media => (
+                                    user && !viewModalMedias && user.medias.map(media => (
                                         <Media redirect key={media.id} selectMedia={() => { }} miniature media={media} />
                                     ))
                                 }
@@ -318,9 +328,23 @@ const User = (props) => {
                                     </button>
                                 }
                             </div>
+                            {
+                                gendersSearched &&
+                                gendersSearched.length > 0 &&
+                                viewModalGenders &&
+                                <div className="modal-genders">
+                                    {
+                                        gendersSearched.map(gender => (
+                                            <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">
+                                                <p>{gender.name}</p>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                             <div className="user-genders-preferences-container">
                                 {
-                                    user && user.genders.map(gender => (
+                                    user && !viewModalGenders && user.genders.map(gender => (
                                         <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">
                                             <p>{gender.name}</p>
                                         </div>

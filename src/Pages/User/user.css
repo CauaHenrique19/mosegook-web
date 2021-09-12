@@ -296,14 +296,11 @@
     display: grid;
     grid-template-columns: 150px 150px 150px;
     gap: 2px;
-    width: 100%;
-    max-height: 550px;
-    background-color: #0f0f0f;
-    position: absolute;
+
+    height: 550px;
     z-index: 10;
     overflow-x: auto;
     padding: 5px 0 5px 5px;
-    box-shadow: 0px 0px 16px 16px rgba(0, 0, 0, 0.205);
     border-radius: 3px;
 }
 .profile-info-container .user-medias-preferences .modal-medias .media:hover{
@@ -317,10 +314,14 @@
     border-radius: 50px;
     background-color: blueviolet;
 }
+.profile-info-container .user-genders-preferences{
+    position: relative;
+}
 .profile-info-container .user-genders-preferences > h1{
     margin-bottom: 10px;
 }
 .profile-info-container .user-genders-preferences .user-genders-preferences-container{
+    min-height: 550px;
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-gap: 20px;
@@ -362,7 +363,26 @@
     border: 1px solid rgba(128, 128, 128, 0.205);
     border-radius: 3px;
 }
-.profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference{
+.profile-info-container .user-genders-preferences .modal-genders{
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
+
+    max-height: 550px;
+    z-index: 10;
+    overflow-x: auto;
+    padding: 5px 0 5px 5px;
+    border-radius: 3px;
+}
+.profile-info-container .user-genders-preferences .modal-genders::-webkit-scrollbar{
+    width: 5px;
+}
+.profile-info-container .user-genders-preferences .modal-genders::-webkit-scrollbar-thumb{
+    width: 5px;
+    border-radius: 50px;
+    background-color: blueviolet;
+}
+.profile-info-container .user-genders-preferences .user-gender-preference{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -370,7 +390,7 @@
     height: 100px;
     border-radius: 3px;
 }
-.profile-info-container .user-genders-preferences .user-genders-preferences-container .user-gender-preference p{
+.profile-info-container .user-genders-preferences .user-gender-preference p{
     text-align: center;
 }
 .profile-interations-container{
