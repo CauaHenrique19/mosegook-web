@@ -5,7 +5,7 @@ import './style.css'
 
 const Media = ({ media, redirect, selectMedia, selected, removeMedia, miniature, admin, onEdit, onDelete }) => {
     return (
-        <Link to={ redirect && `/media/${media.id}`} onClick={() => selectMedia()} className={selected ? 'media selected' : (miniature ? 'media miniature' : 'media')}>
+        <Link to={ redirect && `/media/${media.id}`} onClick={(e) => selectMedia(e)} className={selected ? 'media selected' : (miniature ? 'media miniature' : 'media')}>
             <div className="media-image-container">
                 <img src={media.url_poster} alt={media.media_name || media.name} />
             </div>

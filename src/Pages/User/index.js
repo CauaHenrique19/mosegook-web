@@ -25,6 +25,9 @@ const User = (props) => {
     const [amountFollowers, setAmountFollowers] = useState(0)
     const [onEdit, setOnEdit] = useState(false)
 
+    const [initialLengthMedias, setInitialLengthMedias] = useState()
+    const [initialLengthGenders, setInitialLengthGenders] = useState()
+
     const [image, setImage] = useState({})
     const [name, setName] = useState('')
     const [biography, setBiography] = useState('')
@@ -53,6 +56,8 @@ const User = (props) => {
 
             if (!dataUser.message) {
                 setUser(dataUser)
+                setInitialLengthMedias(dataUser.medias.length)
+                setInitialLengthGenders(dataUser.genders.length)
                 setLoading(false)
                 setUserNotExists(false)
                 setAmountFollowers(parseInt(dataUser.followers_count.amount))
@@ -120,10 +125,8 @@ const User = (props) => {
         api.put(`/users/${userContext.id}`, formdata, { onUploadProgress: (e) => handleProgress(e) })
             .then(res => {
                 if (res.data.message) {
-                    console.log(res.data)
                 }
                 else {
-                    console.log(res.data)
                     setOnEdit(false)
                 }
             })
@@ -138,7 +141,7 @@ const User = (props) => {
     function handleSearchMedias(e) {
         setViewModalMedias(e !== "")
         api.get(`/medias/search/${e}`)
-            .then(res => setMediasSearched(res.data.medias))
+            .then(res => setMediasSearched(res.data))
             .catch(error => console.error(error.message))
     }
 
@@ -146,6 +149,44 @@ const User = (props) => {
         setViewModalGenders(e !== "")
         api.get(`/genders/${e}`)
             .then(res => setGendersSearched(res.data))
+            .catch(error => console.error(error.message))
+    }
+
+    function handleSelectMedia(media, e){
+        e.preventDefault()
+        user.medias.push(media)
+        setUser({...user})
+        setViewModalMedias(false)
+    }
+
+    function handleSelectGenders(gender){
+        user.genders.push(gender)
+        setUser({...user})
+        setViewModalGenders(false)
+    }
+
+    function handleSubmitMedias(){
+        const medias_id = user.medias.map(media => media.id)
+        api.put(`/user-preferences-medias/${user.user.id}`, { medias_id })
+            .then(res => {
+                if(res.status === 200){
+                    setInitialLengthMedias(medias_id.length)
+                    setViewInputSearchMedias(false)
+                }
+            })
+            .catch(error => console.error(error.message))
+        
+    }
+
+    function handleSubmitGenders(){
+        const genders_id = user.genders.map(gender => gender.id)
+        api.put(`/user-preferences-genders/${user.user.id}`, { genders_id })
+            .then(res => {
+                if(res.status === 200){
+                    setInitialLengthGenders(genders_id.length)
+                    setViewInputSearchGenders(false)
+                }
+            })
             .catch(error => console.error(error.message))
     }
 
@@ -272,7 +313,14 @@ const User = (props) => {
                                 }
                                 {
                                     user.user.id === userContext.id &&
-                                    <button onClick={() => setViewInputSearchMedias(!viewInputSearchMedias)}>
+                                    <button 
+                                        onClick={() => { 
+                                            setViewInputSearchMedias(!viewInputSearchMedias)
+                                            if(viewInputSearchMedias){
+                                                setViewModalMedias(false)
+                                            } 
+                                        }}
+                                    >
                                         {
                                             viewInputSearchMedias ?
                                                 <ion-icon name="close-outline"></ion-icon> :
@@ -288,7 +336,7 @@ const User = (props) => {
                                 <div className="modal-medias">
                                     {
                                         mediasSearched.map(media => (
-                                            <Media key={media.id} selectMedia={() => { }} miniature media={media} />
+                                            <Media key={media.id} selectMedia={(e) => handleSelectMedia(media, e)} miniature media={media} />
                                         ))
                                     }
                                 </div>
@@ -296,10 +344,14 @@ const User = (props) => {
                             <div className="user-medias-preferences-container">
                                 {
                                     user && !viewModalMedias && user.medias.map(media => (
-                                        <Media redirect key={media.id} selectMedia={() => { }} miniature media={media} />
+                                        <Media redirect key={media.id} selectMedia={() => {  }} miniature media={media} />
                                     ))
                                 }
                             </div>
+                            {
+                                initialLengthMedias !== user.medias.length &&
+                                <button onClick={() => handleSubmitMedias()}>Salvar</button>
+                            }
                         </div>
                         :
                         <div className="nothing-container">
@@ -319,7 +371,14 @@ const User = (props) => {
 
                                 {
                                     user.user.id === userContext.id &&
-                                    <button onClick={() => setViewInputSearchGenders(!viewInputSearchGenders)} >
+                                    <button 
+                                        onClick={() => {
+                                            setViewInputSearchGenders(!viewInputSearchGenders)
+                                            if(viewInputSearchGenders){
+                                                setViewModalGenders(false)
+                                            } 
+                                        }} 
+                                    >
                                         {
                                             viewInputSearchGenders ?
                                                 <ion-icon name="close-outline"></ion-icon> :
@@ -335,7 +394,12 @@ const User = (props) => {
                                 <div className="modal-genders">
                                     {
                                         gendersSearched.map(gender => (
-                                            <div key={gender.color} style={{ backgroundColor: gender.color }} className="user-gender-preference">
+                                            <div 
+                                                onClick={() => handleSelectGenders(gender)} 
+                                                key={gender.color} 
+                                                style={{ backgroundColor: gender.color }} 
+                                                className="user-gender-preference"
+                                            >
                                                 <p>{gender.name}</p>
                                             </div>
                                         ))
@@ -351,6 +415,10 @@ const User = (props) => {
                                     ))
                                 }
                             </div>
+                            {
+                                initialLengthGenders !== user.genders.length &&
+                                <button onClick={() => handleSubmitGenders()}>Salvar</button>
+                            }
                         </div>
                         : <div className="nothing-container">
                             <ion-icon name="alert-circle"></ion-icon>
