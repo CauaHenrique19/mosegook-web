@@ -81,11 +81,11 @@ const AvaliationDetailed = (props) => {
         api.post('/coments', coment)
             .then(res => {
                 const updatedComent = {
-                    ...res.data.coment[0],
+                    ...res.data.coment,
                     user_name: user.name, 
                     user_id: user.id, 
                     user_user: user.user,
-                    media_name: avaliationDetailed.avaliation.media_name,
+                    media_name: avaliationDetailed.media.media_name,
                     category_icon: avaliationDetailed.avaliation.category_icon,
                     category_color: avaliationDetailed.avaliation.category_color,
                     amountLikes: 0
