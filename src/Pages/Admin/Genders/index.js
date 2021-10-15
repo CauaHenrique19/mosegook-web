@@ -25,7 +25,7 @@ const Genders = () => {
             })
             .catch(error => console.error(error.message))
 
-        api.get('/genders/statistics')
+        api.get('/genders-statistics')
             .then(res => setStatistics(res.data))
             .catch(error => console.error(error.message))
     }, [])

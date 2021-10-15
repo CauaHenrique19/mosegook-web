@@ -313,10 +313,6 @@ const Home = () => {
                     </div>
                     <h2>Mosegook © 2021</h2>
                 </div>
-                <div className="right-container">
-                    <h2>Desenvolvido por</h2>
-                    <h2>Cauã Henrique e Diogo Velozo</h2>
-                </div>
             </footer>
         </>
     )
